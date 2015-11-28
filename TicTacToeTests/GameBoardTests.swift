@@ -34,11 +34,29 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(board.marksInRow(0), [.Empty, .Empty, .Empty])
     }
     
+    func test_marksInRow_rowIsXOX_returnsXOX() {
+        let board = GameBoard(dimension: 3)
+        board.marks = [
+            [.Empty, .Empty, .Empty],
+            [.X,     .O,     .X    ],
+            [.Empty, .Empty, .Empty]]
+        XCTAssertEqual(board.marksInRow(1), [.X, .O, .X])
+    }
+    
     // MARK: - marksInColumn
     
     func test_marksInColumn_columnIsEmpty_returnsEmptyColumn() {
         let board = GameBoard(dimension: 3)
         XCTAssertEqual(board.marksInColumn(0), [.Empty, .Empty, .Empty])
+    }
+    
+    func test_marksInColumn_columnIsXOX_returnsXOX() {
+        let board = GameBoard(dimension: 3)
+        board.marks = [
+            [.Empty, .X, .Empty],
+            [.Empty, .O, .Empty],
+            [.Empty, .X, .Empty]]
+        XCTAssertEqual(board.marksInColumn(1), [.X, .O, .X])
     }
     
     // MARK: - marksInDiagnoal
