@@ -12,6 +12,12 @@
 		03DCD6EF1C0941030019BC48 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCD6EE1C0941030019BC48 /* GameBoardTests.swift */; };
 		03DCD6FA1C09414D0019BC48 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCD6F91C09414D0019BC48 /* GameBoard.swift */; };
 		03DCD6FB1C09414D0019BC48 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCD6F91C09414D0019BC48 /* GameBoard.swift */; };
+		03E647261C0A0998000AE2F5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E647251C0A0998000AE2F5 /* Player.swift */; };
+		03E647271C0A0998000AE2F5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E647251C0A0998000AE2F5 /* Player.swift */; };
+		03E647291C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E647281C0A0BD9000AE2F5 /* TicTacToeStrategy.swift */; };
+		03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E647281C0A0BD9000AE2F5 /* TicTacToeStrategy.swift */; };
+		03E6472D1C0A1089000AE2F5 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6472C1C0A1089000AE2F5 /* PlayerTests.swift */; };
+		03E647301C0A11EE000AE2F5 /* ScriptedStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6472F1C0A11EE000AE2F5 /* ScriptedStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +38,10 @@
 		03DCD6EE1C0941030019BC48 /* GameBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardTests.swift; sourceTree = "<group>"; };
 		03DCD6F01C0941030019BC48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03DCD6F91C09414D0019BC48 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
+		03E647251C0A0998000AE2F5 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		03E647281C0A0BD9000AE2F5 /* TicTacToeStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeStrategy.swift; sourceTree = "<group>"; };
+		03E6472C1C0A1089000AE2F5 /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		03E6472F1C0A11EE000AE2F5 /* ScriptedStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptedStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +85,9 @@
 			isa = PBXGroup;
 			children = (
 				03DCD6FF1C09420B0019BC48 /* Config */,
+				03E6472B1C0A0E53000AE2F5 /* Strategy */,
 				03DCD6F91C09414D0019BC48 /* GameBoard.swift */,
+				03E647251C0A0998000AE2F5 /* Player.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -83,8 +95,10 @@
 		03DCD6ED1C0941030019BC48 /* TicTacToeTests */ = {
 			isa = PBXGroup;
 			children = (
+				03E647241C0A08ED000AE2F5 /* Config */,
+				03E6472E1C0A10A5000AE2F5 /* Strategy */,
 				03DCD6EE1C0941030019BC48 /* GameBoardTests.swift */,
-				03DCD6F01C0941030019BC48 /* Info.plist */,
+				03E6472C1C0A1089000AE2F5 /* PlayerTests.swift */,
 			);
 			path = TicTacToeTests;
 			sourceTree = "<group>";
@@ -96,6 +110,30 @@
 				03DCD6E21C0941030019BC48 /* TicTacToe.h */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		03E647241C0A08ED000AE2F5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				03DCD6F01C0941030019BC48 /* Info.plist */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		03E6472B1C0A0E53000AE2F5 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				03E647281C0A0BD9000AE2F5 /* TicTacToeStrategy.swift */,
+			);
+			name = Strategy;
+			sourceTree = "<group>";
+		};
+		03E6472E1C0A10A5000AE2F5 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				03E6472F1C0A11EE000AE2F5 /* ScriptedStrategy.swift */,
+			);
+			name = Strategy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03DCD6FA1C09414D0019BC48 /* GameBoard.swift in Sources */,
+				03E647261C0A0998000AE2F5 /* Player.swift in Sources */,
+				03E647291C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E647301C0A11EE000AE2F5 /* ScriptedStrategy.swift in Sources */,
+				03E6472D1C0A1089000AE2F5 /* PlayerTests.swift in Sources */,
 				03DCD6FB1C09414D0019BC48 /* GameBoard.swift in Sources */,
+				03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
 				03DCD6EF1C0941030019BC48 /* GameBoardTests.swift in Sources */,
+				03E647271C0A0998000AE2F5 /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +437,7 @@
 				03DCD6F51C0941030019BC48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03DCD6F61C0941030019BC48 /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +446,7 @@
 				03DCD6F81C0941030019BC48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
