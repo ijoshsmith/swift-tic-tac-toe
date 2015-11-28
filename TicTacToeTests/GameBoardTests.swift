@@ -93,19 +93,19 @@ class GameBoardTests: XCTestCase {
     
     func test_putMarkInRowColumn_markX_positionHasX() {
         let board = GameBoard(dimension: 3)
-        board.putMark(.X, atPosition: (1, 2))
+        board.putMark(.X, atPosition: (row: 1, column: 2))
         XCTAssertEqual(board.marks[1][2], Mark.X)
     }
     
     func test_putMarkInRowColumn_markO_positionHasO() {
         let board = GameBoard(dimension: 3)
-        board.putMark(.O, atPosition: (1, 0))
+        board.putMark(.O, atPosition: (row: 1, column: 0))
         XCTAssertEqual(board.marks[1][0], Mark.O)
     }
     
     func test_putMarkInRowColumn_markX_onlySpecifiedPositionIsUpdated() {
         let board = GameBoard(dimension: 3)
-        board.putMark(.X, atPosition: (1, 0))
+        board.putMark(.X, atPosition: (row: 1, column: 0))
         XCTAssertEqual(board.marks[1][0], Mark.X)
         XCTAssertEqual(board.marks.flatten().filter { $0 == Mark.X }.count, 1)
     }

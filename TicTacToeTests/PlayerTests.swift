@@ -15,7 +15,7 @@ class PlayerTests: XCTestCase {
     func test_choosePositionToMarkWithCompletionHandler_strategyChoosesCenterPosition_choosesCenterPosition() {
         let
         board  = GameBoard(dimension: 3),
-        center = GameBoard.Position(1, 1),
+        center = GameBoard.Position(row: 1, column: 1),
         script = ScriptedStrategy(positions: [center]),
         player = Player(mark: .X, gameBoard: board, strategy: script)
         
