@@ -10,9 +10,9 @@ import XCTest
 
 class PlayerTests: XCTestCase {
 
-    // MARK: - choosePositionToMarkWithCompletionHandler
+    // MARK: - choosePositionWithCompletionHandler
 
-    func test_choosePositionToMarkWithCompletionHandler_strategyChoosesCenterPosition_choosesCenterPosition() {
+    func test_choosePositionWithCompletionHandler_strategyChoosesCenterPosition_choosesCenterPosition() {
         let
         board  = GameBoard(dimension: 3),
         center = GameBoard.Position(row: 1, column: 1),
@@ -21,7 +21,7 @@ class PlayerTests: XCTestCase {
         
         // Use an expectation to avoid assuming the completion handler is immediately invoked.
         let expectation = expectationWithDescription("Player chooses center position")
-        player.choosePositionToMarkWithCompletionHandler { position in
+        player.choosePositionWithCompletionHandler { position in
             XCTAssertEqual(position.row, center.row)
             XCTAssertEqual(position.column, center.column)
             expectation.fulfill()
