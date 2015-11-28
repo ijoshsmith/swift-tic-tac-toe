@@ -53,6 +53,7 @@ public final class GameBoard {
     public func putMark(mark: Mark, atPosition position: Position) {
         assertPosition(position)
         assert(isEmptyAtPosition(position))
+        assert(mark != .Empty)
         marks[position.row][position.column] = mark
     }
     
