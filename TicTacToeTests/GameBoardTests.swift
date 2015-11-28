@@ -89,6 +89,60 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(board.marksInDiagnoal(.BottomLeftToTopRight), [.O, .X, .O])
     }
     
+    // MARK: - positionsForRow
+    
+    func test_positionsForRow_firstRow_returnsCorrectPositions() {
+        let board = GameBoard(dimension: 3)
+        let positions = board.positionsForRow(0)
+        XCTAssertEqual(positions.count, 3)
+        XCTAssertEqual(positions[0].row, 0)
+        XCTAssertEqual(positions[1].row, 0)
+        XCTAssertEqual(positions[2].row, 0)
+        XCTAssertEqual(positions[0].column, 0)
+        XCTAssertEqual(positions[1].column, 1)
+        XCTAssertEqual(positions[2].column, 2)
+    }
+    
+    // MARK: - positionsForColumn
+    
+    func test_positionsForColumn_lastColumn_returnsCorrectPositions() {
+        let board = GameBoard(dimension: 3)
+        let positions = board.positionsForColumn(2)
+        XCTAssertEqual(positions.count, 3)
+        XCTAssertEqual(positions[0].row, 0)
+        XCTAssertEqual(positions[1].row, 1)
+        XCTAssertEqual(positions[2].row, 2)
+        XCTAssertEqual(positions[0].column, 2)
+        XCTAssertEqual(positions[1].column, 2)
+        XCTAssertEqual(positions[2].column, 2)
+    }
+    
+    // MARK: - positionsForDiagonal
+    
+    func test_positionsForDiagonal_topLeftToBottomRight_returnsCorrectPositions() {
+        let board = GameBoard(dimension: 3)
+        let positions = board.positionsForDiagonal(.TopLeftToBottomRight)
+        XCTAssertEqual(positions.count, 3)
+        XCTAssertEqual(positions[0].row, 0)
+        XCTAssertEqual(positions[1].row, 1)
+        XCTAssertEqual(positions[2].row, 2)
+        XCTAssertEqual(positions[0].column, 0)
+        XCTAssertEqual(positions[1].column, 1)
+        XCTAssertEqual(positions[2].column, 2)
+    }
+    
+    func test_positionsForDiagonal_bottomLeftToTopRight_returnsCorrectPositions() {
+        let board = GameBoard(dimension: 3)
+        let positions = board.positionsForDiagonal(.BottomLeftToTopRight)
+        XCTAssertEqual(positions.count, 3)
+        XCTAssertEqual(positions[0].row, 2)
+        XCTAssertEqual(positions[1].row, 1)
+        XCTAssertEqual(positions[2].row, 0)
+        XCTAssertEqual(positions[0].column, 0)
+        XCTAssertEqual(positions[1].column, 1)
+        XCTAssertEqual(positions[2].column, 2)
+    }
+    
     // MARK: - putMarkInRowColumn
     
     func test_putMarkInRowColumn_markX_positionHasX() {

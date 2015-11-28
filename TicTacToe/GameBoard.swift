@@ -29,34 +29,33 @@ public final class GameBoard {
     public init(dimension: Int) {
         assert(dimension >= 3)
         self.dimension = dimension
+        self.dimensionIndexes = [Int](0..<self.dimension)
         
         let emptyRow = [Mark](count: dimension, repeatedValue: .Empty)
         self.marks = [[Mark]](count: dimension, repeatedValue: emptyRow)
     }
     
+    public let dimension: Int
+    
+    public let dimensionIndexes: [Int]
+    
     public var emptyPositions: [Position] {
-        return positions.filter { isEmptyAtPosition($0) }
+        return positions.filter(isEmptyAtPosition)
     }
     
     public func marksInRow(row: Int) -> [Mark] {
-        return dimensionIndexes.map { markAtPosition((row, $0)) }
+        return positionsForRow(row).map(markAtPosition)
     }
     
     public func marksInColumn(column: Int) -> [Mark] {
-        return dimensionIndexes.map { markAtPosition(($0, column)) }
+        return positionsForColumn(column).map(markAtPosition)
     }
     
     public func marksInDiagnoal(diagonal: Diagonal) -> [Mark] {
-        return positionsForDiagnoal(diagonal).map { markAtPosition($0) }
+        return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
     // MARK: - Non-public stored properties
-    
-    private let dimension: Int
-    
-    private lazy var dimensionIndexes: [Int] = {
-        [Int](0..<self.dimension)
-    }()
     
     internal var marks: [[Mark]] // internal for unit test access
     
@@ -73,6 +72,22 @@ public final class GameBoard {
 // MARK: - Internal methods
 
 internal extension GameBoard {
+    func positionsForRow(row: Int) -> [Position] {
+        return dimensionIndexes.map { (row: row, column: $0) }
+    }
+    
+    func positionsForColumn(column: Int) -> [Position] {
+        return dimensionIndexes.map { (row: $0, column: column) }
+    }
+    
+    func positionsForDiagonal(diagonal: Diagonal) -> [Position] {
+        let rows = dimensionIndexes, columns = dimensionIndexes
+        switch diagonal {
+        case .TopLeftToBottomRight: return Array(zip(rows, columns))
+        case .BottomLeftToTopRight: return Array(zip(rows.reverse(), columns))
+        }
+    }
+    
     func putMark(mark: Mark, atPosition position: Position) {
         assertPosition(position)
         assert(isEmptyAtPosition(position))
@@ -100,13 +115,5 @@ private extension GameBoard {
     func markAtPosition(position: Position) -> Mark {
         assertPosition(position)
         return marks[position.row][position.column]
-    }
-    
-    func positionsForDiagnoal(diagonal: Diagonal) -> [Position] {
-        let rows = dimensionIndexes, columns = dimensionIndexes
-        switch diagonal {
-        case .TopLeftToBottomRight: return Array(zip(rows, columns))
-        case .BottomLeftToTopRight: return Array(zip(rows.reverse(), columns))
-        }
     }
 }
