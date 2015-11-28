@@ -99,9 +99,10 @@ private extension GameBoard {
     }
     
     func positionsForDiagnoal(diagonal: Diagonal) -> [Position] {
+        let rows = dimensionIndexes, columns = dimensionIndexes
         switch diagonal {
-        case .TopLeftToBottomRight: return Array(zip(dimensionIndexes, dimensionIndexes))
-        case .BottomLeftToTopRight: return Array(zip(dimensionIndexes.reverse(), dimensionIndexes))
+        case .TopLeftToBottomRight: return Array(zip(rows, columns))
+        case .BottomLeftToTopRight: return Array(zip(rows.reverse(), columns))
         }
     }
 }
