@@ -50,13 +50,6 @@ public final class GameBoard {
         return positionsForDiagnoal(diagonal).map { markAtPosition($0) }
     }
     
-    public func putMark(mark: Mark, atPosition position: Position) {
-        assertPosition(position)
-        assert(isEmptyAtPosition(position))
-        assert(mark != .Empty)
-        marks[position.row][position.column] = mark
-    }
-    
     // MARK: - Non-public stored properties
     
     private let dimension: Int
@@ -75,6 +68,17 @@ public final class GameBoard {
             return Array(zip(rows, cols))
         }
     }()
+}
+
+// MARK: - Internal methods
+
+internal extension GameBoard {
+    func putMark(mark: Mark, atPosition position: Position) {
+        assertPosition(position)
+        assert(isEmptyAtPosition(position))
+        assert(mark != .Empty)
+        marks[position.row][position.column] = mark
+    }
 }
 
 // MARK: - Private methods
