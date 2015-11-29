@@ -53,11 +53,16 @@ private extension Game {
         gameBoard.putMark(currentPlayer.mark, atPosition: position)
         
         if let outcome = outcomeAnalyst.checkForOutcome() {
-            completionHandler!(outcome)
+            finishWithOutcome(outcome)
         }
         else {
             switchCurrentPlayer()
         }
+    }
+    
+    func finishWithOutcome(outcome: Outcome) {
+        completionHandler!(outcome)
+        currentPlayer = nil
     }
     
     func switchCurrentPlayer() {
