@@ -55,12 +55,10 @@ class OutcomeAnalystTests: XCTestCase {
             XCTAssertEqual(outcome.winner, Winner.PlayerX)
             
             if let positions = outcome.winningPositions {
-                XCTAssertEqual(positions[0].row, 2)
-                XCTAssertEqual(positions[1].row, 2)
-                XCTAssertEqual(positions[2].row, 2)
-                XCTAssertEqual(positions[0].column, 0)
-                XCTAssertEqual(positions[1].column, 1)
-                XCTAssertEqual(positions[2].column, 2)
+                XCTAssertEqual(positions.count, 3)
+                XCTAssertTrue(positions[0] == (row: 2, column: 0))
+                XCTAssertTrue(positions[1] == (row: 2, column: 1))
+                XCTAssertTrue(positions[2] == (row: 2, column: 2))
             }
             else {
                 XCTFail("Winning positions are missing.")
@@ -82,12 +80,10 @@ class OutcomeAnalystTests: XCTestCase {
             XCTAssertEqual(outcome.winner, Winner.PlayerO)
             
             if let positions = outcome.winningPositions {
-                XCTAssertEqual(positions[0].row, 0)
-                XCTAssertEqual(positions[1].row, 1)
-                XCTAssertEqual(positions[2].row, 2)
-                XCTAssertEqual(positions[0].column, 1)
-                XCTAssertEqual(positions[1].column, 1)
-                XCTAssertEqual(positions[2].column, 1)
+                XCTAssertEqual(positions.count, 3)
+                XCTAssertTrue(positions[0] == (row: 0, column: 1))
+                XCTAssertTrue(positions[1] == (row: 1, column: 1))
+                XCTAssertTrue(positions[2] == (row: 2, column: 1))
             }
             else {
                 XCTFail("Winning positions are missing.")
@@ -109,12 +105,10 @@ class OutcomeAnalystTests: XCTestCase {
             XCTAssertEqual(outcome.winner, Winner.PlayerX)
             
             if let positions = outcome.winningPositions {
-                XCTAssertEqual(positions[0].row, 0)
-                XCTAssertEqual(positions[1].row, 1)
-                XCTAssertEqual(positions[2].row, 2)
-                XCTAssertEqual(positions[0].column, 0)
-                XCTAssertEqual(positions[1].column, 1)
-                XCTAssertEqual(positions[2].column, 2)
+                XCTAssertEqual(positions.count, 3)
+                XCTAssertTrue(positions[0] == (row: 0, column: 0))
+                XCTAssertTrue(positions[1] == (row: 1, column: 1))
+                XCTAssertTrue(positions[2] == (row: 2, column: 2))
             }
             else {
                 XCTFail("Winning positions are missing.")
@@ -136,12 +130,10 @@ class OutcomeAnalystTests: XCTestCase {
             XCTAssertEqual(outcome.winner, Winner.PlayerO)
             
             if let positions = outcome.winningPositions {
-                XCTAssertEqual(positions[0].row, 2)
-                XCTAssertEqual(positions[1].row, 1)
-                XCTAssertEqual(positions[2].row, 0)
-                XCTAssertEqual(positions[0].column, 0)
-                XCTAssertEqual(positions[1].column, 1)
-                XCTAssertEqual(positions[2].column, 2)
+                XCTAssertEqual(positions.count, 3)
+                XCTAssertTrue(positions[0] == (row: 2, column: 0))
+                XCTAssertTrue(positions[1] == (row: 1, column: 1))
+                XCTAssertTrue(positions[2] == (row: 0, column: 2))
             }
             else {
                 XCTFail("Winning positions are missing.")

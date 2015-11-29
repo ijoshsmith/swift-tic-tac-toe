@@ -13,6 +13,14 @@ public enum Mark {
     case Empty, X, O
 }
 
+public func == (position1: GameBoard.Position, position2: GameBoard.Position) -> Bool {
+    return (position1.row == position2.row) && (position1.column == position2.column)
+}
+
+public func != (position1: GameBoard.Position, position2: GameBoard.Position) -> Bool {
+    return !(position1 == position2)
+}
+
 /** 
  Represents the state of a Tic-tac-toe game.
  Each position on the board can be empty or marked.

@@ -19,7 +19,7 @@ internal final class Player {
     
     let mark: Mark
     
-    func choosePositionWithCompletionHandler(completionHandler: (GameBoard.Position) -> Void) {
+    func choosePositionWithCompletionHandler(completionHandler: GameBoard.Position -> Void) {
         strategy.chooseWhereToPutMark(mark, onGameBoard: gameBoard, completionHandler: completionHandler)
     }
     
