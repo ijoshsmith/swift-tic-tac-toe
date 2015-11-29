@@ -59,34 +59,34 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(board.marksInColumn(1), [.X, .O, .X])
     }
     
-    // MARK: - marksInDiagnoal
+    // MARK: - marksInDiagonal
     
-    func test_marksInDiagnoal_topLeftToBottomRightIsEmpty_returnsAllEmpty() {
+    func test_marksInDiagonal_topLeftToBottomRightIsEmpty_returnsAllEmpty() {
         let board = GameBoard(dimension: 3)
-        XCTAssertEqual(board.marksInDiagnoal(.TopLeftToBottomRight), [.Empty, .Empty, .Empty])
+        XCTAssertEqual(board.marksInDiagonal(.TopLeftToBottomRight), [.Empty, .Empty, .Empty])
     }
     
-    func test_marksInDiagnoal_bottomLeftToTopRightIsEmpty_returnsAllEmpty() {
+    func test_marksInDiagonal_bottomLeftToTopRightIsEmpty_returnsAllEmpty() {
         let board = GameBoard(dimension: 3)
-        XCTAssertEqual(board.marksInDiagnoal(.BottomLeftToTopRight), [.Empty, .Empty, .Empty])
+        XCTAssertEqual(board.marksInDiagonal(.BottomLeftToTopRight), [.Empty, .Empty, .Empty])
     }
     
-    func test_marksInDiagnoal_topLeftToBottomRightIsXEO_returnsXEO() {
+    func test_marksInDiagonal_topLeftToBottomRightIsXEO_returnsXEO() {
         let board = GameBoard(dimension: 3)
         board.marks = [
             [.X,     .Empty, .Empty],
             [.Empty, .Empty, .Empty],
             [.Empty, .Empty, .O    ]]
-        XCTAssertEqual(board.marksInDiagnoal(.TopLeftToBottomRight), [.X, .Empty, .O])
+        XCTAssertEqual(board.marksInDiagonal(.TopLeftToBottomRight), [.X, .Empty, .O])
     }
     
-    func test_marksInDiagnoal_bottomLeftToTopRightIsOXO_returnsOXO() {
+    func test_marksInDiagonal_bottomLeftToTopRightIsOXO_returnsOXO() {
         let board = GameBoard(dimension: 3)
         board.marks = [
             [.Empty, .Empty, .O    ],
             [.Empty, .X,     .Empty],
             [.O,     .Empty, .Empty]]
-        XCTAssertEqual(board.marksInDiagnoal(.BottomLeftToTopRight), [.O, .X, .O])
+        XCTAssertEqual(board.marksInDiagonal(.BottomLeftToTopRight), [.O, .X, .O])
     }
     
     // MARK: - positionsForRow

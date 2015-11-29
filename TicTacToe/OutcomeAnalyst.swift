@@ -66,7 +66,7 @@ private extension OutcomeAnalyst {
     func checkDiagonalsForOutcome() -> Outcome? {
         return findOutcomeWithIdentifiers(
             [.TopLeftToBottomRight, .BottomLeftToTopRight],
-            marksClosure: gameBoard.marksInDiagnoal,
+            marksClosure: gameBoard.marksInDiagonal,
             winningPositionsClosure: gameBoard.positionsForDiagonal)
     }
     

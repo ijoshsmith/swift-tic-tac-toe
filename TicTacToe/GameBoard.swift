@@ -59,7 +59,7 @@ public final class GameBoard {
         return positionsForColumn(column).map(markAtPosition)
     }
     
-    public func marksInDiagnoal(diagonal: Diagonal) -> [Mark] {
+    public func marksInDiagonal(diagonal: Diagonal) -> [Mark] {
         return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
