@@ -94,6 +94,7 @@ class GameBoardTests: XCTestCase {
     func test_positionsForRow_firstRow_returnsCorrectPositions() {
         let board = GameBoard(dimension: 3)
         let positions = board.positionsForRow(0)
+        XCTAssertEqual(positions.count, 3)
         XCTAssertTrue(positions[0] == (row: 0, column: 0))
         XCTAssertTrue(positions[1] == (row: 0, column: 1))
         XCTAssertTrue(positions[2] == (row: 0, column: 2))
