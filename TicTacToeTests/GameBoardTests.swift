@@ -21,10 +21,8 @@ class GameBoardTests: XCTestCase {
             [.O, .Empty, .O    ]]
         let emptyPositions = board.emptyPositions
         XCTAssertEqual(emptyPositions.count, 2)
-        XCTAssertEqual(emptyPositions[0].row,    0)
-        XCTAssertEqual(emptyPositions[0].column, 2)
-        XCTAssertEqual(emptyPositions[1].row,    2)
-        XCTAssertEqual(emptyPositions[1].column, 1)
+        XCTAssertTrue(emptyPositions[0] == (row: 0, column: 2))
+        XCTAssertTrue(emptyPositions[1] == (row: 2, column: 1))
     }
     
     // MARK: - marksInRow
