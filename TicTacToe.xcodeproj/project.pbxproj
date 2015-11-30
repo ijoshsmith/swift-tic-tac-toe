@@ -24,6 +24,11 @@
 		03E6473C1C0A5B62000AE2F5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6473B1C0A5B62000AE2F5 /* Game.swift */; };
 		03E6473D1C0A5B62000AE2F5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6473B1C0A5B62000AE2F5 /* Game.swift */; };
 		03E6473F1C0A66B5000AE2F5 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6473E1C0A66B5000AE2F5 /* GameTests.swift */; };
+		03E6B07C1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */; };
+		03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */; };
+		03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */; };
+		03E6B0811C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */; };
+		03E6B0881C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,9 @@
 		03E647391C0A55CF000AE2F5 /* OutcomeAnalystTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeAnalystTests.swift; sourceTree = "<group>"; };
 		03E6473B1C0A5B62000AE2F5 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		03E6473E1C0A66B5000AE2F5 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategy.swift; path = AI/NewellAndSimonStrategy.swift; sourceTree = "<group>"; };
+		03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonTactic.swift; path = AI/NewellAndSimonTactic.swift; sourceTree = "<group>"; };
+		03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategyTests.swift; path = AI/NewellAndSimonStrategyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,7 @@
 		03E6472B1C0A0E53000AE2F5 /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				03E6B07E1C0CC76400058D48 /* AI */,
 				03E647281C0A0BD9000AE2F5 /* TicTacToeStrategy.swift */,
 			);
 			name = Strategy;
@@ -145,9 +154,27 @@
 		03E6472E1C0A10A5000AE2F5 /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				03E6B0891C0CCECD00058D48 /* AI */,
 				03E6472F1C0A11EE000AE2F5 /* ScriptedStrategy.swift */,
 			);
 			name = Strategy;
+			sourceTree = "<group>";
+		};
+		03E6B07E1C0CC76400058D48 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */,
+				03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */,
+			);
+			name = AI;
+			sourceTree = "<group>";
+		};
+		03E6B0891C0CCECD00058D48 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */,
+			);
+			name = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +285,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
+				03E6B07C1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
 				03E647351C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
 				03E6473C1C0A5B62000AE2F5 /* Game.swift in Sources */,
 				03DCD6FA1C09414D0019BC48 /* GameBoard.swift in Sources */,
@@ -271,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E647301C0A11EE000AE2F5 /* ScriptedStrategy.swift in Sources */,
+				03E6B0811C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
 				03E6473D1C0A5B62000AE2F5 /* Game.swift in Sources */,
+				03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
 				03E6472D1C0A1089000AE2F5 /* PlayerTests.swift in Sources */,
 				03DCD6FB1C09414D0019BC48 /* GameBoard.swift in Sources */,
 				03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
@@ -279,6 +310,7 @@
 				03E647271C0A0998000AE2F5 /* Player.swift in Sources */,
 				03E647361C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
 				03E6473A1C0A55CF000AE2F5 /* OutcomeAnalystTests.swift in Sources */,
+				03E6B0881C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift in Sources */,
 				03E6473F1C0A66B5000AE2F5 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
