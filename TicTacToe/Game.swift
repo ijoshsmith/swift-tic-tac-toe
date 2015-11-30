@@ -34,7 +34,7 @@ public final class Game {
         }
     }
     
-    private var completionHandler: CompletionHandler?
+    private var completionHandler: CompletionHandler!
     private let gameBoard: GameBoard
     private let outcomeAnalyst: OutcomeAnalyst
     private let playerO: Player
@@ -61,7 +61,7 @@ private extension Game {
     }
     
     func finishWithOutcome(outcome: Outcome) {
-        completionHandler!(outcome)
+        completionHandler(outcome)
         currentPlayer = nil
     }
     
