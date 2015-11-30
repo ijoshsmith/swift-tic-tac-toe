@@ -17,9 +17,9 @@ class GameTests: XCTestCase {
         expectation = expectationWithDescription("Player X wins"),
         board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
-            "XOO" +
-            "X  " +
-            "X  "),
+            (   "XOO" +
+                "X  " +
+                "X  ")),
         game = Game(gameBoard: board, xStrategy: xStrategy, oStrategy: oStrategy)
         game.startPlayingWithCompletionHandler { outcome in
             // Make sure all of the scripted plays were made.
@@ -41,9 +41,9 @@ class GameTests: XCTestCase {
         expectation = expectationWithDescription("Player O wins"),
         board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
-            "X  " +
-            "OOO" +
-            "X X"),
+            (   "X  " +
+                "OOO" +
+                "X X")),
         game = Game(gameBoard: board, xStrategy: xStrategy, oStrategy: oStrategy)
         game.startPlayingWithCompletionHandler { outcome in
             // Make sure all of the scripted plays were made.
@@ -65,9 +65,9 @@ class GameTests: XCTestCase {
         expectation = expectationWithDescription("Neither player wins"),
         board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
-            "XOX" +
-            "XOO" +
-            "OXX"),
+            (   "XOX" +
+                "XOO" +
+                "OXX")),
         game = Game(gameBoard: board, xStrategy: xStrategy, oStrategy: oStrategy)
         game.startPlayingWithCompletionHandler { outcome in
             // Make sure all of the scripted plays were made.
