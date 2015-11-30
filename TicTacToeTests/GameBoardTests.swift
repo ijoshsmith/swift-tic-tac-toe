@@ -14,7 +14,7 @@ class GameBoardTests: XCTestCase {
     // MARK: - emptyPositions
     
     func test_emptyPositions_twoPositionsAreEmpty_returnsOnlyThoseTwoPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.X, .O,     .Empty],
             [.O, .X,     .X    ],
@@ -28,12 +28,12 @@ class GameBoardTests: XCTestCase {
     // MARK: - marksInRow
     
     func test_marksInRow_rowIsEmpty_returnsEmptyRow() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         XCTAssertEqual(board.marksInRow(0), [.Empty, .Empty, .Empty])
     }
     
     func test_marksInRow_rowIsXOX_returnsXOX() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .Empty, .Empty],
             [.X,     .O,     .X    ],
@@ -44,12 +44,12 @@ class GameBoardTests: XCTestCase {
     // MARK: - marksInColumn
     
     func test_marksInColumn_columnIsEmpty_returnsEmptyColumn() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         XCTAssertEqual(board.marksInColumn(0), [.Empty, .Empty, .Empty])
     }
     
     func test_marksInColumn_columnIsXOX_returnsXOX() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .X, .Empty],
             [.Empty, .O, .Empty],
@@ -60,17 +60,17 @@ class GameBoardTests: XCTestCase {
     // MARK: - marksInDiagonal
     
     func test_marksInDiagonal_topLeftToBottomRightIsEmpty_returnsAllEmpty() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         XCTAssertEqual(board.marksInDiagonal(.TopLeftToBottomRight), [.Empty, .Empty, .Empty])
     }
     
     func test_marksInDiagonal_bottomLeftToTopRightIsEmpty_returnsAllEmpty() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         XCTAssertEqual(board.marksInDiagonal(.BottomLeftToTopRight), [.Empty, .Empty, .Empty])
     }
     
     func test_marksInDiagonal_topLeftToBottomRightIsXEO_returnsXEO() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.X,     .Empty, .Empty],
             [.Empty, .Empty, .Empty],
@@ -79,7 +79,7 @@ class GameBoardTests: XCTestCase {
     }
     
     func test_marksInDiagonal_bottomLeftToTopRightIsOXO_returnsOXO() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .Empty, .O    ],
             [.Empty, .X,     .Empty],
@@ -90,7 +90,7 @@ class GameBoardTests: XCTestCase {
     // MARK: - positionsForRow
     
     func test_positionsForRow_firstRow_returnsCorrectPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         let positions = board.positionsForRow(0)
         XCTAssertEqual(positions.count, 3)
         XCTAssertTrue(positions[0] == (row: 0, column: 0))
@@ -101,7 +101,7 @@ class GameBoardTests: XCTestCase {
     // MARK: - positionsForColumn
     
     func test_positionsForColumn_lastColumn_returnsCorrectPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         let positions = board.positionsForColumn(2)
         XCTAssertEqual(positions.count, 3)
         XCTAssertTrue(positions[0] == (row: 0, column: 2))
@@ -112,7 +112,7 @@ class GameBoardTests: XCTestCase {
     // MARK: - positionsForDiagonal
     
     func test_positionsForDiagonal_topLeftToBottomRight_returnsCorrectPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         let positions = board.positionsForDiagonal(.TopLeftToBottomRight)
         XCTAssertEqual(positions.count, 3)
         XCTAssertTrue(positions[0] == (row: 0, column: 0))
@@ -121,7 +121,7 @@ class GameBoardTests: XCTestCase {
     }
     
     func test_positionsForDiagonal_bottomLeftToTopRight_returnsCorrectPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         let positions = board.positionsForDiagonal(.BottomLeftToTopRight)
         XCTAssertEqual(positions.count, 3)
         XCTAssertTrue(positions[0] == (row: 2, column: 0))
@@ -132,19 +132,19 @@ class GameBoardTests: XCTestCase {
     // MARK: - putMarkAtPosition
     
     func test_putMarkAtPosition_markX_positionHasX() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.putMark(.X, atPosition: (row: 1, column: 2))
         XCTAssertEqual(board.marks[1][2], Mark.X)
     }
     
     func test_putMarkAtPosition_markO_positionHasO() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.putMark(.O, atPosition: (row: 1, column: 0))
         XCTAssertEqual(board.marks[1][0], Mark.O)
     }
     
     func test_putMarkAtPosition_markX_onlySpecifiedPositionIsUpdated() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.putMark(.X, atPosition: (row: 1, column: 0))
         XCTAssertEqual(board.marks[1][0], Mark.X)
         XCTAssertEqual(board.marks.flatten().filter { $0 == Mark.X }.count, 1)

@@ -15,7 +15,7 @@ class GameTests: XCTestCase {
     func test_startPlayingWithCompletionHandler_playerXWins_invokesCompletionHandlerCorrectly() {
         let
         expectation = expectationWithDescription("Player X wins"),
-        board = GameBoard(dimension: 3),
+        board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
             "XOO" +
             "X  " +
@@ -39,7 +39,7 @@ class GameTests: XCTestCase {
     func test_startPlayingWithCompletionHandler_playerOWins_invokesCompletionHandlerCorrectly() {
         let
         expectation = expectationWithDescription("Player O wins"),
-        board = GameBoard(dimension: 3),
+        board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
             "X  " +
             "OOO" +
@@ -63,7 +63,7 @@ class GameTests: XCTestCase {
     func test_startPlayingWithCompletionHandler_tied_invokesCompletionHandlerCorrectly() {
         let
         expectation = expectationWithDescription("Neither player wins"),
-        board = GameBoard(dimension: 3),
+        board = GameBoard(),
         (xStrategy, oStrategy) = ScriptedStrategy.strategiesFrom3x3TextDiagram(
             "XOX" +
             "XOO" +

@@ -34,7 +34,7 @@ public final class GameBoard {
         case TopLeftToBottomRight, BottomLeftToTopRight
     }
     
-    public init(dimension: Int) {
+    public init(dimension: Int = 3) {
         assert(dimension >= 3)
         self.dimension = dimension
         self.dimensionIndexes = [Int](0..<self.dimension)

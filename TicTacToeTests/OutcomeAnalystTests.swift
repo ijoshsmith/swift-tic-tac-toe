@@ -13,13 +13,13 @@ class OutcomeAnalystTests: XCTestCase {
     // MARK: - checkForOutcome
 
     func test_checkForOutcome_emptyBoard_returnsNil() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         let analyst = OutcomeAnalyst(gameBoard: board)
         XCTAssertNil(analyst.checkForOutcome())
     }
     
     func test_checkForOutcome_noWinnerYet_returnsNil() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .O,     .Empty],
             [.Empty, .Empty, .Empty],
@@ -29,7 +29,7 @@ class OutcomeAnalystTests: XCTestCase {
     }
     
     func test_checkForOutcome_tied_returnsTiedAndNoWinningPositions() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.O, .X, .O],
             [.X, .X, .O],
@@ -45,7 +45,7 @@ class OutcomeAnalystTests: XCTestCase {
     }
     
     func test_checkForOutcome_winningRowForX_returnsRowForPlayerX() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .Empty, .Empty],
             [.Empty, .Empty, .Empty],
@@ -70,7 +70,7 @@ class OutcomeAnalystTests: XCTestCase {
     }
     
     func test_checkForOutcome_winningColumnForO_returnsColumnForPlayerO() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .O, .Empty],
             [.Empty, .O, .Empty],
@@ -95,7 +95,7 @@ class OutcomeAnalystTests: XCTestCase {
     }
     
     func test_checkForOutcome_winningTopLeftToBottomRightDiagonalForX_returnsDiagonalForPlayerX() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.X,     .Empty, .Empty],
             [.Empty, .X,     .Empty],
@@ -120,7 +120,7 @@ class OutcomeAnalystTests: XCTestCase {
     }
     
     func test_checkForOutcome_winningBottomLeftToTopRightDiagonalForO_returnsDiagonalForPlayerO() {
-        let board = GameBoard(dimension: 3)
+        let board = GameBoard()
         board.marks = [
             [.Empty, .Empty, .O    ],
             [.Empty, .O,     .Empty],
