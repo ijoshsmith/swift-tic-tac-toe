@@ -16,7 +16,14 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
     
     init(tactics: [NewellAndSimonTactic] = [
         WinTactic(),
-        BlockTactic()]) {
+        BlockTactic(),
+        // TODO: ForkTactic
+        // TODO: BlockForkTactic
+        CenterTactic()
+        // TODO: OppositeCornerTactic
+        // TODO: EmptyCornerTactic
+        // TODO: EmptySideTactic
+        ]) {
         self.tactics = tactics
     }
     
@@ -26,6 +33,7 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
         let position = tactics.reduce(nil) { (position, tactic) in
             position ?? tactic.chooseWhereToPutMark(mark, onGameBoard: gameBoard)
         }
+        
         completionHandler(position!)
     }
     
