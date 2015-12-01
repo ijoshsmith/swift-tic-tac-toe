@@ -66,6 +66,7 @@
 		03E6473E1C0A66B5000AE2F5 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		03E660E01C0D70B200EACF7F /* BlockTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockTactic.swift; path = AI/BlockTactic.swift; sourceTree = "<group>"; };
 		03E660E31C0D71BB00EACF7F /* BlockTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockTacticTests.swift; path = AI/BlockTacticTests.swift; sourceTree = "<group>"; };
+		03E660E51C0D7BCE00EACF7F /* strategy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = strategy.pdf; path = AI/strategy.pdf; sourceTree = "<group>"; };
 		03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategy.swift; path = AI/NewellAndSimonStrategy.swift; sourceTree = "<group>"; };
 		03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonTactic.swift; path = AI/NewellAndSimonTactic.swift; sourceTree = "<group>"; };
 		03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategyTests.swift; path = AI/NewellAndSimonStrategyTests.swift; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		03E6B08F1C0D040E00058D48 /* Tactics */ = {
 			isa = PBXGroup;
 			children = (
+				03E660E51C0D7BCE00EACF7F /* strategy.pdf */,
 				03E6B0901C0D043700058D48 /* WinTactic.swift */,
 				03E660E01C0D70B200EACF7F /* BlockTactic.swift */,
 			);
