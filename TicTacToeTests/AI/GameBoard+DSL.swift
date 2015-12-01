@@ -8,7 +8,8 @@
 
 import Foundation
 
-func board(diagram: String) -> GameBoard {
+func board3x3(diagramLines: String...) -> GameBoard {
+    let diagram = diagramLines.joinWithSeparator("")
     return GameBoard.gameBoardFrom3x3TextDiagram(diagram)
 }
 

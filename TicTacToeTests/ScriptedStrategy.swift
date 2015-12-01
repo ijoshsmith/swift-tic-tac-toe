@@ -12,7 +12,8 @@ import Foundation
 final class ScriptedStrategy {
     
     /** Creates a scripted strategy for both players, based on a 3x3 pictographic game board representation. */
-    static func strategiesFrom3x3TextDiagram(textDiagram: String) -> (xStrategy: ScriptedStrategy, oStrategy: ScriptedStrategy) {
+    static func strategiesFrom3x3TextDiagram(diagramLines: String...) -> (xStrategy: ScriptedStrategy, oStrategy: ScriptedStrategy) {
+        let textDiagram = diagramLines.joinWithSeparator("")
         assert(textDiagram.characters.count == 9)
         
         var xPositions = Array<GameBoard.Position>(), oPositions = Array<GameBoard.Position>()
