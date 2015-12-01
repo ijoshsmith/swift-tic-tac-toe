@@ -12,8 +12,8 @@ extension GameBoard {
     /** @return The empty positions in the specified array. */
     func intersectEmptyPositionsWithPositions(positions: [GameBoard.Position]) -> [GameBoard.Position] {
         return emptyPositions.filter { emptyPosition in
-            positions.contains { cornerPosition in
-                cornerPosition == emptyPosition
+            positions.contains { position in
+                position == emptyPosition
             }
         }
     }
