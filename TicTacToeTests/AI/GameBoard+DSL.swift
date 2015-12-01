@@ -8,6 +8,11 @@
 
 import Foundation
 
+func board(diagram: String) -> GameBoard {
+    return GameBoard.gameBoardFrom3x3TextDiagram(diagram)
+}
+
+/** Supports a simple domain-specific language for creating a GameBoard. */
 extension GameBoard {
     static func gameBoardFrom3x3TextDiagram(textDiagram: String) -> GameBoard {
         assert(textDiagram.characters.count == 9)

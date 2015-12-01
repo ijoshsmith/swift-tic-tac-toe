@@ -8,10 +8,6 @@
 
 import XCTest
 
-private func board(diagram: String) -> GameBoard {
-    return GameBoard.gameBoardFrom3x3TextDiagram(diagram)
-}
-
 class WinTacticTests: XCTestCase {
     
     func test_chooseWhereToPutMark_cannotWin_returnsNil() {

@@ -11,6 +11,13 @@ import Foundation
 /** The possible states for a position on a GameBoard. */
 public enum Mark {
     case X, O
+    
+    func otherMark() -> Mark {
+        switch self {
+        case .X: return .O
+        case .O: return .X
+        }
+    }
 }
 
 public func == (position1: GameBoard.Position, position2: GameBoard.Position) -> Bool {
