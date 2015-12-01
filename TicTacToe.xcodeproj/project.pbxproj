@@ -29,6 +29,10 @@
 		03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */; };
 		03E6B0811C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */; };
 		03E6B0881C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */; };
+		03E6B0911C0D043700058D48 /* WinTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0901C0D043700058D48 /* WinTactic.swift */; };
+		03E6B0921C0D043700058D48 /* WinTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0901C0D043700058D48 /* WinTactic.swift */; };
+		03E6B0941C0D044500058D48 /* WinTacticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0931C0D044500058D48 /* WinTacticTests.swift */; };
+		03E6B0971C0D05A800058D48 /* GameBoard+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0961C0D05A800058D48 /* GameBoard+DSL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,9 @@
 		03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategy.swift; path = AI/NewellAndSimonStrategy.swift; sourceTree = "<group>"; };
 		03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonTactic.swift; path = AI/NewellAndSimonTactic.swift; sourceTree = "<group>"; };
 		03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategyTests.swift; path = AI/NewellAndSimonStrategyTests.swift; sourceTree = "<group>"; };
+		03E6B0901C0D043700058D48 /* WinTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinTactic.swift; path = AI/WinTactic.swift; sourceTree = "<group>"; };
+		03E6B0931C0D044500058D48 /* WinTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinTacticTests.swift; path = AI/WinTacticTests.swift; sourceTree = "<group>"; };
+		03E6B0961C0D05A800058D48 /* GameBoard+DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameBoard+DSL.swift"; path = "AI/GameBoard+DSL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +170,7 @@
 		03E6B07E1C0CC76400058D48 /* AI */ = {
 			isa = PBXGroup;
 			children = (
+				03E6B08F1C0D040E00058D48 /* Tactics */,
 				03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */,
 				03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */,
 			);
@@ -172,9 +180,27 @@
 		03E6B0891C0CCECD00058D48 /* AI */ = {
 			isa = PBXGroup;
 			children = (
+				03E6B0951C0D045D00058D48 /* Tactics */,
 				03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */,
 			);
 			name = AI;
+			sourceTree = "<group>";
+		};
+		03E6B08F1C0D040E00058D48 /* Tactics */ = {
+			isa = PBXGroup;
+			children = (
+				03E6B0901C0D043700058D48 /* WinTactic.swift */,
+			);
+			name = Tactics;
+			sourceTree = "<group>";
+		};
+		03E6B0951C0D045D00058D48 /* Tactics */ = {
+			isa = PBXGroup;
+			children = (
+				03E6B0961C0D05A800058D48 /* GameBoard+DSL.swift */,
+				03E6B0931C0D044500058D48 /* WinTacticTests.swift */,
+			);
+			name = Tactics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E6B0911C0D043700058D48 /* WinTactic.swift in Sources */,
 				03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
 				03E6B07C1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
 				03E647351C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
@@ -301,16 +328,19 @@
 			files = (
 				03E647301C0A11EE000AE2F5 /* ScriptedStrategy.swift in Sources */,
 				03E6B0811C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
+				03E6B0921C0D043700058D48 /* WinTactic.swift in Sources */,
 				03E6473D1C0A5B62000AE2F5 /* Game.swift in Sources */,
 				03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
 				03E6472D1C0A1089000AE2F5 /* PlayerTests.swift in Sources */,
 				03DCD6FB1C09414D0019BC48 /* GameBoard.swift in Sources */,
+				03E6B0941C0D044500058D48 /* WinTacticTests.swift in Sources */,
 				03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
 				03DCD6EF1C0941030019BC48 /* GameBoardTests.swift in Sources */,
 				03E647271C0A0998000AE2F5 /* Player.swift in Sources */,
 				03E647361C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
 				03E6473A1C0A55CF000AE2F5 /* OutcomeAnalystTests.swift in Sources */,
 				03E6B0881C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift in Sources */,
+				03E6B0971C0D05A800058D48 /* GameBoard+DSL.swift in Sources */,
 				03E6473F1C0A66B5000AE2F5 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

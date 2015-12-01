@@ -10,6 +10,24 @@ import XCTest
 @testable import TicTacToe
 
 class GameBoardTests: XCTestCase {
+    
+    // MARK: - cloneWithMarkAtPosition
+    
+    func test_cloneWithMarkAtPosition_emptyBoardAndCenterMark_onlyCloneHasMarkAtCenter() {
+        let
+        board = GameBoard(),
+        clone = board.cloneWithMark(.X, atPosition: (row: 1, column: 1))
+        XCTAssertEqual(clone.marks[1][1], Mark.X)
+        XCTAssertEqual(board.marks[1][1], Mark.Empty)
+    }
+    
+    func test_cloneWithMarkAtPosition_clonedBoardIsModified_doesNotAffectOriginal() {
+        let
+        board = GameBoard(),
+        clone = board.cloneWithMark(.X, atPosition: (row: 1, column: 1))
+        clone.putMark(.X, atPosition: (row: 0, column: 0))
+        XCTAssertEqual(board.marks[0][0], Mark.Empty)
+    }
 
     // MARK: - emptyPositions
     

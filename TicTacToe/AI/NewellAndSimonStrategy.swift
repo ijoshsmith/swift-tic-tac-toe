@@ -14,7 +14,7 @@ import Foundation
  */
 final class NewellAndSimonStrategy: TicTacToeStrategy {
     
-    init(tactics: [NewellAndSimonTactic] = []) {
+    init(tactics: [NewellAndSimonTactic] = [WinTactic()]) {
         self.tactics = tactics
     }
     

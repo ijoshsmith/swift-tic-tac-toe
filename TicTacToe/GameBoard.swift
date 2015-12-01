@@ -34,13 +34,20 @@ public final class GameBoard {
         case TopLeftToBottomRight, BottomLeftToTopRight
     }
     
-    public init(dimension: Int = 3) {
+    public convenience init(dimension: Int = 3) {
         assert(dimension >= 3)
-        self.dimension = dimension
-        self.dimensionIndexes = [Int](0..<self.dimension)
         
-        let emptyRow = [Mark](count: dimension, repeatedValue: .Empty)
-        self.marks = [[Mark]](count: dimension, repeatedValue: emptyRow)
+        let
+        emptyRow = [Mark](count: dimension, repeatedValue: .Empty),
+        marks = [[Mark]](count: dimension, repeatedValue: emptyRow)
+        
+        self.init(dimension: dimension, marks: marks)
+    }
+    
+    private init(dimension: Int, marks: [[Mark]]) {
+        self.dimension = dimension
+        self.dimensionIndexes = [Int](0..<dimension)
+        self.marks = marks
     }
     
     public let dimension: Int
@@ -80,6 +87,12 @@ public final class GameBoard {
 // MARK: - Internal methods
 
 internal extension GameBoard {
+    func cloneWithMark(mark: Mark, atPosition position: Position) -> GameBoard {
+        let clone = GameBoard(dimension: dimension, marks: [[Mark]](marks))
+        clone.putMark(mark, atPosition: position)
+        return clone
+    }
+    
     func positionsForRow(row: Int) -> [Position] {
         return dimensionIndexes.map { (row: row, column: $0) }
     }
