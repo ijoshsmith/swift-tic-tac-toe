@@ -22,7 +22,7 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
         CenterTactic(),
         // TODO: OppositeCornerTactic
         EmptyCornerTactic(),
-        // TODO: EmptySideTactic
+        EmptySideTactic()
         ]) {
         self.tactics = tactics
     }

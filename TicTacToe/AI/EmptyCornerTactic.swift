@@ -26,8 +26,8 @@ struct EmptyCornerTactic: NewellAndSimonTactic {
         lastIndex   = gameBoard.dimension - 1,
         topLeft     = GameBoard.Position(row: 0,         column: 0),
         topRight    = GameBoard.Position(row: 0,         column: lastIndex),
-        bottomLeft  = GameBoard.Position(row: lastIndex, column: 0),
-        bottomRight = GameBoard.Position(row: lastIndex, column: lastIndex)
-        return [topLeft, topRight, bottomLeft, bottomRight]
+        bottomRight = GameBoard.Position(row: lastIndex, column: lastIndex),
+        bottomLeft  = GameBoard.Position(row: lastIndex, column: 0)
+        return [topLeft, topRight, bottomRight, bottomLeft]
     }
 }
