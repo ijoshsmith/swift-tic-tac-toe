@@ -19,9 +19,9 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
         BlockTactic(),
         // TODO: ForkTactic
         // TODO: BlockForkTactic
-        CenterTactic()
+        CenterTactic(),
         // TODO: OppositeCornerTactic
-        // TODO: EmptyCornerTactic
+        EmptyCornerTactic(),
         // TODO: EmptySideTactic
         ]) {
         self.tactics = tactics

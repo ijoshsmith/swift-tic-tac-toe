@@ -30,6 +30,9 @@
 		03E660E91C0D7D8200EACF7F /* CenterTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660E81C0D7D8200EACF7F /* CenterTactic.swift */; };
 		03E660EA1C0D7D8200EACF7F /* CenterTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660E81C0D7D8200EACF7F /* CenterTactic.swift */; };
 		03E660EC1C0D7F6B00EACF7F /* CenterTacticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660EB1C0D7F6B00EACF7F /* CenterTacticTests.swift */; };
+		03E660EE1C0D811800EACF7F /* EmptyCornerTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660ED1C0D811800EACF7F /* EmptyCornerTactic.swift */; };
+		03E660EF1C0D811800EACF7F /* EmptyCornerTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660ED1C0D811800EACF7F /* EmptyCornerTactic.swift */; };
+		03E660F11C0D846F00EACF7F /* EmptyCornerTacticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E660F01C0D846F00EACF7F /* EmptyCornerTacticTests.swift */; };
 		03E6B07C1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */; };
 		03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */; };
 		03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */; };
@@ -72,6 +75,8 @@
 		03E660E51C0D7BCE00EACF7F /* strategy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = strategy.pdf; path = AI/strategy.pdf; sourceTree = "<group>"; };
 		03E660E81C0D7D8200EACF7F /* CenterTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenterTactic.swift; path = AI/CenterTactic.swift; sourceTree = "<group>"; };
 		03E660EB1C0D7F6B00EACF7F /* CenterTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenterTacticTests.swift; path = AI/CenterTacticTests.swift; sourceTree = "<group>"; };
+		03E660ED1C0D811800EACF7F /* EmptyCornerTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyCornerTactic.swift; path = AI/EmptyCornerTactic.swift; sourceTree = "<group>"; };
+		03E660F01C0D846F00EACF7F /* EmptyCornerTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyCornerTacticTests.swift; path = AI/EmptyCornerTacticTests.swift; sourceTree = "<group>"; };
 		03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategy.swift; path = AI/NewellAndSimonStrategy.swift; sourceTree = "<group>"; };
 		03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonTactic.swift; path = AI/NewellAndSimonTactic.swift; sourceTree = "<group>"; };
 		03E6B0871C0CCEC900058D48 /* NewellAndSimonStrategyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewellAndSimonStrategyTests.swift; path = AI/NewellAndSimonStrategyTests.swift; sourceTree = "<group>"; };
@@ -204,6 +209,7 @@
 				03E6B0901C0D043700058D48 /* WinTactic.swift */,
 				03E660E01C0D70B200EACF7F /* BlockTactic.swift */,
 				03E660E81C0D7D8200EACF7F /* CenterTactic.swift */,
+				03E660ED1C0D811800EACF7F /* EmptyCornerTactic.swift */,
 			);
 			name = Tactics;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 				03E6B0931C0D044500058D48 /* WinTacticTests.swift */,
 				03E660E31C0D71BB00EACF7F /* BlockTacticTests.swift */,
 				03E660EB1C0D7F6B00EACF7F /* CenterTacticTests.swift */,
+				03E660F01C0D846F00EACF7F /* EmptyCornerTacticTests.swift */,
 			);
 			name = Tactics;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 				03E647351C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
 				03E6473C1C0A5B62000AE2F5 /* Game.swift in Sources */,
 				03DCD6FA1C09414D0019BC48 /* GameBoard.swift in Sources */,
+				03E660EE1C0D811800EACF7F /* EmptyCornerTactic.swift in Sources */,
 				03E647261C0A0998000AE2F5 /* Player.swift in Sources */,
 				03E660E91C0D7D8200EACF7F /* CenterTactic.swift in Sources */,
 				03E647291C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
@@ -346,6 +354,7 @@
 			files = (
 				03E647301C0A11EE000AE2F5 /* ScriptedStrategy.swift in Sources */,
 				03E6B0811C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
+				03E660EF1C0D811800EACF7F /* EmptyCornerTactic.swift in Sources */,
 				03E6B0921C0D043700058D48 /* WinTactic.swift in Sources */,
 				03E6473D1C0A5B62000AE2F5 /* Game.swift in Sources */,
 				03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
@@ -355,6 +364,7 @@
 				03E6B0941C0D044500058D48 /* WinTacticTests.swift in Sources */,
 				03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
 				03DCD6EF1C0941030019BC48 /* GameBoardTests.swift in Sources */,
+				03E660F11C0D846F00EACF7F /* EmptyCornerTacticTests.swift in Sources */,
 				03E660E21C0D70B200EACF7F /* BlockTactic.swift in Sources */,
 				03E647271C0A0998000AE2F5 /* Player.swift in Sources */,
 				03E647361C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
