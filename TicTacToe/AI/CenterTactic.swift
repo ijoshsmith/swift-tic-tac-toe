@@ -17,9 +17,7 @@ struct CenterTactic: NewellAndSimonTactic {
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
-        let
-        centerPosition = GameBoard.Position(row: 1, column: 1),
-        isCenterEmpty  = gameBoard.emptyPositions.contains { $0 == centerPosition }
-        return isCenterEmpty ? centerPosition : nil
+        let center = GameBoard.Position(row: 1, column: 1)
+        return gameBoard.intersectEmptyPositionsWithPositions([center]).first
     }
 }

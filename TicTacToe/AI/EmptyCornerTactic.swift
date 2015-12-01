@@ -16,12 +16,8 @@ struct EmptyCornerTactic: NewellAndSimonTactic {
     
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         let
-        cornerPositions = cornerPositionsForGameBoard(gameBoard),
-        emptyCorners = gameBoard.emptyPositions.filter { emptyPosition in
-            cornerPositions.contains { cornerPosition in
-                cornerPosition == emptyPosition
-            }
-        }
+        allCorners   = cornerPositionsForGameBoard(gameBoard),
+        emptyCorners = gameBoard.intersectEmptyPositionsWithPositions(allCorners)
         return emptyCorners.first
     }
     
