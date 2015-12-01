@@ -21,9 +21,9 @@ class OutcomeAnalystTests: XCTestCase {
     func test_checkForOutcome_noWinnerYet_returnsNil() {
         let board = GameBoard()
         board.marks = [
-            [.Empty, .O,     .Empty],
-            [.Empty, .Empty, .Empty],
-            [.X,     .X,     .O    ]]
+            [nil, .O,  nil],
+            [nil, nil, nil],
+            [.X,  .X,  .O ]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         XCTAssertNil(analyst.checkForOutcome())
     }
@@ -36,7 +36,7 @@ class OutcomeAnalystTests: XCTestCase {
             [.O, .O, .X]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         if let outcome = analyst.checkForOutcome() {
-            XCTAssertEqual(outcome.winner, Winner.Tied)
+            XCTAssertNil(outcome.winner)
             XCTAssertNil(outcome.winningPositions)
         }
         else {
@@ -47,9 +47,9 @@ class OutcomeAnalystTests: XCTestCase {
     func test_checkForOutcome_winningRowForX_returnsRowForPlayerX() {
         let board = GameBoard()
         board.marks = [
-            [.Empty, .Empty, .Empty],
-            [.Empty, .Empty, .Empty],
-            [.X,     .X,     .X    ]]
+            [nil, nil, nil],
+            [nil, nil, nil],
+            [.X,  .X,  .X ]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         if let outcome = analyst.checkForOutcome() {
             XCTAssertEqual(outcome.winner, Winner.PlayerX)
@@ -72,9 +72,9 @@ class OutcomeAnalystTests: XCTestCase {
     func test_checkForOutcome_winningColumnForO_returnsColumnForPlayerO() {
         let board = GameBoard()
         board.marks = [
-            [.Empty, .O, .Empty],
-            [.Empty, .O, .Empty],
-            [.Empty, .O, .Empty]]
+            [nil, .O, nil],
+            [nil, .O, nil],
+            [nil, .O, nil]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         if let outcome = analyst.checkForOutcome() {
             XCTAssertEqual(outcome.winner, Winner.PlayerO)
@@ -97,9 +97,9 @@ class OutcomeAnalystTests: XCTestCase {
     func test_checkForOutcome_winningTopLeftToBottomRightDiagonalForX_returnsDiagonalForPlayerX() {
         let board = GameBoard()
         board.marks = [
-            [.X,     .Empty, .Empty],
-            [.Empty, .X,     .Empty],
-            [.Empty, .Empty, .X    ]]
+            [.X,  nil, nil],
+            [nil, .X,  nil],
+            [nil, nil, .X ]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         if let outcome = analyst.checkForOutcome() {
             XCTAssertEqual(outcome.winner, Winner.PlayerX)
@@ -122,9 +122,9 @@ class OutcomeAnalystTests: XCTestCase {
     func test_checkForOutcome_winningBottomLeftToTopRightDiagonalForO_returnsDiagonalForPlayerO() {
         let board = GameBoard()
         board.marks = [
-            [.Empty, .Empty, .O    ],
-            [.Empty, .O,     .Empty],
-            [.O,     .Empty, .Empty]]
+            [nil, nil, .O ],
+            [nil, .O,  nil],
+            [.O,  nil, nil]]
         let analyst = OutcomeAnalyst(gameBoard: board)
         if let outcome = analyst.checkForOutcome() {
             XCTAssertEqual(outcome.winner, Winner.PlayerO)

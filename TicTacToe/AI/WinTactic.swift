@@ -15,12 +15,12 @@ import Foundation
 struct WinTactic: NewellAndSimonTactic {
     
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
-        let desiredWinner = (mark == Mark.X) ? Winner.PlayerX : Winner.PlayerO
         for emptyPosition in gameBoard.emptyPositions {
             let
             possibleBoard  = gameBoard.cloneWithMark(mark, atPosition: emptyPosition),
             outcomeAnalyst = OutcomeAnalyst(gameBoard: possibleBoard)
-            if let outcome = outcomeAnalyst.checkForOutcome() where outcome.winner == desiredWinner {
+            if let outcome = outcomeAnalyst.checkForOutcome() {
+                assert(outcome.winner == Winner.fromMark(mark))
                 return emptyPosition
             }
         }

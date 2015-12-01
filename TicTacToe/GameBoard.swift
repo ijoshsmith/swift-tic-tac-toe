@@ -10,7 +10,7 @@ import Foundation
 
 /** The possible states for a position on a GameBoard. */
 public enum Mark {
-    case Empty, X, O
+    case X, O
 }
 
 public func == (position1: GameBoard.Position, position2: GameBoard.Position) -> Bool {
@@ -38,13 +38,13 @@ public final class GameBoard {
         assert(dimension >= 3)
         
         let
-        emptyRow = [Mark](count: dimension, repeatedValue: .Empty),
-        marks = [[Mark]](count: dimension, repeatedValue: emptyRow)
+        emptyRow = [Mark?](count: dimension, repeatedValue: nil),
+        allMarks = [[Mark?]](count: dimension, repeatedValue: emptyRow)
         
-        self.init(dimension: dimension, marks: marks)
+        self.init(dimension: dimension, marks: allMarks)
     }
     
-    private init(dimension: Int, marks: [[Mark]]) {
+    private init(dimension: Int, marks: [[Mark?]]) {
         self.dimension = dimension
         self.dimensionIndexes = [Int](0..<dimension)
         self.marks = marks
@@ -58,21 +58,21 @@ public final class GameBoard {
         return positions.filter(isEmptyAtPosition)
     }
     
-    public func marksInRow(row: Int) -> [Mark] {
+    public func marksInRow(row: Int) -> [Mark?] {
         return positionsForRow(row).map(markAtPosition)
     }
     
-    public func marksInColumn(column: Int) -> [Mark] {
+    public func marksInColumn(column: Int) -> [Mark?] {
         return positionsForColumn(column).map(markAtPosition)
     }
     
-    public func marksInDiagonal(diagonal: Diagonal) -> [Mark] {
+    public func marksInDiagonal(diagonal: Diagonal) -> [Mark?] {
         return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
     // MARK: - Non-public stored properties
     
-    internal var marks: [[Mark]] // internal for unit test access
+    internal var marks: [[Mark?]] // internal for unit test access
     
     private lazy var positions: [Position] = {
         self.dimensionIndexes.flatMap { row -> [Position] in
@@ -88,7 +88,7 @@ public final class GameBoard {
 
 internal extension GameBoard {
     func cloneWithMark(mark: Mark, atPosition position: Position) -> GameBoard {
-        let clone = GameBoard(dimension: dimension, marks: [[Mark]](marks))
+        let clone = GameBoard(dimension: dimension, marks: [[Mark?]](marks))
         clone.putMark(mark, atPosition: position)
         return clone
     }
@@ -112,7 +112,6 @@ internal extension GameBoard {
     func putMark(mark: Mark, atPosition position: Position) {
         assertPosition(position)
         assert(isEmptyAtPosition(position))
-        assert(mark != .Empty)
         marks[position.row][position.column] = mark
     }
 }
@@ -130,10 +129,10 @@ private extension GameBoard {
     }
     
     func isEmptyAtPosition(position: Position) -> Bool {
-        return markAtPosition(position) == .Empty
+        return markAtPosition(position) == nil
     }
     
-    func markAtPosition(position: Position) -> Mark {
+    func markAtPosition(position: Position) -> Mark? {
         assertPosition(position)
         return marks[position.row][position.column]
     }

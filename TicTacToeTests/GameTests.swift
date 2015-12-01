@@ -74,8 +74,8 @@ class GameTests: XCTestCase {
             XCTAssertTrue(xStrategy.isFinished)
             XCTAssertTrue(oStrategy.isFinished)
             
-            // Neither player should have won.
-            XCTAssertEqual(outcome.winner, Winner.Tied)
+            // Neither player should have won (the game was tied).
+            XCTAssertNil(outcome.winner)
             XCTAssertNil(outcome.winningPositions)
             
             expectation.fulfill()

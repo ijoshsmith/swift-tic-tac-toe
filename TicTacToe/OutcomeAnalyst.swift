@@ -10,11 +10,18 @@ import Foundation
 
 /** Represents the possible victors of a game. */
 public enum Winner {
-    case PlayerX, PlayerO, Tied
+    case PlayerX, PlayerO
+    
+    static func fromMark(mark: Mark) -> Winner {
+        switch mark {
+        case .X: return .PlayerX
+        case .O: return .PlayerO
+        }
+    }
 }
 
-/** Information about a finished game. If `winner` is Tied, `winningPositions` will be nil. */
-public typealias Outcome = (winner: Winner, winningPositions: [GameBoard.Position]?)
+/** Information about a finished game. If `winner` and `winningPositions` are nil, the game was tied. */
+public typealias Outcome = (winner: Winner?, winningPositions: [GameBoard.Position]?)
 
 /** Inspects a GameBoard to detect if a player has won, or if both players tied. */
 internal final class OutcomeAnalyst {
@@ -37,7 +44,7 @@ internal final class OutcomeAnalyst {
         }
         
         if gameBoard.emptyPositions.count == 0 {
-            return Outcome(winner: .Tied, winningPositions: nil)
+            return Outcome(winner: nil, winningPositions: nil)
         }
         
         return nil
@@ -70,7 +77,7 @@ private extension OutcomeAnalyst {
             winningPositionsClosure: gameBoard.positionsForDiagonal)
     }
     
-    func findOutcomeWithIdentifiers<Identity>(identifiers: [Identity], marksClosure: Identity -> [Mark], winningPositionsClosure: Identity -> [GameBoard.Position]) -> Outcome? {
+    func findOutcomeWithIdentifiers<Identity>(identifiers: [Identity], marksClosure: Identity -> [Mark?], winningPositionsClosure: Identity -> [GameBoard.Position]) -> Outcome? {
         for identifier in identifiers {
             let marks = marksClosure(identifier)
             if let winner = winnerFromMarks(marks) {
@@ -81,19 +88,18 @@ private extension OutcomeAnalyst {
         return nil
     }
     
-    func winnerFromMarks(marks: [Mark]) -> Winner? {
-        if areWinningMarks(marks) {
-            let mark = marks.first!
-            return (mark == .X) ? Winner.PlayerX : Winner.PlayerO
+    func winnerFromMarks(marks: [Mark?]) -> Winner? {
+        if let mark = marks.first! where areWinningMarks(marks) {
+            return Winner.fromMark(mark)
         }
         return nil
     }
     
-    func areWinningMarks(marks: [Mark]) -> Bool {
+    func areWinningMarks(marks: [Mark?]) -> Bool {
         let
-        uniqueMarks = Set(marks),
-        allSameMark = uniqueMarks.count == 1,
-        theOnlyMark = uniqueMarks.first
-        return allSameMark && theOnlyMark != .Empty
+        validMarks  = marks.flatMap { $0 }, // remove nil elements
+        areAllValid = validMarks.count == marks.count,
+        areSameMark = Set(validMarks).count == 1
+        return areAllValid && areSameMark
     }
 }
