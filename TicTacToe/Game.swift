@@ -66,7 +66,6 @@ private extension Game {
     }
     
     func switchCurrentPlayer() {
-        assert(currentPlayer != nil)
         let xIsCurrent = (currentPlayer!.mark == .X)
         currentPlayer = xIsCurrent ? playerO : playerX
     }
