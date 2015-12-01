@@ -22,12 +22,13 @@ struct EmptyCornerTactic: NewellAndSimonTactic {
     }
     
     private func cornerPositionsForGameBoard(gameBoard: GameBoard) -> [GameBoard.Position] {
+        assert(gameBoard.dimension == 3)
+        
         let
-        lastIndex   = gameBoard.dimension - 1,
-        topLeft     = GameBoard.Position(row: 0,         column: 0),
-        topRight    = GameBoard.Position(row: 0,         column: lastIndex),
-        bottomRight = GameBoard.Position(row: lastIndex, column: lastIndex),
-        bottomLeft  = GameBoard.Position(row: lastIndex, column: 0)
+        topLeft     = GameBoard.Position(row: 0, column: 0),
+        topRight    = GameBoard.Position(row: 0, column: 2),
+        bottomRight = GameBoard.Position(row: 2, column: 2),
+        bottomLeft  = GameBoard.Position(row: 2, column: 0)
         return [topLeft, topRight, bottomRight, bottomLeft]
     }
 }
