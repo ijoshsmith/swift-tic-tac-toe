@@ -20,7 +20,7 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
         // TODO: ForkTactic
         // TODO: BlockForkTactic
         CenterTactic(),
-        // TODO: OppositeCornerTactic
+        OppositeCornerTactic(),
         EmptyCornerTactic(),
         EmptySideTactic()
         ]) {
