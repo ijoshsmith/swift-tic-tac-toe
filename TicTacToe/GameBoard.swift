@@ -39,6 +39,10 @@ public final class GameBoard {
     
     public enum Diagonal {
         case TopLeftToBottomRight, BottomLeftToTopRight
+        
+        static func allValues() -> [Diagonal] {
+            return [.TopLeftToBottomRight, .BottomLeftToTopRight]
+        }
     }
     
     public convenience init(dimension: Int = 3) {
