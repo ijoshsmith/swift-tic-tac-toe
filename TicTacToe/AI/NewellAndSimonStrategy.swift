@@ -17,7 +17,7 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
     init(tactics: [NewellAndSimonTactic] = [
         WinTactic(),
         BlockTactic(),
-        // TODO: ForkTactic
+        ForkTactic(),
         // TODO: BlockForkTactic
         CenterTactic(),
         OppositeCornerTactic(),
