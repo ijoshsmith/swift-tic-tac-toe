@@ -17,10 +17,10 @@ struct OppositeCornerTactic: NewellAndSimonTactic {
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
-        let positions = GameBoard.Diagonal.allValues().flatMap {
-            choosePositionInDiagonal($0, forMark: mark, gameBoard: gameBoard)
-        }
-        return positions.isEmpty ? nil : positions.first!
+        return GameBoard.Diagonal
+            .allValues()
+            .flatMap { choosePositionInDiagonal($0, forMark: mark, gameBoard: gameBoard) }
+            .first
     }
     
     private func choosePositionInDiagonal(diagonal: GameBoard.Diagonal, forMark mark: Mark, gameBoard: GameBoard) -> GameBoard.Position? {
