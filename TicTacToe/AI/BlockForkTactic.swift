@@ -59,10 +59,13 @@ struct BlockForkTactic: NewellAndSimonTactic {
     }
     
     private func wouldForkExistWhenBlockingWithMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> Bool {
+        guard let blockPosition = BlockTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard) else {
+            return false
+        }
+        
         let
-        blockPosition  = BlockTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard),
-        forkPosition   = ForkTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard),
-        isForkingBlock = forkPosition != nil && blockPosition != nil && forkPosition! == blockPosition!
+        forkPositions  = ForkTactic().findForkPositionsForMark(mark, onGameBoard: gameBoard),
+        isForkingBlock = forkPositions.contains { $0 == blockPosition }
         return isForkingBlock
     }
 }

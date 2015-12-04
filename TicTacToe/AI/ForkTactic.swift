@@ -17,6 +17,10 @@ struct ForkTactic: NewellAndSimonTactic {
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
+        return findForkPositionsForMark(mark, onGameBoard: gameBoard).first
+    }
+    
+    internal func findForkPositionsForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> [GameBoard.Position] {
         let
         indexes       = gameBoard.dimensionIndexes,
         diagonals     = GameBoard.Diagonal.allValues(),
@@ -29,23 +33,22 @@ struct ForkTactic: NewellAndSimonTactic {
         forkableColumnInfos   = columnInfos.filter   { $0.isForkableWithMark(mark) },
         forkableDiagonalInfos = diagonalInfos.filter { $0.isForkableWithMark(mark) }
         
-        return findForkPositionWithInfos(forkableRowInfos,      andOtherInfos: forkableColumnInfos  )
-            ?? findForkPositionWithInfos(forkableRowInfos,      andOtherInfos: forkableDiagonalInfos)
-            ?? findForkPositionWithInfos(forkableColumnInfos,   andOtherInfos: forkableDiagonalInfos)
-            ?? findForkPositionWithInfos(forkableDiagonalInfos, andOtherInfos: forkableDiagonalInfos)
+        return [
+            findForkPositionsWithInfos(forkableRowInfos,      andOtherInfos: forkableColumnInfos  ),
+            findForkPositionsWithInfos(forkableRowInfos,      andOtherInfos: forkableDiagonalInfos),
+            findForkPositionsWithInfos(forkableColumnInfos,   andOtherInfos: forkableDiagonalInfos),
+            findForkPositionsWithInfos(forkableDiagonalInfos, andOtherInfos: forkableDiagonalInfos)]
+            .flatMap { $0 }
     }
     
-    private func findForkPositionWithInfos(infos: [Info], andOtherInfos otherInfos: [Info]) -> GameBoard.Position? {
-        return infos
-            .flatMap { findForkPositionWithInfo($0, andOtherInfos: otherInfos) }
-            .first
+    private func findForkPositionsWithInfos(infos: [Info], andOtherInfos otherInfos: [Info]) -> [GameBoard.Position] {
+        return infos.flatMap { self.findForkPositionsWithInfo($0, andOtherInfos: otherInfos) }
     }
     
-    private func findForkPositionWithInfo(info: Info, andOtherInfos otherInfos: [Info]) -> GameBoard.Position? {
+    private func findForkPositionsWithInfo(info: Info, andOtherInfos otherInfos: [Info]) -> [GameBoard.Position] {
         return otherInfos
             .filter  { info.markedPosition != $0.markedPosition  }
             .flatMap { info.findIntersectingPositionWithInfo($0) }
-            .first
     }
 }
 

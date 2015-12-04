@@ -120,4 +120,24 @@ class BlockForkTacticTests: XCTestCase {
             XCTFail("Did not detect opponent's fork position.")
         }
     }
+    
+    func test_chooseWhereToPutMark_opponentCanForkInMiddleOfLastRow_returnsOffensivePosition() {
+        let position = BlockForkTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+            // Cannot put O in (0, 1) because X would go in (0, 2) to fork.
+            // Cannot put O in (1, 0) because X would go in (2, 0) to fork.
+            // Cannot put O in (1, 2) because X would go in (2, 0) to fork.
+            // Cannot put O in (2, 1) because X would go in (1, 2) or (0, 2) to fork.
+            // Must put O in (0, 2) or (2, 0)
+            "O  ",
+            " X ",
+            "  X"))
+        if let position = position {
+            XCTAssertTrue(
+                position == (row: 0, column: 2) ||
+                position == (row: 2, column: 0))
+        }
+        else {
+            XCTFail("Did not block opponent's fork position.")
+        }
+    }
 }
