@@ -29,9 +29,10 @@ struct ForkTactic: NewellAndSimonTactic {
         forkableColumnInfos   = columnInfos.filter   { $0.isForkableWithMark(mark) },
         forkableDiagonalInfos = diagonalInfos.filter { $0.isForkableWithMark(mark) }
         
-        return findForkPositionWithInfos(forkableRowInfos,    andOtherInfos: forkableColumnInfos  )
-            ?? findForkPositionWithInfos(forkableRowInfos,    andOtherInfos: forkableDiagonalInfos)
-            ?? findForkPositionWithInfos(forkableColumnInfos, andOtherInfos: forkableDiagonalInfos)
+        return findForkPositionWithInfos(forkableRowInfos,      andOtherInfos: forkableColumnInfos  )
+            ?? findForkPositionWithInfos(forkableRowInfos,      andOtherInfos: forkableDiagonalInfos)
+            ?? findForkPositionWithInfos(forkableColumnInfos,   andOtherInfos: forkableDiagonalInfos)
+            ?? findForkPositionWithInfos(forkableDiagonalInfos, andOtherInfos: forkableDiagonalInfos)
     }
     
     private func findForkPositionWithInfos(infos: [Info], andOtherInfos otherInfos: [Info]) -> GameBoard.Position? {
