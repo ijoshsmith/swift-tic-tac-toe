@@ -20,7 +20,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
         assert(gameBoard.dimension == 3)
         
         // This tactic is only applicable when the opponent can create a fork.
-        guard let forkPosition = findForkPositionForMark(mark.otherMark(), onGameBoard: gameBoard) else {
+        guard let forkPosition = findForkPositionForMark(mark.opponentMark(), onGameBoard: gameBoard) else {
             return nil
         }
         
@@ -46,7 +46,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
             return false
         }
         
-        guard !wouldForkExistWhenBlockingWithMark(mark.otherMark(), onGameBoard: possibleGameBoard) else {
+        guard !wouldForkExistWhenBlockingWithMark(mark.opponentMark(), onGameBoard: possibleGameBoard) else {
             return false
         }
         
@@ -54,7 +54,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
     }
     
     private func doesOffensivePositionExistForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> Bool {
-        let offensivePosition = BlockTactic().chooseWhereToPutMark(mark.otherMark(), onGameBoard: gameBoard)
+        let offensivePosition = BlockTactic().chooseWhereToPutMark(mark.opponentMark(), onGameBoard: gameBoard)
         return offensivePosition != nil
     }
     

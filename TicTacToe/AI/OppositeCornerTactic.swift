@@ -30,7 +30,7 @@ struct OppositeCornerTactic: NewellAndSimonTactic {
         (leftMark, rightMark) = (marks[0],     marks[2]),
         (leftPos,  rightPos)  = (positions[0], positions[2])
         
-        let opponent = mark.otherMark()
+        let opponent = mark.opponentMark()
         
         switch (leftMark, rightMark) {
         case (opponent?, nil): return rightPos

@@ -12,7 +12,7 @@ import Foundation
 public enum Mark {
     case X, O
     
-    func otherMark() -> Mark {
+    func opponentMark() -> Mark {
         switch self {
         case .X: return .O
         case .O: return .X

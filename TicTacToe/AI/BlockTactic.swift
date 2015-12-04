@@ -15,7 +15,6 @@ import Foundation
 struct BlockTactic: NewellAndSimonTactic {
     
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
-        let opponentMark = mark.otherMark()
-        return WinTactic().chooseWhereToPutMark(opponentMark, onGameBoard: gameBoard)
+        return WinTactic().chooseWhereToPutMark(mark.opponentMark(), onGameBoard: gameBoard)
     }
 }
