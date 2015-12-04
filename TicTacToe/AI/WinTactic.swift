@@ -20,7 +20,7 @@ struct WinTactic: NewellAndSimonTactic {
             possibleBoard  = gameBoard.cloneWithMark(mark, atPosition: emptyPosition),
             outcomeAnalyst = OutcomeAnalyst(gameBoard: possibleBoard)
             if let outcome = outcomeAnalyst.checkForOutcome() {
-                assert(outcome.winner == Winner.fromMark(mark))
+                assert(outcome.winner == nil || outcome.winner == Winner.fromMark(mark))
                 return emptyPosition
             }
         }

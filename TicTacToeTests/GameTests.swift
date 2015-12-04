@@ -82,4 +82,21 @@ class GameTests: XCTestCase {
         }
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
+    
+    func test_startPlayingWithCompletionHandler_bothOpponentsAreAI_gameIsTied() {
+        let
+        expectation = expectationWithDescription("Neither player wins"),
+        board = GameBoard(),
+        xStrategy = NewellAndSimonStrategy(),
+        oStrategy = NewellAndSimonStrategy(),
+        game = Game(gameBoard: board, xStrategy: xStrategy, oStrategy: oStrategy)
+        game.startPlayingWithCompletionHandler { outcome in            
+            // Neither player should have won (the game was tied).
+            XCTAssertNil(outcome.winner)
+            XCTAssertNil(outcome.winningPositions)
+            
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
 }

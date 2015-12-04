@@ -148,3 +148,27 @@ private extension GameBoard {
         return marks[position.row][position.column]
     }
 }
+
+// MARK: - Debugging
+
+internal extension GameBoard {
+    var textRepresentation: String {
+        return marks
+            .map(stringWithMarks)
+            .joinWithSeparator("\n")
+    }
+    
+    private func stringWithMarks(marks: [Mark?]) -> String {
+        return marks
+            .map(glyphForMark)
+            .joinWithSeparator("")
+    }
+    
+    private func glyphForMark(mark: Mark?) -> String {
+        switch mark {
+        case Mark.X?: return "X"
+        case Mark.O?: return "O"
+        case nil:     return "•"
+        }
+    }
+}

@@ -52,12 +52,18 @@ private extension Game {
         
         gameBoard.putMark(currentPlayer.mark, atPosition: position)
         
+        log(position)
+        
         if let outcome = outcomeAnalyst.checkForOutcome() {
             finishWithOutcome(outcome)
         }
         else {
             switchCurrentPlayer()
         }
+    }
+    
+    func log(position: GameBoard.Position) {
+        print("--- \(currentPlayer!.mark) played (\(position.row), \(position.column)) ---\n\(gameBoard.textRepresentation)\n")
     }
     
     func finishWithOutcome(outcome: Outcome) {
