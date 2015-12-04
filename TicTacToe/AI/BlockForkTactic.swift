@@ -42,27 +42,22 @@ struct BlockForkTactic: NewellAndSimonTactic {
     private func isSafeOffensivePlayForMark(mark: Mark, atPosition position: GameBoard.Position, onGameBoard gameBoard: GameBoard) -> Bool {
         let possibleGameBoard = gameBoard.cloneWithMark(mark, atPosition: position)
         
-        guard doesOffensivePositionExistForMark(mark, onGameBoard: possibleGameBoard) else {
+        guard let winningPosition = findWinningPositionForMark(mark, onGameBoard: possibleGameBoard) else {
             return false
         }
         
-        guard !wouldForkExistWhenBlockingWithMark(mark.opponentMark(), onGameBoard: possibleGameBoard) else {
+        guard !wouldCreateForkForMark(mark.opponentMark(), byBlockingPosition: winningPosition, onGameBoard: possibleGameBoard) else {
             return false
         }
         
         return true
     }
     
-    private func doesOffensivePositionExistForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> Bool {
-        let offensivePosition = BlockTactic().chooseWhereToPutMark(mark.opponentMark(), onGameBoard: gameBoard)
-        return offensivePosition != nil
+    private func findWinningPositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
+        return WinTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard)
     }
     
-    private func wouldForkExistWhenBlockingWithMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> Bool {
-        guard let blockPosition = BlockTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard) else {
-            return false
-        }
-        
+    private func wouldCreateForkForMark(mark: Mark, byBlockingPosition blockPosition: GameBoard.Position, onGameBoard gameBoard: GameBoard) -> Bool {
         let
         forkPositions  = ForkTactic().findForkPositionsForMark(mark, onGameBoard: gameBoard),
         isForkingBlock = forkPositions.contains { $0 == blockPosition }
