@@ -53,6 +53,9 @@
 		03E6B0921C0D043700058D48 /* WinTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0901C0D043700058D48 /* WinTactic.swift */; };
 		03E6B0941C0D044500058D48 /* WinTacticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0931C0D044500058D48 /* WinTacticTests.swift */; };
 		03E6B0971C0D05A800058D48 /* GameBoard+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E6B0961C0D05A800058D48 /* GameBoard+DSL.swift */; };
+		03FB27CB1C1154D600CBD73E /* BlockForkTacticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27CA1C1154D600CBD73E /* BlockForkTacticTests.swift */; };
+		03FB27CD1C115E0F00CBD73E /* BlockForkTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27CC1C115E0F00CBD73E /* BlockForkTactic.swift */; };
+		03FB27CE1C115E0F00CBD73E /* BlockForkTactic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27CC1C115E0F00CBD73E /* BlockForkTactic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,8 @@
 		03E6B0901C0D043700058D48 /* WinTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinTactic.swift; path = AI/WinTactic.swift; sourceTree = "<group>"; };
 		03E6B0931C0D044500058D48 /* WinTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WinTacticTests.swift; path = AI/WinTacticTests.swift; sourceTree = "<group>"; };
 		03E6B0961C0D05A800058D48 /* GameBoard+DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GameBoard+DSL.swift"; path = "AI/GameBoard+DSL.swift"; sourceTree = "<group>"; };
+		03FB27CA1C1154D600CBD73E /* BlockForkTacticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockForkTacticTests.swift; path = AI/BlockForkTacticTests.swift; sourceTree = "<group>"; };
+		03FB27CC1C115E0F00CBD73E /* BlockForkTactic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockForkTactic.swift; path = AI/BlockForkTactic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +212,7 @@
 				03E6B08F1C0D040E00058D48 /* Tactics */,
 				03E6B07B1C0CC76100058D48 /* NewellAndSimonStrategy.swift */,
 				03E6B07F1C0CC9CA00058D48 /* NewellAndSimonTactic.swift */,
+				03E660E51C0D7BCE00EACF7F /* strategy.pdf */,
 			);
 			name = AI;
 			sourceTree = "<group>";
@@ -223,11 +229,11 @@
 		03E6B08F1C0D040E00058D48 /* Tactics */ = {
 			isa = PBXGroup;
 			children = (
-				03E660E51C0D7BCE00EACF7F /* strategy.pdf */,
 				03E660F51C0D884600EACF7F /* GameBoard+Tactics.swift */,
 				03E6B0901C0D043700058D48 /* WinTactic.swift */,
 				03E660E01C0D70B200EACF7F /* BlockTactic.swift */,
 				035152431C0FFA4400E9A9F8 /* ForkTactic.swift */,
+				03FB27CC1C115E0F00CBD73E /* BlockForkTactic.swift */,
 				03E660E81C0D7D8200EACF7F /* CenterTactic.swift */,
 				037700131C0E676500029D80 /* OppositeCornerTactic.swift */,
 				03E660ED1C0D811800EACF7F /* EmptyCornerTactic.swift */,
@@ -243,6 +249,7 @@
 				03E6B0931C0D044500058D48 /* WinTacticTests.swift */,
 				03E660E31C0D71BB00EACF7F /* BlockTacticTests.swift */,
 				035152411C0FF70000E9A9F8 /* ForkTacticTests.swift */,
+				03FB27CA1C1154D600CBD73E /* BlockForkTacticTests.swift */,
 				03E660EB1C0D7F6B00EACF7F /* CenterTacticTests.swift */,
 				037700161C0E68B000029D80 /* OppositeCornerTacticTests.swift */,
 				03E660F01C0D846F00EACF7F /* EmptyCornerTacticTests.swift */,
@@ -364,6 +371,7 @@
 				03E660E11C0D70B200EACF7F /* BlockTactic.swift in Sources */,
 				03E6B0801C0CC9CA00058D48 /* NewellAndSimonTactic.swift in Sources */,
 				03E6B07C1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
+				03FB27CD1C115E0F00CBD73E /* BlockForkTactic.swift in Sources */,
 				03E647351C0A527F000AE2F5 /* OutcomeAnalyst.swift in Sources */,
 				03E6473C1C0A5B62000AE2F5 /* Game.swift in Sources */,
 				03E660F61C0D884600EACF7F /* GameBoard+Tactics.swift in Sources */,
@@ -391,9 +399,11 @@
 				03E6B07D1C0CC76100058D48 /* NewellAndSimonStrategy.swift in Sources */,
 				03E660EA1C0D7D8200EACF7F /* CenterTactic.swift in Sources */,
 				03E6472D1C0A1089000AE2F5 /* PlayerTests.swift in Sources */,
+				03FB27CE1C115E0F00CBD73E /* BlockForkTactic.swift in Sources */,
 				03DCD6FB1C09414D0019BC48 /* GameBoard.swift in Sources */,
 				03E6B0941C0D044500058D48 /* WinTacticTests.swift in Sources */,
 				03E6472A1C0A0BD9000AE2F5 /* TicTacToeStrategy.swift in Sources */,
+				03FB27CB1C1154D600CBD73E /* BlockForkTacticTests.swift in Sources */,
 				03DCD6EF1C0941030019BC48 /* GameBoardTests.swift in Sources */,
 				03E660F71C0D884600EACF7F /* GameBoard+Tactics.swift in Sources */,
 				03E660F11C0D846F00EACF7F /* EmptyCornerTacticTests.swift in Sources */,
