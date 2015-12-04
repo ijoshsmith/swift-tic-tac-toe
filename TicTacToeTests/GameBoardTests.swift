@@ -89,7 +89,7 @@ class GameBoardTests: XCTestCase {
     
     // MARK: - marksInDiagonal
     
-    func test_marksInDiagonal_topLeftToBottomRightIsEmpty_returnsAllNil() {
+    func test_marksInDiagonal_topLeftToBottomRightIsEmpty_returnsEmptyDiagonal() {
         let board = GameBoard()
         let marks = board.marksInDiagonal(.TopLeftToBottomRight)
         XCTAssertNil(marks[0])
@@ -97,7 +97,7 @@ class GameBoardTests: XCTestCase {
         XCTAssertNil(marks[2])
     }
     
-    func test_marksInDiagonal_bottomLeftToTopRightIsEmpty_returnsAllNil() {
+    func test_marksInDiagonal_bottomLeftToTopRightIsEmpty_returnsEmptyDiagonal() {
         let board = GameBoard()
         let marks = board.marksInDiagonal(.BottomLeftToTopRight)
         XCTAssertNil(marks[0])
@@ -105,7 +105,7 @@ class GameBoardTests: XCTestCase {
         XCTAssertNil(marks[2])
     }
     
-    func test_marksInDiagonal_topLeftToBottomRightIsXEO_returnsXEO() {
+    func test_marksInDiagonal_topLeftToBottomRightIsXEmptyO_returnsXEmptyO() {
         let board = GameBoard()
         board.marks = [
             [.X,  nil, nil],

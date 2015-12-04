@@ -17,11 +17,18 @@ class BlockForkTacticTests: XCTestCase {
             "   ")))
     }
     
-    func test_chooseWhereToPutMark_opponentCannotFork_returnsNil() {
+    func test_chooseWhereToPutMark_opponentCannotForkHorizontal_returnsNil() {
         XCTAssertNil(BlockForkTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
             "   ",
             "XOX",
             "   ")))
+    }
+    
+    func test_chooseWhereToPutMark_opponentCannotForkVertical_returnsNil() {
+        XCTAssertNil(BlockForkTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+            " X ",
+            " O ",
+            " X ")))
     }
     
     func test_chooseWhereToPutMark_opponentCanForkInTopLeftOrBottomRightCorner_returnsOffensivePosition() {
@@ -121,7 +128,7 @@ class BlockForkTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_opponentCanForkInMiddleOfLastRow_returnsOffensivePosition() {
+    func test_chooseWhereToPutMark_opponentCanForkInManyWays_returnsOffensivePosition() {
         let position = BlockForkTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
             // Cannot put O in (0, 1) because X would go in (0, 2) to fork.
             // Cannot put O in (1, 0) because X would go in (2, 0) to fork.
