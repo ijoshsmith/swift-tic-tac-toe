@@ -10,7 +10,7 @@ import Foundation
 
 /** 
  An intelligent agent which implements Newell and Simon's Tic-tac-toe strategy for a 3x3 game board.
- For more information, refer to https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
+ For more details, refer to strategy.pdf in the Tactics group.
  */
 final class NewellAndSimonStrategy: TicTacToeStrategy {
     
