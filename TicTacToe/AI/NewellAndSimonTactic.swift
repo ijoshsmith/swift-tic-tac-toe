@@ -10,5 +10,5 @@ import Foundation
 
 /** Represents a single aspect of Newell and Simon's Tic-tac-toe strategy. */
 protocol NewellAndSimonTactic {
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position?
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position?
 }

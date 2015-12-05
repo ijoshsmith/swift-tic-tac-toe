@@ -14,7 +14,7 @@ import Foundation
  */
 struct OppositeCornerTactic: NewellAndSimonTactic {
     
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
         return GameBoard.Diagonal

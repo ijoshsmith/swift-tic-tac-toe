@@ -10,15 +10,15 @@ import XCTest
 
 class BlockTacticTests: XCTestCase {
     
-    func test_chooseWhereToPutMark_cannotWin_returnsNil() {
-        XCTAssertNil(BlockTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_cannotWin_returnsNil() {
+        XCTAssertNil(BlockTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X O",
             "O X",
             "X  ")))
     }
     
-    func test_chooseWhereToPutMark_opponentCanWinInRow_returnsPositionInRow() {
-        let position = BlockTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_opponentCanWinInRow_returnsPositionInRow() {
+        let position = BlockTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "XX ",
             "O  ",
             "X O"))
@@ -30,8 +30,8 @@ class BlockTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_opponentCanWinInColumn_returnsPositionInColumn() {
-        let position = BlockTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_opponentCanWinInColumn_returnsPositionInColumn() {
+        let position = BlockTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             " XO",
             "XO ",
             "X  "))
@@ -43,8 +43,8 @@ class BlockTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_opponentCanWinInTopLeftToBottomRightDiagonal_returnsPositionInDiagonal() {
-        let position = BlockTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_opponentCanWinInTopLeftToBottomRightDiagonal_returnsPositionInDiagonal() {
+        let position = BlockTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "O X",
             "X  ",
             "  O"))
@@ -56,8 +56,8 @@ class BlockTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_opponentCanWinInBottomLeftToTopRightDiagonal_returnsPositionInDiagonal() {
-        let position = BlockTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_opponentCanWinInBottomLeftToTopRightDiagonal_returnsPositionInDiagonal() {
+        let position = BlockTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X  ",
             "XOO",
             "O X"))

@@ -14,7 +14,7 @@ import Foundation
  */
 struct CenterTactic: NewellAndSimonTactic {
     
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
         let center = GameBoard.Position(row: 1, column: 1)

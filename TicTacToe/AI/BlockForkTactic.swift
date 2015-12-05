@@ -16,7 +16,7 @@ import Foundation
  */
 struct BlockForkTactic: NewellAndSimonTactic {
     
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         assert(gameBoard.dimension == 3)
         
         // This tactic is only applicable when the opponent can create a fork.
@@ -30,7 +30,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
     }
     
     private func findForkPositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
-        return ForkTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard)
+        return ForkTactic().choosePositionForMark(mark, onGameBoard: gameBoard)
     }
     
     private func findSafeOffensivePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
@@ -54,7 +54,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
     }
     
     private func findWinningPositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
-        return WinTactic().chooseWhereToPutMark(mark, onGameBoard: gameBoard)
+        return WinTactic().choosePositionForMark(mark, onGameBoard: gameBoard)
     }
     
     private func wouldCreateForkForMark(mark: Mark, byBlockingPosition blockPosition: GameBoard.Position, onGameBoard gameBoard: GameBoard) -> Bool {

@@ -10,22 +10,22 @@ import XCTest
 
 class ForkTacticTests: XCTestCase {
 
-    func test_chooseWhereToPutMark_emptyBoard_returnsNil() {
-        XCTAssertNil(ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_emptyBoard_returnsNil() {
+        XCTAssertNil(ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "   ",
             "   ")))
     }
 
-    func test_chooseWhereToPutMark_cannotFork_returnsNil() {
-        XCTAssertNil(ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_cannotFork_returnsNil() {
+        XCTAssertNil(ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "XXO",
             "   ",
             " O ")))
     }
     
-    func test_chooseWhereToPutMark_canForkTopLeftToBottomRightDiagonalWithMiddleRow_returnsCenterPosition() {
-        let position = ForkTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_canForkTopLeftToBottomRightDiagonalWithMiddleRow_returnsCenterPosition() {
+        let position = ForkTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "O X",
             "O  ",
             "XX "))
@@ -37,8 +37,8 @@ class ForkTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_canForkBottomLeftToTopRightDiagonalWithMiddleRow_returnsCenterPosition() {
-        let position = ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_canForkBottomLeftToTopRightDiagonalWithMiddleRow_returnsCenterPosition() {
+        let position = ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "O X",
             "  X",
             "  O"))
@@ -50,8 +50,8 @@ class ForkTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_canForkTopLeftToBottomRightDiagonalWithMiddleColumn_returnsCenterPosition() {
-        let position = ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_canForkTopLeftToBottomRightDiagonalWithMiddleColumn_returnsCenterPosition() {
+        let position = ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "  O",
             "OXX"))
@@ -63,8 +63,8 @@ class ForkTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_canForkBottomLeftToTopRightDiagonalWithMiddleColumn_returnsCenterPosition() {
-        let position = ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_canForkBottomLeftToTopRightDiagonalWithMiddleColumn_returnsCenterPosition() {
+        let position = ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "O  ",
             "XXO"))
@@ -76,8 +76,8 @@ class ForkTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_canForkRowWithColumn_returnsIntersectingPosition() {
-        let position = ForkTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_canForkRowWithColumn_returnsIntersectingPosition() {
+        let position = ForkTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "OX ",
             "  O",
             "  X"))

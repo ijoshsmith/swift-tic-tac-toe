@@ -10,15 +10,15 @@ import XCTest
 
 class CenterTacticTests: XCTestCase {
 
-    func test_chooseWhereToPutMark_centerIsNotEmpty_returnsNil() {
-        XCTAssertNil(CenterTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_centerIsNotEmpty_returnsNil() {
+        XCTAssertNil(CenterTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "   ",
             " X ",
             "   ")))
     }
     
-    func test_chooseWhereToPutMark_centerIsEmpty_returnsCenter() {
-        let position = (CenterTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_centerIsEmpty_returnsCenter() {
+        let position = (CenterTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "   ",
             "   ")))

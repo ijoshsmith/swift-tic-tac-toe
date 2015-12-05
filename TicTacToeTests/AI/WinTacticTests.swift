@@ -10,15 +10,15 @@ import XCTest
 
 class WinTacticTests: XCTestCase {
     
-    func test_chooseWhereToPutMark_cannotWin_returnsNil() {
-        XCTAssertNil(WinTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_cannotWin_returnsNil() {
+        XCTAssertNil(WinTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X O",
             "O X",
             "X  ")))
     }
     
-    func test_chooseWhereToPutMark_rowCanWin_returnsPositionInRow() {
-        let position = WinTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_rowCanWin_returnsPositionInRow() {
+        let position = WinTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "XX ",
             "O  ",
             "X O"))
@@ -30,8 +30,8 @@ class WinTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_columnCanWin_returnsPositionInColumn() {
-        let position = WinTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_columnCanWin_returnsPositionInColumn() {
+        let position = WinTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "XOX",
             " O ",
             "X  "))
@@ -43,8 +43,8 @@ class WinTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_topLeftToBottomRightDiagonalCanWin_returnsPositionInDiagonal() {
-        let position = WinTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_topLeftToBottomRightDiagonalCanWin_returnsPositionInDiagonal() {
+        let position = WinTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "XXO",
             "O  ",
             "  X"))
@@ -56,8 +56,8 @@ class WinTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomLeftToTopRightDiagonalCanWin_returnsPositionInDiagonal() {
-        let position = WinTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomLeftToTopRightDiagonalCanWin_returnsPositionInDiagonal() {
+        let position = WinTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X  ",
             "XO ",
             "O X"))
@@ -69,15 +69,15 @@ class WinTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_onlyOtherPlayerCanWin_returnsNil() {
-        XCTAssertNil(WinTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_onlyOtherPlayerCanWin_returnsNil() {
+        XCTAssertNil(WinTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "XX ",
             "X O",
             "O  ")))
     }
     
-    func test_chooseWhereToPutMark_bothPlayersCanWin_returnsPositionForCorrectPlayer() {
-        let position = WinTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_bothPlayersCanWin_returnsPositionForCorrectPlayer() {
+        let position = WinTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "OO ",
             " XX",
             "   "))

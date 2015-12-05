@@ -14,7 +14,7 @@ import Foundation
  */
 struct WinTactic: NewellAndSimonTactic {
     
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         for emptyPosition in gameBoard.emptyPositions {
             let
             possibleBoard  = gameBoard.cloneWithMark(mark, atPosition: emptyPosition),

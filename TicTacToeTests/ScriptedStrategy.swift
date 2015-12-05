@@ -43,7 +43,7 @@ final class ScriptedStrategy {
 }
 
 extension ScriptedStrategy: TicTacToeStrategy {
-    func chooseWhereToPutMark(_: Mark, onGameBoard _: GameBoard, completionHandler: GameBoard.Position -> Void) {
+    func choosePositionForMark(_: Mark, onGameBoard _: GameBoard, completionHandler: GameBoard.Position -> Void) {
         completionHandler(positionGenerator.next()!)
     }
 }

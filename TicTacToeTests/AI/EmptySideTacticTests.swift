@@ -10,15 +10,15 @@ import XCTest
 
 class EmptySideTacticTests: XCTestCase {
 
-    func test_chooseWhereToPutMark_noSidesAreEmpty_returnsNil() {
-        XCTAssertNil(EmptySideTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_noSidesAreEmpty_returnsNil() {
+        XCTAssertNil(EmptySideTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             " X ",
             "X X",
             " X ")))
     }
     
-    func test_chooseWhereToPutMark_topIsEmpty_returnsTop() {
-        let position = (EmptySideTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_topIsEmpty_returnsTop() {
+        let position = (EmptySideTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "X X",
             " X ")))
@@ -30,8 +30,8 @@ class EmptySideTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_rightIsEmpty_returnsRight() {
-        let position = (EmptySideTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_rightIsEmpty_returnsRight() {
+        let position = (EmptySideTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             " X ",
             "X  ",
             " X ")))
@@ -43,8 +43,8 @@ class EmptySideTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomIsEmpty_returnsBottom() {
-        let position = (EmptySideTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomIsEmpty_returnsBottom() {
+        let position = (EmptySideTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             " X ",
             "X X",
             "   ")))
@@ -56,8 +56,8 @@ class EmptySideTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_leftIsEmpty_returnsLeft() {
-        let position = (EmptySideTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_leftIsEmpty_returnsLeft() {
+        let position = (EmptySideTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             " X ",
             "  X",
             " X ")))

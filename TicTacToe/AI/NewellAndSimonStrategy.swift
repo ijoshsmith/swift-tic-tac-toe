@@ -27,11 +27,11 @@ final class NewellAndSimonStrategy: TicTacToeStrategy {
         self.tactics = tactics
     }
     
-    func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard, completionHandler: GameBoard.Position -> Void) {
+    func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard, completionHandler: GameBoard.Position -> Void) {
         assert(gameBoard.dimension == 3)
         
         let position = tactics.reduce(nil) { (position, tactic) in
-            position ?? tactic.chooseWhereToPutMark(mark, onGameBoard: gameBoard)
+            position ?? tactic.choosePositionForMark(mark, onGameBoard: gameBoard)
         }
         
         completionHandler(position!)

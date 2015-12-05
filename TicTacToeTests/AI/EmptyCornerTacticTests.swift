@@ -10,15 +10,15 @@ import XCTest
 
 class EmptyCornerTacticTests: XCTestCase {
     
-    func test_chooseWhereToPutMark_noCornersAreEmpty_returnsNil() {
-        XCTAssertNil(EmptyCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_noCornersAreEmpty_returnsNil() {
+        XCTAssertNil(EmptyCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X X",
             "   ",
             "X X")))
     }
 
-    func test_chooseWhereToPutMark_topLeftIsEmpty_returnsTopLeft() {
-        let position = (EmptyCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_topLeftIsEmpty_returnsTopLeft() {
+        let position = (EmptyCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "  X",
             "   ",
             "X X")))
@@ -30,8 +30,8 @@ class EmptyCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_topRightIsEmpty_returnsTopRight() {
-        let position = (EmptyCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_topRightIsEmpty_returnsTopRight() {
+        let position = (EmptyCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X  ",
             "   ",
             "X X")))
@@ -43,8 +43,8 @@ class EmptyCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomRightIsEmpty_returnsBottomRight() {
-        let position = (EmptyCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomRightIsEmpty_returnsBottomRight() {
+        let position = (EmptyCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X X",
             "   ",
             "X  ")))
@@ -56,8 +56,8 @@ class EmptyCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomLeftIsEmpty_returnsBottomLeft() {
-        let position = (EmptyCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomLeftIsEmpty_returnsBottomLeft() {
+        let position = (EmptyCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "X X",
             "   ",
             "  X")))

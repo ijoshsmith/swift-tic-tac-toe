@@ -20,7 +20,7 @@ internal final class Player {
     let mark: Mark
     
     func choosePositionWithCompletionHandler(completionHandler: GameBoard.Position -> Void) {
-        strategy.chooseWhereToPutMark(mark, onGameBoard: gameBoard, completionHandler: completionHandler)
+        strategy.choosePositionForMark(mark, onGameBoard: gameBoard, completionHandler: completionHandler)
     }
     
     // MARK: - Non-public stored properties

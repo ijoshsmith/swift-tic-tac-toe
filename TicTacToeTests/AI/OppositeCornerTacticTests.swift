@@ -10,22 +10,22 @@ import XCTest
 
 class OppositeCornerTacticTests: XCTestCase {
 
-    func test_chooseWhereToPutMark_allCornersAreEmpty_returnsNil() {
-        XCTAssertNil(OppositeCornerTactic().chooseWhereToPutMark(.X, onGameBoard: board3x3(
+    func test_choosePositionForMark_allCornersAreEmpty_returnsNil() {
+        XCTAssertNil(OppositeCornerTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "   ",
             "   ",
             "   ")))
     }
     
-    func test_chooseWhereToPutMark_allCornersAreMarked_returnsNil() {
-        XCTAssertNil(OppositeCornerTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_allCornersAreMarked_returnsNil() {
+        XCTAssertNil(OppositeCornerTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X X",
             "   ",
             "X X")))
     }
     
-    func test_chooseWhereToPutMark_topLeftIsMarkedAndBottomRightIsEmpty_returnsBottomRight() {
-        let position = (OppositeCornerTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_topLeftIsMarkedAndBottomRightIsEmpty_returnsBottomRight() {
+        let position = (OppositeCornerTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X X",
             "   ",
             "X  ")))
@@ -37,8 +37,8 @@ class OppositeCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_topRightIsMarkedAndBottomLeftIsEmpty_returnsBottomLeft() {
-        let position = (OppositeCornerTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_topRightIsMarkedAndBottomLeftIsEmpty_returnsBottomLeft() {
+        let position = (OppositeCornerTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X X",
             "   ",
             "  X")))
@@ -50,8 +50,8 @@ class OppositeCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomRightIsMarkedAndTopLeftIsEmpty_returnsTopLeft() {
-        let position = (OppositeCornerTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomRightIsMarkedAndTopLeftIsEmpty_returnsTopLeft() {
+        let position = (OppositeCornerTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "  X",
             "   ",
             "X X")))
@@ -63,8 +63,8 @@ class OppositeCornerTacticTests: XCTestCase {
         }
     }
     
-    func test_chooseWhereToPutMark_bottomLeftIsMarkedAndTopRightIsEmpty_returnsTopRight() {
-        let position = (OppositeCornerTactic().chooseWhereToPutMark(.O, onGameBoard: board3x3(
+    func test_choosePositionForMark_bottomLeftIsMarkedAndTopRightIsEmpty_returnsTopRight() {
+        let position = (OppositeCornerTactic().choosePositionForMark(.O, onGameBoard: board3x3(
             "X  ",
             "   ",
             "X X")))
