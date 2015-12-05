@@ -46,7 +46,7 @@ public final class Game {
 private extension Game {
     func processChosenPosition(position: GameBoard.Position) {
         guard let currentPlayer = currentPlayer else {
-            assert(false, "Why was a position chosen if there is no current player?")
+            assertionFailure("Why was a position chosen if there is no current player?")
             return
         }
         
