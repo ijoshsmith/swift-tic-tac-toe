@@ -31,23 +31,10 @@ internal final class OutcomeAnalyst {
     }
     
     func checkForOutcome() -> Outcome?  {
-        if let outcome = checkRowsForOutcome() {
-            return outcome
-        }
-        
-        if let outcome = checkColumnsForOutcome() {
-            return outcome
-        }
-        
-        if let outcome = checkDiagonalsForOutcome() {
-            return outcome
-        }
-        
-        if gameBoard.emptyPositions.count == 0 {
-            return Outcome(winner: nil, winningPositions: nil)
-        }
-        
-        return nil
+        return checkRowsForOutcome()
+            ?? checkColumnsForOutcome()
+            ?? checkDiagonalsForOutcome()
+            ?? checkForTiedOutcome()
     }
     
     private let gameBoard: GameBoard
@@ -56,6 +43,11 @@ internal final class OutcomeAnalyst {
 // MARK: - Private methods
 
 private extension OutcomeAnalyst {
+    func checkForTiedOutcome() -> Outcome? {
+        let isTied = gameBoard.emptyPositions.count == 0
+        return isTied ? Outcome(winner: nil, winningPositions: nil) : nil
+    }
+    
     func checkRowsForOutcome() -> Outcome? {
         return findOutcomeWithIdentifiers(
             gameBoard.dimensionIndexes,
@@ -97,9 +89,9 @@ private extension OutcomeAnalyst {
     
     func areWinningMarks(marks: [Mark?]) -> Bool {
         let
-        validMarks  = marks.flatMap { $0 }, // remove nil elements
-        areAllValid = validMarks.count == marks.count,
-        areSameMark = Set(validMarks).count == 1
+        nonNilMarks = marks.flatMap { $0 },
+        areAllValid = nonNilMarks.count == marks.count,
+        areSameMark = Set(nonNilMarks).count == 1
         return areAllValid && areSameMark
     }
 }
