@@ -21,7 +21,7 @@ class WinTacticTests: XCTestCase {
         let position = WinTactic().choosePositionForMark(.X, onGameBoard: board3x3(
             "XX ",
             "O  ",
-            "X O"))
+            "  O"))
         if let position = position {
             XCTAssertTrue(position == (row: 0, column: 2))
         }
