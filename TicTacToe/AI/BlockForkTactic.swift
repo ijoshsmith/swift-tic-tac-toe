@@ -35,12 +35,12 @@ struct BlockForkTactic: NewellAndSimonTactic {
     
     private func findSafeOffensivePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         return gameBoard.emptyPositions
-            .filter { isSafeOffensivePlayForMark(mark, atPosition: $0, onGameBoard: gameBoard) }
+            .filter { isSafeOffensivePosition($0, forMark: mark, onGameBoard: gameBoard) }
             .first
     }
     
-    private func isSafeOffensivePlayForMark(mark: Mark, atPosition position: GameBoard.Position, onGameBoard gameBoard: GameBoard) -> Bool {
-        let possibleGameBoard = gameBoard.cloneWithMark(mark, atPosition: position)
+    private func isSafeOffensivePosition(offensivePosition: GameBoard.Position, forMark mark: Mark, onGameBoard gameBoard: GameBoard) -> Bool {
+        let possibleGameBoard = gameBoard.cloneWithMark(mark, atPosition: offensivePosition)
         
         guard let winningPosition = findWinningPositionForMark(mark, onGameBoard: possibleGameBoard) else {
             return false
