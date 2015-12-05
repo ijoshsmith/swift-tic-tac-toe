@@ -17,7 +17,7 @@ struct EmptySideTactic: NewellAndSimonTactic {
     func chooseWhereToPutMark(mark: Mark, onGameBoard gameBoard: GameBoard) -> GameBoard.Position? {
         let
         allSides   = sidePositionsForGameBoard(gameBoard),
-        emptySides = gameBoard.intersectEmptyPositionsWithPositions(allSides)
+        emptySides = allSides.filter(gameBoard.isEmptyAtPosition)
         return emptySides.first
     }
     

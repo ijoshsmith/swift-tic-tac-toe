@@ -18,6 +18,6 @@ struct CenterTactic: NewellAndSimonTactic {
         assert(gameBoard.dimension == 3)
         
         let center = GameBoard.Position(row: 1, column: 1)
-        return gameBoard.intersectEmptyPositionsWithPositions([center]).first
+        return gameBoard.isEmptyAtPosition(center) ? center : nil
     }
 }

@@ -43,6 +43,31 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(emptyPositions[1] == (row: 2, column: 1))
     }
     
+    // MARK: - isEmptyAtPosition
+    
+    func test_isEmptyAtPosition_positionIsEmpty_returnsTrue() {
+        let board = GameBoard()
+        XCTAssertTrue(board.isEmptyAtPosition((row: 0, column: 0)))
+    }
+    
+    func test_isEmptyAtPosition_positionIsX_returnsFalse() {
+        let board = GameBoard()
+        board.marks = [
+            [.X,  nil, nil],
+            [nil, nil,  nil],
+            [nil, nil, nil]]
+        XCTAssertFalse(board.isEmptyAtPosition((row: 0, column: 0)))
+    }
+    
+    func test_isEmptyAtPosition_positionIsO_returnsFalse() {
+        let board = GameBoard()
+        board.marks = [
+            [nil, nil, nil],
+            [nil, .O,  nil],
+            [nil, nil, nil]]
+        XCTAssertFalse(board.isEmptyAtPosition((row: 1, column: 1)))
+    }
+    
     // MARK: - marksInRow
     
     func test_marksInRow_rowIsEmpty_returnsEmptyRow() {

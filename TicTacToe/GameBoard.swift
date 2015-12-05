@@ -104,6 +104,10 @@ internal extension GameBoard {
         return clone
     }
     
+    func isEmptyAtPosition(position: Position) -> Bool {
+        return markAtPosition(position) == nil
+    }
+    
     func positionsForRow(row: Int) -> [Position] {
         return dimensionIndexes.map { (row: row, column: $0) }
     }
@@ -137,10 +141,6 @@ private extension GameBoard {
     func assertPosition(position: Position) {
         assertIndex(position.row)
         assertIndex(position.column)
-    }
-    
-    func isEmptyAtPosition(position: Position) -> Bool {
-        return markAtPosition(position) == nil
     }
     
     func markAtPosition(position: Position) -> Mark? {
