@@ -91,9 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				03464F021C1A9D720074451B /* TicTacToe.xcodeproj */,
-				03464ED31C1A9CC10074451B /* TicTacToeApp */,
-				03464EE81C1A9CC10074451B /* TicTacToeAppTests */,
-				03464EF31C1A9CC10074451B /* TicTacToeAppUITests */,
+				03464ED31C1A9CC10074451B /* App */,
+				03464EE81C1A9CC10074451B /* App Tests */,
+				03464EF31C1A9CC10074451B /* App UI Tests */,
 				03464ED21C1A9CC10074451B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		03464ED31C1A9CC10074451B /* TicTacToeApp */ = {
+		03464ED31C1A9CC10074451B /* App */ = {
 			isa = PBXGroup;
 			children = (
 				03464ED41C1A9CC10074451B /* AppDelegate.swift */,
@@ -118,22 +118,25 @@
 				03464EDD1C1A9CC10074451B /* LaunchScreen.storyboard */,
 				03464EE01C1A9CC10074451B /* Info.plist */,
 			);
+			name = App;
 			path = TicTacToeApp;
 			sourceTree = "<group>";
 		};
-		03464EE81C1A9CC10074451B /* TicTacToeAppTests */ = {
+		03464EE81C1A9CC10074451B /* App Tests */ = {
 			isa = PBXGroup;
 			children = (
 				03464EEB1C1A9CC10074451B /* Info.plist */,
 			);
+			name = "App Tests";
 			path = TicTacToeAppTests;
 			sourceTree = "<group>";
 		};
-		03464EF31C1A9CC10074451B /* TicTacToeAppUITests */ = {
+		03464EF31C1A9CC10074451B /* App UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				03464EF61C1A9CC10074451B /* Info.plist */,
 			);
+			name = "App UI Tests";
 			path = TicTacToeAppUITests;
 			sourceTree = "<group>";
 		};

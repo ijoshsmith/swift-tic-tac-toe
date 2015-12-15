@@ -127,8 +127,8 @@
 		03DCD6D51C0941030019BC48 = {
 			isa = PBXGroup;
 			children = (
-				03DCD6E11C0941030019BC48 /* TicTacToe */,
-				03DCD6ED1C0941030019BC48 /* TicTacToeTests */,
+				03DCD6E11C0941030019BC48 /* Framework */,
+				03DCD6ED1C0941030019BC48 /* Framework Tests */,
 				03DCD6E01C0941030019BC48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		03DCD6E11C0941030019BC48 /* TicTacToe */ = {
+		03DCD6E11C0941030019BC48 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
 				03DCD6FF1C09420B0019BC48 /* Config */,
@@ -152,10 +152,11 @@
 				03E647341C0A527F000AE2F5 /* OutcomeAnalyst.swift */,
 				03E647251C0A0998000AE2F5 /* Player.swift */,
 			);
+			name = Framework;
 			path = TicTacToe;
 			sourceTree = "<group>";
 		};
-		03DCD6ED1C0941030019BC48 /* TicTacToeTests */ = {
+		03DCD6ED1C0941030019BC48 /* Framework Tests */ = {
 			isa = PBXGroup;
 			children = (
 				03E647241C0A08ED000AE2F5 /* Config */,
@@ -165,6 +166,7 @@
 				03E647391C0A55CF000AE2F5 /* OutcomeAnalystTests.swift */,
 				03E6472C1C0A1089000AE2F5 /* PlayerTests.swift */,
 			);
+			name = "Framework Tests";
 			path = TicTacToeTests;
 			sourceTree = "<group>";
 		};
