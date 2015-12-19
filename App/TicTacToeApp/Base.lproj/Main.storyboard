@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -16,11 +17,27 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGr-tw-vKY" customClass="GameBoardView" customModule="TicTacToeApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FGr-tw-vKY" secondAttribute="bottom" id="3hV-xd-A33"/>
+                            <constraint firstItem="FGr-tw-vKY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="OfU-A3-hS6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FGr-tw-vKY" secondAttribute="trailing" constant="-20" id="XnM-RV-nqF"/>
+                            <constraint firstItem="FGr-tw-vKY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="l9e-4C-cIB"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gameBoardView" destination="FGr-tw-vKY" id="qjD-Co-0Ay"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="911" y="659"/>
         </scene>
     </scenes>
 </document>

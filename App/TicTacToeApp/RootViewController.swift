@@ -16,7 +16,17 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         
         let gameBoard = GameBoard()
-        print("gameBoard = \(gameBoard)")
+        gameBoard.putMark(.X, atPosition: (row: 1, column: 1))
+        gameBoard.putMark(.O, atPosition: (row: 0, column: 0))
+        gameBoard.putMark(.X, atPosition: (row: 2, column: 2))
+        gameBoard.putMark(.O, atPosition: (row: 0, column: 2))
+        gameBoard.putMark(.X, atPosition: (row: 0, column: 1))
+        gameBoard.putMark(.O, atPosition: (row: 2, column: 1))
+        gameBoard.putMark(.X, atPosition: (row: 1, column: 2))
+        gameBoard.putMark(.O, atPosition: (row: 1, column: 0))
+        gameBoard.putMark(.X, atPosition: (row: 2, column: 0))
+        self.gameBoardView.gameBoard = gameBoard
     }
     
+    @IBOutlet private weak var gameBoardView: GameBoardView!
 }
