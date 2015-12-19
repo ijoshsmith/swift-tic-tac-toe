@@ -12,10 +12,11 @@
 		03464EDA1C1A9CC10074451B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03464ED81C1A9CC10074451B /* Main.storyboard */; };
 		03464EDC1C1A9CC10074451B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03464EDB1C1A9CC10074451B /* Assets.xcassets */; };
 		03464EDF1C1A9CC10074451B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03464EDD1C1A9CC10074451B /* LaunchScreen.storyboard */; };
-		03464F0B1C1A9D810074451B /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; };
 		03C9D48A1C25581E0069A654 /* UserStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D4891C25581E0069A654 /* UserStrategy.swift */; };
 		03C9D48D1C2563A20069A654 /* CGContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D48B1C2563A20069A654 /* CGContextExtension.swift */; };
 		03C9D48E1C2563A20069A654 /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D48C1C2563A20069A654 /* GameBoardView.swift */; };
+		03C9D4951C25656C0069A654 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; };
+		03C9D4961C25656C0069A654 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +34,28 @@
 			remoteGlobalIDString = 03DCD6E91C0941030019BC48;
 			remoteInfo = TicTacToeTests;
 		};
+		03C9D4971C25656C0069A654 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03464F021C1A9D720074451B /* TicTacToe.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 03DCD6DE1C0941030019BC48;
+			remoteInfo = TicTacToe;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		03C9D4991C25656C0069A654 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				03C9D4961C25656C0069A654 /* TicTacToe.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		03464ED11C1A9CC10074451B /* TicTacToeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03464F0B1C1A9D810074451B /* TicTacToe.framework in Frameworks */,
+				03C9D4951C25656C0069A654 /* TicTacToe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,10 +152,12 @@
 				03464ECD1C1A9CC10074451B /* Sources */,
 				03464ECE1C1A9CC10074451B /* Frameworks */,
 				03464ECF1C1A9CC10074451B /* Resources */,
+				03C9D4991C25656C0069A654 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				03C9D4981C25656C0069A654 /* PBXTargetDependency */,
 			);
 			name = TicTacToeApp;
 			productName = TicTacToeApp;
@@ -223,6 +247,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03C9D4981C25656C0069A654 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TicTacToe;
+			targetProxy = 03C9D4971C25656C0069A654 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		03464ED81C1A9CC10074451B /* Main.storyboard */ = {
@@ -331,6 +363,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TicTacToeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iJoshSmith.TicTacToeApp;
@@ -343,6 +377,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TicTacToeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iJoshSmith.TicTacToeApp;
