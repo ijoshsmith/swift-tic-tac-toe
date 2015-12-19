@@ -12,17 +12,41 @@ import UIKit
 /** Renders lines and marks that depict a Tic-tac-toe game. */
 final class GameBoardView: UIView {
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = Color.background
-    }
-    
     var gameBoard: GameBoard? {
         didSet { winningPositions = nil }
     }
     
     var winningPositions: [GameBoard.Position]? {
-        didSet { setNeedsDisplay() }
+        didSet { refreshBoardState() }
+    }
+    
+    func refreshBoardState() {
+        setNeedsDisplay()
+    }
+    
+    var tappedEmptyPositionClosure: (GameBoard.Position -> Void)?
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        guard touches.count == 1 else { return }
+        guard let touch = touches.first else { return }
+        guard let gameBoard = gameBoard else { return }
+        guard let tappedEmptyPositionClosure = tappedEmptyPositionClosure else { return }
+        
+        let
+        tapLocation    = touch.locationInView(self),
+        borderRect     = calculatePlatformBorderRect(),
+        platformRect   = calculatePlatformRectFromBorderRect(borderRect),
+        emptyPositions = gameBoard.emptyPositions,
+        emptyCellRects = calculateCellRectsWithPositions(gameBoard.emptyPositions, inRect: platformRect),
+        emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
+        
+        let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
+            return CGRectContainsPoint(rect, tapLocation) ? position : nil
+        }
+        
+        if let tappedPosition = tappedPositions.first {
+            tappedEmptyPositionClosure(tappedPosition)
+        }
     }
     
     override func drawRect(rect: CGRect) {
@@ -60,7 +84,6 @@ final class GameBoardView: UIView {
 
 private struct Color {
     static let
-    background   = UIColor.lightGrayColor(),
     borderInner  = UIColor.darkGrayColor(),
     borderOuter  = UIColor.whiteColor(),
     gridLine     = UIColor.darkGrayColor(),

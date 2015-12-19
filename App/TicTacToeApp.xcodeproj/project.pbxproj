@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		03464ED51C1A9CC10074451B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03464ED41C1A9CC10074451B /* AppDelegate.swift */; };
-		03464ED71C1A9CC10074451B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03464ED61C1A9CC10074451B /* RootViewController.swift */; };
+		03464ED71C1A9CC10074451B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03464ED61C1A9CC10074451B /* GameViewController.swift */; };
 		03464EDA1C1A9CC10074451B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03464ED81C1A9CC10074451B /* Main.storyboard */; };
 		03464EDC1C1A9CC10074451B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03464EDB1C1A9CC10074451B /* Assets.xcassets */; };
 		03464EDF1C1A9CC10074451B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03464EDD1C1A9CC10074451B /* LaunchScreen.storyboard */; };
 		03464F0B1C1A9D810074451B /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; };
 		036972671C233EC500FE3EFA /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036972661C233EC500FE3EFA /* GameBoardView.swift */; };
 		03C9D4881C2544A70069A654 /* CGContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D4871C2544A70069A654 /* CGContextExtension.swift */; };
+		03C9D48A1C25581E0069A654 /* UserStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D4891C25581E0069A654 /* UserStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,7 @@
 /* Begin PBXFileReference section */
 		03464ED11C1A9CC10074451B /* TicTacToeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03464ED41C1A9CC10074451B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03464ED61C1A9CC10074451B /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		03464ED61C1A9CC10074451B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		03464ED91C1A9CC10074451B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03464EDB1C1A9CC10074451B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03464EDE1C1A9CC10074451B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		03464F021C1A9D720074451B /* TicTacToe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TicTacToe.xcodeproj; path = ../Framework/TicTacToe.xcodeproj; sourceTree = "<group>"; };
 		036972661C233EC500FE3EFA /* GameBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameBoardView.swift; path = Views/GameBoardView.swift; sourceTree = "<group>"; };
 		03C9D4871C2544A70069A654 /* CGContextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGContextExtension.swift; path = Views/CGContextExtension.swift; sourceTree = "<group>"; };
+		03C9D4891C25581E0069A654 /* UserStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,8 @@
 				0369726B1C233EE700FE3EFA /* Config */,
 				0369726A1C233EC900FE3EFA /* Views */,
 				03464ED41C1A9CC10074451B /* AppDelegate.swift */,
-				03464ED61C1A9CC10074451B /* RootViewController.swift */,
+				03464ED61C1A9CC10074451B /* GameViewController.swift */,
+				03C9D4891C25581E0069A654 /* UserStrategy.swift */,
 				03464ED81C1A9CC10074451B /* Main.storyboard */,
 			);
 			name = App;
@@ -325,7 +328,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03464ED71C1A9CC10074451B /* RootViewController.swift in Sources */,
+				03C9D48A1C25581E0069A654 /* UserStrategy.swift in Sources */,
+				03464ED71C1A9CC10074451B /* GameViewController.swift in Sources */,
 				03464ED51C1A9CC10074451B /* AppDelegate.swift in Sources */,
 				036972671C233EC500FE3EFA /* GameBoardView.swift in Sources */,
 				03C9D4881C2544A70069A654 /* CGContextExtension.swift in Sources */,
@@ -472,6 +476,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iJoshSmith.TicTacToeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -483,6 +488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iJoshSmith.TicTacToeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

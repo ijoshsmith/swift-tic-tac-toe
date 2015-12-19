@@ -12,3 +12,7 @@ import Foundation
 public protocol TicTacToeStrategy {
     func choosePositionForMark(mark: Mark, onGameBoard gameBoard: GameBoard, completionHandler: GameBoard.Position -> Void)
 }
+
+public func createArtificalIntelligenceStrategy() -> TicTacToeStrategy {
+    return NewellAndSimonStrategy()
+}
