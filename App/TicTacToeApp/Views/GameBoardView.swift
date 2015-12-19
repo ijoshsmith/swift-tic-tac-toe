@@ -14,7 +14,6 @@ final class GameBoardView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         backgroundColor = Color.background
     }
     
@@ -74,7 +73,7 @@ private struct Color {
 private struct Thickness {
     static let
     cellMargin: CGFloat        = 20,
-    gridLine: CGFloat          = 2,
+    gridLine: CGFloat          = 4,
     mark: CGFloat              = 16,
     platformBorder: CGFloat    = 2,
     winningLine: CGFloat       = 8,
@@ -192,33 +191,29 @@ private extension GameBoardView {
 // MARK: - Rendering
 
 private extension GameBoardView {
+    
+    var context: CGContextRef {
+        return UIGraphicsGetCurrentContext()!
+    }
+    
     func drawPlatformBorderInRect(rect: CGRect) {
         let
-        context = UIGraphicsGetCurrentContext(),
         numberOfBorderLines = 2,
-        borderLineThickness = Thickness.platformBorder / CGFloat(numberOfBorderLines),
+        lineThickness = Thickness.platformBorder / CGFloat(numberOfBorderLines),
         outerRect = rect,
-        innerRect = CGRectInset(rect, borderLineThickness, borderLineThickness)
-        
-        CGContextSetLineWidth(context, borderLineThickness)
+        innerRect = CGRectInset(rect, lineThickness, lineThickness)
         
         [(outerRect, Color.borderOuter), (innerRect, Color.borderInner)].forEach { (rect, color) in
-            CGContextSetStrokeColorWithColor(context, color.CGColor)
-            CGContextAddRect(context, rect)
-            CGContextStrokePath(context)
+            context.strokeRect(rect, color: color, width: lineThickness)
         }
     }
     
     func drawPlatformInRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, Color.platformFill.CGColor)
-        CGContextFillRect(context, rect)
+        context.fillRect(rect, color: Color.platformFill)
     }
     
     func drawMarksInRect(rect: CGRect) {
         guard let gameBoard = gameBoard else { return }
-        
         for row in 0..<gameBoard.dimension {
             let marksInRow = gameBoard.marksInRow(row)
             for column in 0..<gameBoard.dimension {
@@ -239,53 +234,31 @@ private extension GameBoardView {
     }
     
     func drawX(inRect rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetStrokeColorWithColor(context, Color.markX.CGColor)
-        CGContextSetLineWidth(context, Thickness.mark)
-        CGContextSetLineCap(context, .Round)
-        
         let
         left   = CGRectGetMinX(rect),
         right  = CGRectGetMaxX(rect),
         top    = CGRectGetMinY(rect),
-        bottom = CGRectGetMaxY(rect)
+        bottom = CGRectGetMaxY(rect),
+        topLeft     = CGPoint(x: left,  y: top),
+        topRight    = CGPoint(x: right, y: top),
+        bottomLeft  = CGPoint(x: left,  y: bottom),
+        bottomRight = CGPoint(x: right, y: bottom)
         
-        CGContextMoveToPoint(context, left, top)
-        CGContextAddLineToPoint(context, right, bottom)
-        
-        CGContextMoveToPoint(context, left, bottom)
-        CGContextAddLineToPoint(context, right, top)
-        
-        CGContextStrokePath(context)
+        context.strokeLineFrom(topLeft, to: bottomRight, color: Color.markX, width: Thickness.mark, lineCap: .Round)
+        context.strokeLineFrom(bottomLeft, to: topRight, color: Color.markX, width: Thickness.mark, lineCap: .Round)
     }
     
     func drawO(inRect rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetStrokeColorWithColor(context, Color.markO.CGColor)
-        CGContextSetLineWidth(context, Thickness.mark)
-        CGContextAddEllipseInRect(context, rect)
-        CGContextStrokePath(context)
+        context.strokeEllipseInRect(rect, color: Color.markO, width: Thickness.mark)
     }
     
     func drawGridLinesInRects(gridLineRects: [CGRect]) {
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetStrokeColorWithColor(context, Color.gridLine.CGColor)
-        CGContextSetLineWidth(context, Thickness.gridLine)
         gridLineRects.forEach {
-            CGContextAddRect(context, $0)
-            CGContextStrokePath(context)
+            context.fillRect($0, color: Color.gridLine)
         }
     }
     
     func drawWinningLineFromStartPoint(startPoint: CGPoint, toEndPoint endPoint: CGPoint) {
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetStrokeColorWithColor(context, Color.winningLine.CGColor)
-        CGContextSetLineWidth(context, Thickness.winningLine)
-        CGContextSetLineCap(context, .Round)
-        
-        CGContextMoveToPoint(context, startPoint.x, startPoint.y)
-        CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
-        CGContextStrokePath(context)
+        context.strokeLineFrom(startPoint, to: endPoint, color: Color.winningLine, width: Thickness.winningLine, lineCap: .Round)
     }
 }
