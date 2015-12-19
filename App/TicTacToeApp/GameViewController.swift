@@ -60,18 +60,18 @@ private extension GameViewController {
     }
     
     func handleTappedEmptyPosition(position: GameBoard.Position) {
-        if !reportTappedPosition(position, forUserStrategy: userStrategyX) {
-            reportTappedPosition(position, forUserStrategy: userStrategyO)
+        if !reportChosenPosition(position, forUserStrategy: userStrategyX) {
+            reportChosenPosition(position, forUserStrategy: userStrategyO)
         }
         gameBoardView.refreshBoardState()
     }
     
-    func reportTappedPosition(tappedPosition: GameBoard.Position, forUserStrategy userStrategy: UserStrategy?) -> Bool {
+    func reportChosenPosition(position: GameBoard.Position, forUserStrategy userStrategy: UserStrategy?) -> Bool {
         guard let userStrategy = userStrategy where userStrategy.isWaitingToChoosePosition else {
             return false
         }
         
-        userStrategy.choosePosition(tappedPosition)
+        userStrategy.reportChosenPosition(position)
         return true
     }
 }

@@ -16,10 +16,10 @@ final class UserStrategy: TicTacToeStrategy {
         self.reportChosenPositionClosure = completionHandler
     }
     
-    func choosePosition(position: GameBoard.Position) {
-        if let completionHandler = reportChosenPositionClosure {
+    func reportChosenPosition(position: GameBoard.Position) {
+        if let reportChosenPositionClosure = reportChosenPositionClosure {
             self.reportChosenPositionClosure = nil
-            completionHandler(position)
+            reportChosenPositionClosure(position)
         }
     }
     
