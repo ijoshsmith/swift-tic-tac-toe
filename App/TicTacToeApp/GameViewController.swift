@@ -9,7 +9,7 @@
 import UIKit
 import TicTacToe
 
-/** The top-level view controller in the app. */
+/** The view controller that manages Tic-tac-toe gameplay. */
 class GameViewController: UIViewController {
     
     override func viewDidLoad() {
