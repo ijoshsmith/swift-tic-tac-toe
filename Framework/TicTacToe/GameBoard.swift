@@ -81,12 +81,6 @@ public final class GameBoard {
         return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
-    public func putMark(mark: Mark, atPosition position: Position) {
-        assertPosition(position)
-        assert(isEmptyAtPosition(position))
-        marks[position.row][position.column] = mark
-    }
-    
     // MARK: - Non-public stored properties
     
     internal var marks: [[Mark?]] // internal for unit test access
@@ -128,6 +122,12 @@ internal extension GameBoard {
         case .TopLeftToBottomRight: return Array(zip(rows, columns))
         case .BottomLeftToTopRight: return Array(zip(rows.reverse(), columns))
         }
+    }
+    
+    func putMark(mark: Mark, atPosition position: Position) {
+        assertPosition(position)
+        assert(isEmptyAtPosition(position))
+        marks[position.row][position.column] = mark
     }
 }
 
