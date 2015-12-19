@@ -12,10 +12,6 @@ import TicTacToe
 /** A Tic-tac-toe strategy that allows a person to decide where to put marks on a game board. */
 final class UserStrategy: TicTacToeStrategy {
     
-    init(startWaitingForUserClosure: () -> Void) {
-        self.startWaitingForUserClosure = startWaitingForUserClosure
-    }
-    
     func choosePositionForMark(_: Mark, onGameBoard _: GameBoard, completionHandler: GameBoard.Position -> Void) {
         self.reportChosenPositionClosure = completionHandler
     }
@@ -32,5 +28,4 @@ final class UserStrategy: TicTacToeStrategy {
     }
     
     private var reportChosenPositionClosure: (GameBoard.Position -> Void)?
-    private let startWaitingForUserClosure: () -> Void
 }

@@ -46,8 +46,8 @@ private extension GameViewController {
         }
         
         let isBetweenTwoUsers = twoPlayerModeSwitch.on
-        userStrategyX = createUserStrategy()
-        userStrategyO = isBetweenTwoUsers ? createUserStrategy() : nil
+        userStrategyX = UserStrategy()
+        userStrategyO = isBetweenTwoUsers ? UserStrategy() : nil
         
         let
         xStrategy = userStrategyX!,
@@ -57,12 +57,6 @@ private extension GameViewController {
         game!.startPlayingWithCompletionHandler { [weak self] outcome in
             self?.gameBoardView.winningPositions = outcome.winningPositions
         }
-    }
-    
-    func createUserStrategy() -> UserStrategy {
-        return UserStrategy(startWaitingForUserClosure: { [weak self] in
-            self?.gameBoardView.refreshBoardState()
-        })
     }
     
     func handleTappedEmptyPosition(position: GameBoard.Position) {
