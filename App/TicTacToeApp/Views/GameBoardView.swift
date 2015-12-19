@@ -18,7 +18,13 @@ final class GameBoardView: UIView {
         backgroundColor = Color.background
     }
     
-    var gameBoard: GameBoard?
+    var gameBoard: GameBoard? {
+        didSet { winningPositions = nil }
+    }
+    
+    var winningPositions: [GameBoard.Position]? {
+        didSet { setNeedsDisplay() }
+    }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
@@ -34,6 +40,18 @@ final class GameBoardView: UIView {
         drawPlatformBorderInRect(borderRect)
         drawMarksInRect(platformRect)
         drawGridLinesInRects(gridLineRects)
+        
+        if let winningPositions = winningPositions {
+            let
+            winningRects = calculateCellRectsWithPositions(winningPositions, inRect: platformRect),
+            startRect    = winningRects.first!,
+            endRect      = winningRects.last!,
+            orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
+            startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
+            endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
+            
+            drawWinningLineFromStartPoint(startPoint, toEndPoint: endPoint)
+        }
     }
 }
 
@@ -49,15 +67,18 @@ private struct Color {
     gridLine     = UIColor.darkGrayColor(),
     markO        = UIColor.blueColor(),
     markX        = UIColor.greenColor(),
-    platformFill = UIColor.whiteColor()
+    platformFill = UIColor.whiteColor(),
+    winningLine  = UIColor.redColor()
 }
 
 private struct Thickness {
     static let
-    cellMargin: CGFloat     = 20,
-    gridLine: CGFloat       = 2,
-    mark: CGFloat           = 16,
-    platformBorder: CGFloat = 2
+    cellMargin: CGFloat        = 20,
+    gridLine: CGFloat          = 2,
+    mark: CGFloat              = 16,
+    platformBorder: CGFloat    = 2,
+    winningLine: CGFloat       = 8,
+    winningLineInset: CGFloat  = 8
 }
 
 
@@ -121,6 +142,49 @@ private extension GameBoardView {
             return 0
         }
     }
+    
+    func calculateCellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
+        return positions
+            .map { calculateCellRectAtRow($0.row, column: $0.column, inRect: rect) }
+            .map { CGRectInset($0, Thickness.winningLineInset, Thickness.winningLineInset) }
+    }
+    
+    enum WinningLineOrientation {
+        case Horizontal, Vertical, TopLeftToBottomRight, BottomLeftToTopRight
+    }
+    
+    func winningLineOrientationForStartRect(startRect: CGRect, endRect: CGRect) -> WinningLineOrientation {
+        let
+        startX = Int(startRect.origin.x),
+        startY = Int(startRect.origin.y),
+        endX   = Int(endRect.origin.x),
+        endY   = Int(endRect.origin.y)
+        
+        switch (startX, endX, startY, endY) {
+        case (let x1, let x2,      _,      _) where x1 == x2: return .Vertical
+        case (     _,      _, let y1, let y2) where y1 == y2: return .Horizontal
+        case (     _,      _, let y1, let y2) where y1 <  y2: return .TopLeftToBottomRight
+        default:                                              return .BottomLeftToTopRight
+        }
+    }
+    
+    func startPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
+        switch winningLineOrientation {
+        case .Horizontal:           return CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMidY(rect))
+        case .Vertical:             return CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMinY(rect))
+        case .TopLeftToBottomRight: return CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinY(rect))
+        case .BottomLeftToTopRight: return CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect))
+        }
+    }
+    
+    func endPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
+        switch winningLineOrientation {
+        case .Horizontal:           return CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMidY(rect))
+        case .Vertical:             return CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMaxY(rect))
+        case .TopLeftToBottomRight: return CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect))
+        case .BottomLeftToTopRight: return CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMinY(rect))
+        }
+    }
 }
 
 
@@ -178,7 +242,7 @@ private extension GameBoardView {
         let context = UIGraphicsGetCurrentContext()
         CGContextSetStrokeColorWithColor(context, Color.markX.CGColor)
         CGContextSetLineWidth(context, Thickness.mark)
-        CGContextSetLineCap(context, CGLineCap.Round)
+        CGContextSetLineCap(context, .Round)
         
         let
         left   = CGRectGetMinX(rect),
@@ -211,5 +275,17 @@ private extension GameBoardView {
             CGContextAddRect(context, $0)
             CGContextStrokePath(context)
         }
+    }
+    
+    func drawWinningLineFromStartPoint(startPoint: CGPoint, toEndPoint endPoint: CGPoint) {
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetStrokeColorWithColor(context, Color.winningLine.CGColor)
+        CGContextSetLineWidth(context, Thickness.winningLine)
+        CGContextSetLineCap(context, .Round)
+        
+        CGContextMoveToPoint(context, startPoint.x, startPoint.y)
+        CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+        CGContextStrokePath(context)
     }
 }
