@@ -52,8 +52,8 @@ final class GameBoardView: UIView {
         
         drawPlatformInRect(platformRect)
         drawPlatformBorderInRect(borderRect)
-        drawMarksInRect(platformRect)
         drawGridLinesInRects(gridLineRects)
+        drawMarksInRect(platformRect)
         
         if let winningPositions = winningPositions {
             let (startPoint, endPoint) = calculateStartAndEndPointsForWinningLineThroughPositions(winningPositions, inRect: platformRect)
@@ -134,17 +134,6 @@ private extension GameBoardView {
         return borderRect.insetUniformlyBy(Thickness.platformBorder)
     }
     
-    func calculateCellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
-        let
-        totalLength = rect.width,
-        cellLength  = totalLength / CGFloat(cellsPerAxis),
-        leftEdge    = rect.minX + CGFloat(column) * cellLength,
-        topEdge     = rect.minY + CGFloat(row) * cellLength,
-        naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
-        cellRect    = naturalRect.insetUniformlyBy(Thickness.gridLine)
-        return cellRect
-    }
-    
     func calculateGridLineRectsFromPlatformRect(platformRect: CGRect) -> [CGRect] {
         let
         lineLength    = platformRect.width,
@@ -184,6 +173,17 @@ private extension GameBoardView {
         return positions
             .map { calculateCellRectAtRow($0.row, column: $0.column, inRect: rect) }
             .map { $0.insetUniformlyBy(Thickness.winningLineInset) }
+    }
+    
+    func calculateCellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
+        let
+        totalLength = rect.width,
+        cellLength  = totalLength / CGFloat(cellsPerAxis),
+        leftEdge    = rect.minX + CGFloat(column) * cellLength,
+        topEdge     = rect.minY + CGFloat(row) * cellLength,
+        naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
+        cellRect    = naturalRect.insetUniformlyBy(Thickness.gridLine)
+        return cellRect
     }
     
     enum WinningLineOrientation {
@@ -244,6 +244,12 @@ private extension GameBoardView {
         context.fillRect(rect, color: Color.platformFill)
     }
     
+    func drawGridLinesInRects(gridLineRects: [CGRect]) {
+        gridLineRects.forEach {
+            context.fillRect($0, color: Color.gridLine)
+        }
+    }
+    
     func drawMarksInRect(rect: CGRect) {
         guard let gameBoard = gameBoard else { return }
         for row in 0..<gameBoard.dimension {
@@ -272,12 +278,6 @@ private extension GameBoardView {
     
     func drawO(inRect rect: CGRect) {
         context.strokeEllipseInRect(rect, color: Color.markO, width: Thickness.mark)
-    }
-    
-    func drawGridLinesInRects(gridLineRects: [CGRect]) {
-        gridLineRects.forEach {
-            context.fillRect($0, color: Color.gridLine)
-        }
     }
     
     func drawWinningLineFrom(from: CGPoint, to: CGPoint) {
