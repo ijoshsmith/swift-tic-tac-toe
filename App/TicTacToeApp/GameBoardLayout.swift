@@ -66,9 +66,9 @@ final class GameBoardLayout {
         return cellRect
     }
     
-    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position]) -> (startPoint: CGPoint, endPoint: CGPoint) {
+    func pointsForLineThroughWinningPositions(winningPositions: [GameBoard.Position]) -> (startPoint: CGPoint, endPoint: CGPoint) {
         let
-        winningRects = cellRectsAtPositions(positions),
+        winningRects = cellRectsAtPositions(winningPositions),
         startRect    = winningRects.first!,
         endRect      = winningRects.last!,
         orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),

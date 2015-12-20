@@ -24,7 +24,7 @@ final class GameBoardRenderer {
         renderGridLines()
         renderMarks()
         if let winningPositions = winningPositions {
-            renderWinningLineThroughPositions(winningPositions)
+            renderLineThroughWinningPositions(winningPositions)
         }
     }
     
@@ -94,8 +94,8 @@ private extension GameBoardRenderer {
         context.strokeEllipseInRect(rect, color: Color.markO, width: GameBoardView.Thickness.mark)
     }
     
-    func renderWinningLineThroughPositions(positions: [GameBoard.Position]) {
-        let (startPoint, endPoint) = layout.pointsForWinningLineThroughPositions(positions)
+    func renderLineThroughWinningPositions(winningPositions: [GameBoard.Position]) {
+        let (startPoint, endPoint) = layout.pointsForLineThroughWinningPositions(winningPositions)
         context.strokeLineFrom(startPoint, to: endPoint, color: Color.winningLine, width: GameBoardView.Thickness.winningLine, lineCap: .Round)
     }
 }
