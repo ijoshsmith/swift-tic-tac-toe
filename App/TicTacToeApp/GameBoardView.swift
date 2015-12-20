@@ -51,7 +51,8 @@ final class GameBoardView: UIView {
     private var _renderer: GameBoardRenderer?
     private var renderer: GameBoardRenderer {
         if _renderer == nil {
-            _renderer = GameBoardRenderer(gameBoard: gameBoard!, layout: layout)
+            let context = UIGraphicsGetCurrentContext()!
+            _renderer = GameBoardRenderer(context: context, gameBoard: gameBoard!, layout: layout)
         }
         return _renderer!
     }

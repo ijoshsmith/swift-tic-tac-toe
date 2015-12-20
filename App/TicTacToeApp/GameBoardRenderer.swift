@@ -12,7 +12,8 @@ import UIKit
 /** Draws a game board on the screen. */
 final class GameBoardRenderer {
     
-    init(gameBoard: GameBoard, layout: GameBoardLayout) {
+    init(context: CGContextRef, gameBoard: GameBoard, layout: GameBoardLayout) {
+        self.context = context
         self.gameBoard = gameBoard
         self.layout = layout
     }
@@ -27,6 +28,7 @@ final class GameBoardRenderer {
         }
     }
     
+    private let context: CGContextRef
     private let gameBoard: GameBoard
     private let layout: GameBoardLayout
 }
@@ -45,10 +47,6 @@ private extension GameBoardRenderer {
         markX        = UIColor.greenColor(),
         platformFill = UIColor.whiteColor(),
         winningLine  = UIColor.redColor()
-    }
-    
-    var context: CGContextRef {
-        return UIGraphicsGetCurrentContext()!
     }
     
     func renderPlatformBorder() {
