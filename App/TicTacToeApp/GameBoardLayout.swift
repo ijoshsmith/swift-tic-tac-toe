@@ -51,17 +51,6 @@ final class GameBoardLayout {
         return [verticalRects, horizontalRects].flatMap { $0 }
     }()
     
-    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position]) -> (startPoint: CGPoint, endPoint: CGPoint) {
-        let
-        winningRects = cellRectsAtPositions(positions),
-        startRect    = winningRects.first!,
-        endRect      = winningRects.last!,
-        orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
-        startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
-        endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
-        return (startPoint, endPoint)
-    }
-    
     func cellRectsAtPositions(positions: [GameBoard.Position]) -> [CGRect] {
         return positions.map(cellRectAtPosition)
     }
@@ -75,6 +64,17 @@ final class GameBoardLayout {
         naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
         cellRect    = naturalRect.insetUniformlyBy(GameBoardView.Thickness.gridLine)
         return cellRect
+    }
+    
+    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position]) -> (startPoint: CGPoint, endPoint: CGPoint) {
+        let
+        winningRects = cellRectsAtPositions(positions),
+        startRect    = winningRects.first!,
+        endRect      = winningRects.last!,
+        orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
+        startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
+        endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
+        return (startPoint, endPoint)
     }
     
     private enum WinningLineOrientation {
