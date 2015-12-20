@@ -73,15 +73,10 @@ private extension GameBoardRenderer {
     }
     
     func renderMarks() {
-        for row in 0..<gameBoard.dimension {
-            let marksInRow = gameBoard.marksInRow(row)
-            for column in 0..<gameBoard.dimension {
-                if let mark = marksInRow[column] {
-                    let cellRect = layout.cellRectAtRow(row, column: column)
-                    renderMark(mark, inRect: cellRect)
-                }
-            }
-        }
+        gameBoard.marksAndPositions
+            .filter  { $0.mark != nil }
+            .map     { (mark: $0.mark!, cellRect: layout.cellRectAtPosition($0.position)) }
+            .forEach { renderMark($0.mark, inRect: $0.cellRect) }
     }
     
     func renderMark(mark: Mark, inRect rect: CGRect) {

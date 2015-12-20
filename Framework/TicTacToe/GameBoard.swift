@@ -69,6 +69,10 @@ public final class GameBoard {
         return positions.filter(isEmptyAtPosition)
     }
     
+    public var marksAndPositions: [(mark: Mark?, position: Position)] {
+        return Array(zip(marks.flatten(), positions))
+    }
+    
     public func marksInRow(row: Int) -> [Mark?] {
         return positionsForRow(row).map(markAtPosition)
     }

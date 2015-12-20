@@ -168,6 +168,39 @@ class GameBoardTests: XCTestCase {
     
     
     
+    // MARK: - marksAndPositions
+    
+    func test_marksAndPositions_someMarksExist_marksAreAssociatedWithCorrectPositions() {
+        let board = GameBoard()
+        board.marks = [
+            [nil, nil, .O ],
+            [nil, .X,  nil],
+            [.O,  nil, nil]]
+        
+        let marksAndPositions = board.marksAndPositions
+        
+        XCTAssertEqual(marksAndPositions[0].mark, nil)
+        XCTAssertEqual(marksAndPositions[1].mark, nil)
+        XCTAssertEqual(marksAndPositions[2].mark, .O)
+        XCTAssertEqual(marksAndPositions[3].mark, nil)
+        XCTAssertEqual(marksAndPositions[4].mark, .X)
+        XCTAssertEqual(marksAndPositions[5].mark, nil)
+        XCTAssertEqual(marksAndPositions[6].mark, .O)
+        XCTAssertEqual(marksAndPositions[7].mark, nil)
+        XCTAssertEqual(marksAndPositions[8].mark, nil)
+        
+        XCTAssertTrue(marksAndPositions[0].position == (row: 0, column: 0))
+        XCTAssertTrue(marksAndPositions[1].position == (row: 0, column: 1))
+        XCTAssertTrue(marksAndPositions[2].position == (row: 0, column: 2))
+        XCTAssertTrue(marksAndPositions[3].position == (row: 1, column: 0))
+        XCTAssertTrue(marksAndPositions[4].position == (row: 1, column: 1))
+        XCTAssertTrue(marksAndPositions[5].position == (row: 1, column: 2))
+        XCTAssertTrue(marksAndPositions[6].position == (row: 2, column: 0))
+        XCTAssertTrue(marksAndPositions[7].position == (row: 2, column: 1))
+        XCTAssertTrue(marksAndPositions[8].position == (row: 2, column: 2))
+    }
+    
+    
     // MARK: - positionsForRow
     
     func test_positionsForRow_firstRow_returnsCorrectPositions() {

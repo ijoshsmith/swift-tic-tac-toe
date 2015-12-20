@@ -92,7 +92,7 @@ private extension GameBoardView {
         let
         tapLocation    = touch.locationInView(self),
         emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = layout.cellRectsWithPositions(emptyPositions),
+        emptyCellRects = layout.cellRectsAtPositions(emptyPositions),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
         
         let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
