@@ -53,10 +53,10 @@ final class GameBoardView: UIView {
         drawPlatformBorderInRect(borderRect)
         drawPlatformInRect(platformRect)
         drawGridLinesInRects(gridLineRects)
-        drawMarksInRect(platformRect)
+        drawMarksInPlatformRect(platformRect)
         
         if let winningPositions = winningPositions {
-            let (startPoint, endPoint) = pointsForWinningLineThroughPositions(winningPositions, inRect: platformRect)
+            let (startPoint, endPoint) = pointsForWinningLineThroughPositions(winningPositions, inPlatformRect: platformRect)
             drawWinningLineFrom(startPoint, to: endPoint)
         }
     }
@@ -75,7 +75,7 @@ private extension GameBoardView {
         tapLocation    = touch.locationInView(self),
         platformRect   = platformRectFromBorderRect(platformBorderRect),
         emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = cellRectsWithPositions(emptyPositions, inRect: platformRect),
+        emptyCellRects = cellRectsWithPositions(emptyPositions, inPlatformRect: platformRect),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
         
         let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
@@ -157,9 +157,9 @@ private extension GameBoardView {
         return gameBoard != nil ? gameBoard!.dimension : 0
     }
     
-    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
+    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position], inPlatformRect platformRect: CGRect) -> (CGPoint, CGPoint) {
         let
-        winningRects = cellRectsWithPositions(positions, inRect: rect),
+        winningRects = cellRectsWithPositions(positions, inPlatformRect: platformRect),
         startRect    = winningRects.first!,
         endRect      = winningRects.last!,
         orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
@@ -168,18 +168,18 @@ private extension GameBoardView {
         return (startPoint, endPoint)
     }
     
-    func cellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
+    func cellRectsWithPositions(positions: [GameBoard.Position], inPlatformRect platformRect: CGRect) -> [CGRect] {
         return positions.map {
-            cellRectAtRow($0.row, column: $0.column, inRect: rect)
+            cellRectAtRow($0.row, column: $0.column, inPlatformRect: platformRect)
         }
     }
     
-    func cellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
+    func cellRectAtRow(row: Int, column: Int, inPlatformRect platformRect: CGRect) -> CGRect {
         let
-        totalLength = rect.width,
+        totalLength = platformRect.width,
         cellLength  = totalLength / CGFloat(cellsPerAxis),
-        leftEdge    = rect.minX + CGFloat(column) * cellLength,
-        topEdge     = rect.minY + CGFloat(row) * cellLength,
+        leftEdge    = platformRect.minX + CGFloat(column) * cellLength,
+        topEdge     = platformRect.minY + CGFloat(row) * cellLength,
         naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
         cellRect    = naturalRect.insetUniformlyBy(Thickness.gridLine)
         return cellRect
@@ -245,19 +245,19 @@ private extension GameBoardView {
         context.fillRect(rect, color: Color.platformFill)
     }
     
-    func drawGridLinesInRects(gridLineRects: [CGRect]) {
-        gridLineRects.forEach {
+    func drawGridLinesInRects(rects: [CGRect]) {
+        rects.forEach {
             context.fillRect($0, color: Color.gridLine)
         }
     }
     
-    func drawMarksInRect(rect: CGRect) {
+    func drawMarksInPlatformRect(platformRect: CGRect) {
         guard let gameBoard = gameBoard else { return }
         for row in 0..<gameBoard.dimension {
             let marksInRow = gameBoard.marksInRow(row)
             for column in 0..<gameBoard.dimension {
                 if let mark = marksInRow[column] {
-                    let cellRect = cellRectAtRow(row, column: column, inRect: rect)
+                    let cellRect = cellRectAtRow(row, column: column, inPlatformRect: platformRect)
                     drawMark(mark, inRect: cellRect)
                 }
             }
