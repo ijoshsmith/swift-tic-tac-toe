@@ -50,8 +50,8 @@ final class GameBoardView: UIView {
         platformRect  = platformRectFromBorderRect(borderRect),
         gridLineRects = gridLineRectsFromPlatformRect(platformRect)
         
-        drawPlatformInRect(platformRect)
         drawPlatformBorderInRect(borderRect)
+        drawPlatformInRect(platformRect)
         drawGridLinesInRects(gridLineRects)
         drawMarksInRect(platformRect)
         
