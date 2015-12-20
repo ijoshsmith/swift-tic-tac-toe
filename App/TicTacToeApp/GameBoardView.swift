@@ -47,8 +47,8 @@ final class GameBoardView: UIView {
         
         let
         borderRect    = calculatePlatformBorderRect(),
-        platformRect  = calculatePlatformRectFromBorderRect(borderRect),
-        gridLineRects = calculateGridLineRectsFromPlatformRect(platformRect)
+        platformRect  = platformRectFromBorderRect(borderRect),
+        gridLineRects = gridLineRectsFromPlatformRect(platformRect)
         
         drawPlatformInRect(platformRect)
         drawPlatformBorderInRect(borderRect)
@@ -56,7 +56,7 @@ final class GameBoardView: UIView {
         drawMarksInRect(platformRect)
         
         if let winningPositions = winningPositions {
-            let (startPoint, endPoint) = calculateStartAndEndPointsForWinningLineThroughPositions(winningPositions, inRect: platformRect)
+            let (startPoint, endPoint) = pointsForWinningLineThroughPositions(winningPositions, inRect: platformRect)
             drawWinningLineFrom(startPoint, to: endPoint)
         }
     }
@@ -74,7 +74,7 @@ private extension GameBoardView {
         let
         tapLocation    = touch.locationInView(self),
         borderRect     = calculatePlatformBorderRect(),
-        platformRect   = calculatePlatformRectFromBorderRect(borderRect),
+        platformRect   = platformRectFromBorderRect(borderRect),
         emptyPositions = gameBoard.emptyPositions,
         emptyCellRects = calculateCellRectsWithPositions(gameBoard.emptyPositions, inRect: platformRect),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
@@ -117,7 +117,7 @@ private struct Thickness {
 
 
 
-// MARK: - Layout calculation
+// MARK: - Layout
 
 private extension GameBoardView {
     func calculatePlatformBorderRect() -> CGRect {
@@ -130,11 +130,11 @@ private extension GameBoardView {
         return CGRect(origin: origin, size: size)
     }
     
-    func calculatePlatformRectFromBorderRect(borderRect: CGRect) -> CGRect {
+    func platformRectFromBorderRect(borderRect: CGRect) -> CGRect {
         return borderRect.insetUniformlyBy(Thickness.platformBorder)
     }
     
-    func calculateGridLineRectsFromPlatformRect(platformRect: CGRect) -> [CGRect] {
+    func gridLineRectsFromPlatformRect(platformRect: CGRect) -> [CGRect] {
         let
         lineLength    = platformRect.width,
         cellLength    = lineLength / CGFloat(cellsPerAxis),
@@ -158,7 +158,7 @@ private extension GameBoardView {
         return gameBoard != nil ? gameBoard!.dimension : 0
     }
     
-    func calculateStartAndEndPointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
+    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
         let
         winningRects = calculateCellRectsWithPositions(positions, inRect: rect),
         startRect    = winningRects.first!,
