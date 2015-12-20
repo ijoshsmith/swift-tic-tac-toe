@@ -106,9 +106,9 @@ private struct Color {
 
 private struct Thickness {
     static let
-    cellMargin: CGFloat       = 20,
     gridLine: CGFloat         =  4,
     mark: CGFloat             = 16,
+    markMargin: CGFloat       = 20,
     platformBorder: CGFloat   =  2,
     platformMargin: CGFloat   = 16,
     winningLine: CGFloat      =  8,
@@ -271,7 +271,7 @@ private extension GameBoardView {
     }
     
     func drawMark(mark: Mark, inRect rect: CGRect) {
-        let markRect = CGRectInset(rect, Thickness.cellMargin, Thickness.cellMargin)
+        let markRect = CGRectInset(rect, Thickness.markMargin, Thickness.markMargin)
         switch mark {
         case .X: drawX(inRect: markRect)
         case .O: drawO(inRect: markRect)
