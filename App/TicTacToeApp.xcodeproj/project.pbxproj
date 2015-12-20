@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				0369726B1C233EE700FE3EFA /* Config */,
-				03C9D48F1C2563C30069A654 /* Storyboard */,
+				03C9D48F1C2563C30069A654 /* Storyboards */,
 				03464ED41C1A9CC10074451B /* AppDelegate.swift */,
 				03C9D48B1C2563A20069A654 /* CGContextExtension.swift */,
 				03C9D48C1C2563A20069A654 /* GameBoardView.swift */,
@@ -128,18 +128,18 @@
 			isa = PBXGroup;
 			children = (
 				03464EDB1C1A9CC10074451B /* Assets.xcassets */,
-				03464EDD1C1A9CC10074451B /* LaunchScreen.storyboard */,
 				03464EE01C1A9CC10074451B /* Info.plist */,
 			);
 			name = Config;
 			sourceTree = "<group>";
 		};
-		03C9D48F1C2563C30069A654 /* Storyboard */ = {
+		03C9D48F1C2563C30069A654 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				03464EDD1C1A9CC10074451B /* LaunchScreen.storyboard */,
 				03464ED81C1A9CC10074451B /* Main.storyboard */,
 			);
-			name = Storyboard;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
