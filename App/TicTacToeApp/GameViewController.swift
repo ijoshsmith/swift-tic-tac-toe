@@ -51,13 +51,12 @@ private extension GameViewController {
         let gameBoard = GameBoard()
         gameBoardView.gameBoard = gameBoard
         
-        let isTwoPlayerMode = twoPlayerModeSwitch.on
         userStrategyX = UserStrategy()
-        userStrategyO = isTwoPlayerMode ? UserStrategy() : nil
+        userStrategyO = twoPlayerModeSwitch.on ? UserStrategy() : nil
         
         let
         xStrategy = userStrategyX!,
-        oStrategy = userStrategyO ?? createArtificalIntelligenceStrategy()
+        oStrategy = userStrategyO ?? createArtificialIntelligenceStrategy()
         
         game = Game(gameBoard: gameBoard, xStrategy: xStrategy, oStrategy: oStrategy)
         game!.startPlayingWithCompletionHandler { [weak self] outcome in
