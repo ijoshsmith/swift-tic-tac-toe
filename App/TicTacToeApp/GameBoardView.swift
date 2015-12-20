@@ -76,7 +76,7 @@ private extension GameBoardView {
         borderRect     = calculatePlatformBorderRect(),
         platformRect   = platformRectFromBorderRect(borderRect),
         emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = calculateCellRectsWithPositions(gameBoard.emptyPositions, inRect: platformRect),
+        emptyCellRects = calculateCellRectsWithPositions(emptyPositions, inRect: platformRect),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
         
         let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
