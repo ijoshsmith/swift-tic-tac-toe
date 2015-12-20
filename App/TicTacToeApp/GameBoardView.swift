@@ -9,11 +9,15 @@
 import TicTacToe
 import UIKit
 
-/** Renders lines and marks that depict a Tic-tac-toe game. */
+/** Displays the lines and marks of a Tic-tac-toe game. */
 final class GameBoardView: UIView {
     
     var gameBoard: GameBoard? {
-        didSet { winningPositions = nil }
+        didSet {
+            _layout = nil
+            _renderer = nil
+            winningPositions = nil
+        }
     }
     
     var winningPositions: [GameBoard.Position]? {
@@ -29,36 +33,29 @@ final class GameBoardView: UIView {
     var tappedFinishedGameBoardClosure: (Void -> Void)?
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let isGameOver = winningPositions != nil || gameBoard?.emptyPositions.count == 0
-        if isGameOver {
-            guard let tappedFinishedGameBoardClosure = tappedFinishedGameBoardClosure else { return }
-            tappedFinishedGameBoardClosure()
-        }
-        else {
-            guard let touch = touches.first else { return }
-            reportTapOnEmptyPositionWithTouch(touch)
-        }
+        super.touchesEnded(touches, withEvent: event)
+        handleTouchesEnded(touches)
     }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
-        
-        guard gameBoard != nil else { return }
-        
-        let
-        borderRect    = platformBorderRect,
-        platformRect  = platformRectFromBorderRect(borderRect),
-        gridLineRects = gridLineRectsFromPlatformRect(platformRect)
-        
-        drawPlatformBorderInRect(borderRect)
-        drawPlatformInRect(platformRect)
-        drawGridLinesInRects(gridLineRects)
-        drawMarksInPlatformRect(platformRect)
-        
-        if let winningPositions = winningPositions {
-            let (startPoint, endPoint) = pointsForWinningLineThroughPositions(winningPositions, inPlatformRect: platformRect)
-            drawWinningLineFrom(startPoint, to: endPoint)
+        renderer.renderWithWinningPositions(winningPositions)
+    }
+    
+    private var _renderer: GameBoardRenderer?
+    private var renderer: GameBoardRenderer {
+        if _renderer == nil {
+            _renderer = GameBoardRenderer(gameBoard: gameBoard!, layout: layout)
         }
+        return _renderer!
+    }
+    
+    private var _layout: GameBoardLayout?
+    private var layout: GameBoardLayout {
+        if _layout == nil {
+            _layout = GameBoardLayout(frame: frame, marksPerAxis: gameBoard!.dimension)
+        }
+        return _layout!
     }
 }
 
@@ -67,15 +64,35 @@ final class GameBoardView: UIView {
 // MARK: - User interaction
 
 private extension GameBoardView {
+    func handleTouchesEnded(touches: Set<UITouch>) {
+        if isGameFinished {
+            reportTapOnFinishedGameBoard()
+        }
+        else if let touch = touches.first {
+            reportTapOnEmptyPositionWithTouch(touch)
+        }
+    }
+    
+    var isGameFinished: Bool {
+        let
+        wasWon  = winningPositions != nil,
+        wasTied = gameBoard?.emptyPositions.count == 0
+        return wasWon || wasTied
+    }
+    
+    func reportTapOnFinishedGameBoard() {
+        guard let tappedFinishedGameBoardClosure = tappedFinishedGameBoardClosure else { return }
+        tappedFinishedGameBoardClosure()
+    }
+    
     func reportTapOnEmptyPositionWithTouch(touch: UITouch) {
         guard let gameBoard = gameBoard else { return }
         guard let tappedEmptyPositionClosure = tappedEmptyPositionClosure else { return }
         
         let
         tapLocation    = touch.locationInView(self),
-        platformRect   = platformRectFromBorderRect(platformBorderRect),
         emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = cellRectsWithPositions(emptyPositions, inPlatformRect: platformRect),
+        emptyCellRects = layout.cellRectsWithPositions(emptyPositions),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
         
         let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
@@ -90,198 +107,17 @@ private extension GameBoardView {
 
 
 
-// MARK: - Stylistic settings
+// MARK: - Thickness values
 
-private struct Color {
-    static let
-    borderInner  = UIColor.darkGrayColor(),
-    borderOuter  = UIColor.whiteColor(),
-    gridLine     = UIColor.darkGrayColor(),
-    markO        = UIColor.blueColor(),
-    markX        = UIColor.greenColor(),
-    platformFill = UIColor.whiteColor(),
-    winningLine  = UIColor.redColor()
-}
-
-private struct Thickness {
-    static let
-    gridLine: CGFloat         =  4,
-    mark: CGFloat             = 16,
-    markMargin: CGFloat       = 20,
-    platformBorder: CGFloat   =  2,
-    platformMargin: CGFloat   = 16,
-    winningLine: CGFloat      =  8,
-    winningLineInset: CGFloat =  8
-}
-
-
-
-// MARK: - Layout
-
-private extension GameBoardView {
-    var platformBorderRect: CGRect {
-        let
-        width  = frame.width,
-        height = frame.height,
-        length = min(width, height) - (Thickness.platformMargin * 2),
-        origin = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
-        size   = CGSize(width: length, height: length)
-        return CGRect(origin: origin, size: size)
-    }
-    
-    func platformRectFromBorderRect(borderRect: CGRect) -> CGRect {
-        return borderRect.insetUniformlyBy(Thickness.platformBorder)
-    }
-    
-    func gridLineRectsFromPlatformRect(platformRect: CGRect) -> [CGRect] {
-        let
-        lineLength    = platformRect.width,
-        cellLength    = lineLength / CGFloat(cellsPerAxis),
-        centerOffset  = Thickness.gridLine / CGFloat(2),
-        verticalRects = (1..<cellsPerAxis).map { CGRect(
-            x:      platformRect.minX + (CGFloat($0) * cellLength) - centerOffset,
-            y:      platformRect.minY,
-            width:  Thickness.gridLine,
-            height: lineLength)
-        },
-        horizontalRects = (1..<cellsPerAxis).map { CGRect(
-            x:      platformRect.minX,
-            y:      platformRect.minY + (CGFloat($0) * cellLength) - centerOffset,
-            width:  lineLength,
-            height: Thickness.gridLine)
-        }
-        return [verticalRects, horizontalRects].flatMap { $0 }
-    }
-    
-    var cellsPerAxis: Int {
-        return gameBoard != nil ? gameBoard!.dimension : 0
-    }
-    
-    func pointsForWinningLineThroughPositions(positions: [GameBoard.Position], inPlatformRect platformRect: CGRect) -> (CGPoint, CGPoint) {
-        let
-        winningRects = cellRectsWithPositions(positions, inPlatformRect: platformRect),
-        startRect    = winningRects.first!,
-        endRect      = winningRects.last!,
-        orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
-        startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
-        endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
-        return (startPoint, endPoint)
-    }
-    
-    func cellRectsWithPositions(positions: [GameBoard.Position], inPlatformRect platformRect: CGRect) -> [CGRect] {
-        return positions.map {
-            cellRectAtRow($0.row, column: $0.column, inPlatformRect: platformRect)
-        }
-    }
-    
-    func cellRectAtRow(row: Int, column: Int, inPlatformRect platformRect: CGRect) -> CGRect {
-        let
-        totalLength = platformRect.width,
-        cellLength  = totalLength / CGFloat(cellsPerAxis),
-        leftEdge    = platformRect.minX + CGFloat(column) * cellLength,
-        topEdge     = platformRect.minY + CGFloat(row) * cellLength,
-        naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
-        cellRect    = naturalRect.insetUniformlyBy(Thickness.gridLine)
-        return cellRect
-    }
-    
-    enum WinningLineOrientation {
-        case Horizontal, Vertical, TopLeftToBottomRight, BottomLeftToTopRight
-    }
-    
-    func winningLineOrientationForStartRect(startRect: CGRect, endRect: CGRect) -> WinningLineOrientation {
-        let
-        x1 = Int(startRect.minX), x2 = Int(endRect.minX),
-        y1 = Int(startRect.minY), y2 = Int(endRect.minY)
-        if x1 == x2 { return .Vertical }
-        if y1 == y2 { return .Horizontal }
-        if y1 <  y2 { return .TopLeftToBottomRight }
-        return .BottomLeftToTopRight
-    }
-    
-    func startPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetUniformlyBy(Thickness.winningLineInset)
-        switch winningLineOrientation {
-        case .Horizontal:           return winningRect.centerLeft
-        case .Vertical:             return winningRect.topCenter
-        case .TopLeftToBottomRight: return winningRect.topLeft
-        case .BottomLeftToTopRight: return winningRect.bottomLeft
-        }
-    }
-    
-    func endPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetUniformlyBy(Thickness.winningLineInset)
-        switch winningLineOrientation {
-        case .Horizontal:           return winningRect.centerRight
-        case .Vertical:             return winningRect.bottomCenter
-        case .TopLeftToBottomRight: return winningRect.bottomRight
-        case .BottomLeftToTopRight: return winningRect.topRight
-        }
-    }
-}
-
-
-
-// MARK: - Rendering
-
-private extension GameBoardView {
-    
-    var context: CGContextRef {
-        return UIGraphicsGetCurrentContext()!
-    }
-    
-    func drawPlatformBorderInRect(rect: CGRect) {
-        let
-        numberOfBorderLines = 2,
-        lineThickness = Thickness.platformBorder / CGFloat(numberOfBorderLines),
-        outerRect = rect,
-        innerRect = rect.insetUniformlyBy(lineThickness)
-        
-        context.strokeRect(outerRect, color: Color.borderOuter, width: lineThickness)
-        context.strokeRect(innerRect, color: Color.borderInner, width: lineThickness)
-    }
-    
-    func drawPlatformInRect(rect: CGRect) {
-        context.fillRect(rect, color: Color.platformFill)
-    }
-    
-    func drawGridLinesInRects(rects: [CGRect]) {
-        rects.forEach {
-            context.fillRect($0, color: Color.gridLine)
-        }
-    }
-    
-    func drawMarksInPlatformRect(platformRect: CGRect) {
-        guard let gameBoard = gameBoard else { return }
-        for row in 0..<gameBoard.dimension {
-            let marksInRow = gameBoard.marksInRow(row)
-            for column in 0..<gameBoard.dimension {
-                if let mark = marksInRow[column] {
-                    let cellRect = cellRectAtRow(row, column: column, inPlatformRect: platformRect)
-                    drawMark(mark, inRect: cellRect)
-                }
-            }
-        }
-    }
-    
-    func drawMark(mark: Mark, inRect rect: CGRect) {
-        let markRect = rect.insetUniformlyBy(Thickness.markMargin)
-        switch mark {
-        case .X: drawX(inRect: markRect)
-        case .O: drawO(inRect: markRect)
-        }
-    }
-    
-    func drawX(inRect rect: CGRect) {
-        context.strokeLineFrom(rect.topLeft, to: rect.bottomRight, color: Color.markX, width: Thickness.mark, lineCap: .Round)
-        context.strokeLineFrom(rect.bottomLeft, to: rect.topRight, color: Color.markX, width: Thickness.mark, lineCap: .Round)
-    }
-    
-    func drawO(inRect rect: CGRect) {
-        context.strokeEllipseInRect(rect, color: Color.markO, width: Thickness.mark)
-    }
-    
-    func drawWinningLineFrom(from: CGPoint, to: CGPoint) {
-        context.strokeLineFrom(from, to: to, color: Color.winningLine, width: Thickness.winningLine, lineCap: .Round)
+extension GameBoardView {
+    internal struct Thickness {
+        static let
+        gridLine: CGFloat         =  4,
+        mark: CGFloat             = 16,
+        markMargin: CGFloat       = 20,
+        platformBorder: CGFloat   =  2,
+        platformMargin: CGFloat   = 16,
+        winningLine: CGFloat      =  8,
+        winningLineInset: CGFloat =  8
     }
 }
