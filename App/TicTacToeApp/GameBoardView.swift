@@ -26,26 +26,17 @@ final class GameBoardView: UIView {
     
     var tappedEmptyPositionClosure: (GameBoard.Position -> Void)?
     
+    var tappedFinishedGameBoardClosure: (Void -> Void)?
+    
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        guard touches.count == 1 else { return }
-        guard let touch = touches.first else { return }
-        guard let gameBoard = gameBoard else { return }
-        guard let tappedEmptyPositionClosure = tappedEmptyPositionClosure else { return }
-        
-        let
-        tapLocation    = touch.locationInView(self),
-        borderRect     = calculatePlatformBorderRect(),
-        platformRect   = calculatePlatformRectFromBorderRect(borderRect),
-        emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = calculateCellRectsWithPositions(gameBoard.emptyPositions, inRect: platformRect),
-        emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
-        
-        let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
-            return CGRectContainsPoint(rect, tapLocation) ? position : nil
+        let isGameOver = winningPositions != nil || gameBoard?.emptyPositions.count == 0
+        if isGameOver {
+            guard let tappedFinishedGameBoardClosure = tappedFinishedGameBoardClosure else { return }
+            tappedFinishedGameBoardClosure()
         }
-        
-        if let tappedPosition = tappedPositions.first {
-            tappedEmptyPositionClosure(tappedPosition)
+        else {
+            guard let touch = touches.first else { return }
+            reportTapOnEmptyPositionWithTouch(touch)
         }
     }
     
@@ -74,6 +65,33 @@ final class GameBoardView: UIView {
             endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
             
             drawWinningLineFromStartPoint(startPoint, toEndPoint: endPoint)
+        }
+    }
+}
+
+
+
+// MARK: - User interaction
+
+private extension GameBoardView {
+    func reportTapOnEmptyPositionWithTouch(touch: UITouch) {
+        guard let gameBoard = gameBoard else { return }
+        guard let tappedEmptyPositionClosure = tappedEmptyPositionClosure else { return }
+        
+        let
+        tapLocation    = touch.locationInView(self),
+        borderRect     = calculatePlatformBorderRect(),
+        platformRect   = calculatePlatformRectFromBorderRect(borderRect),
+        emptyPositions = gameBoard.emptyPositions,
+        emptyCellRects = calculateCellRectsWithPositions(gameBoard.emptyPositions, inRect: platformRect),
+        emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
+        
+        let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
+            return CGRectContainsPoint(rect, tapLocation) ? position : nil
+        }
+        
+        if let tappedPosition = tappedPositions.first {
+            tappedEmptyPositionClosure(tappedPosition)
         }
     }
 }

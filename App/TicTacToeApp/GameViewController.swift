@@ -14,6 +14,15 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gameBoardView.tappedEmptyPositionClosure = { [weak self] position in
+            self?.handleTappedEmptyPosition(position)
+        }
+        
+        gameBoardView.tappedFinishedGameBoardClosure = { [weak self] in
+            self?.startPlayingGame()
+        }
+        
         startPlayingGame()
     }
     
@@ -41,9 +50,6 @@ private extension GameViewController {
     func startPlayingGame() {
         let gameBoard = GameBoard()
         gameBoardView.gameBoard = gameBoard
-        gameBoardView.tappedEmptyPositionClosure = { [weak self] position in
-            self?.handleTappedEmptyPosition(position)
-        }
         
         let isBetweenTwoUsers = twoPlayerModeSwitch.on
         userStrategyX = UserStrategy()
