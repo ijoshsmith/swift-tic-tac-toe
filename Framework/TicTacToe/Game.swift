@@ -26,6 +26,8 @@ public final class Game {
         currentPlayer = playerX
     }
     
+    
+    
     // MARK: - Non-public stored properties
     
     private var currentPlayer: Player? {
@@ -40,6 +42,8 @@ public final class Game {
     private let playerO: Player
     private let playerX: Player
 }
+
+
 
 // MARK: - Private methods
 

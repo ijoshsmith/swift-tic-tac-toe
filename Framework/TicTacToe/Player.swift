@@ -22,9 +22,7 @@ internal final class Player {
     func choosePositionWithCompletionHandler(completionHandler: GameBoard.Position -> Void) {
         strategy.choosePositionForMark(mark, onGameBoard: gameBoard, completionHandler: completionHandler)
     }
-    
-    // MARK: - Non-public stored properties
-    
+
     private let gameBoard: GameBoard
     private let strategy: TicTacToeStrategy
 }

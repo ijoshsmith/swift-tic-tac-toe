@@ -10,8 +10,6 @@ import XCTest
 
 class GameTests: XCTestCase {
     
-    // MARK: - startPlayingWithCompletionHandler
-    
     func test_startPlayingWithCompletionHandler_playerXWins_invokesCompletionHandlerCorrectly() {
         let
         expectation = expectationWithDescription("Player X wins"),

@@ -10,8 +10,6 @@ import XCTest
 
 class PlayerTests: XCTestCase {
 
-    // MARK: - choosePositionWithCompletionHandler
-
     func test_choosePositionWithCompletionHandler_strategyChoosesCenterPosition_choosesCenterPosition() {
         let
         board  = GameBoard(),

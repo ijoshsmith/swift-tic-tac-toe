@@ -40,6 +40,8 @@ internal final class OutcomeAnalyst {
     private let gameBoard: GameBoard
 }
 
+
+
 // MARK: - Private methods
 
 private extension OutcomeAnalyst {

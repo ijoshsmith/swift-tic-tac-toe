@@ -10,8 +10,6 @@ import XCTest
 
 class OutcomeAnalystTests: XCTestCase {
 
-    // MARK: - checkForOutcome
-
     func test_checkForOutcome_emptyBoard_returnsNil() {
         let board = GameBoard()
         let analyst = OutcomeAnalyst(gameBoard: board)

@@ -11,6 +11,8 @@ import XCTest
 
 class GameBoardTests: XCTestCase {
     
+    
+    
     // MARK: - cloneWithMarkAtPosition
     
     func test_cloneWithMarkAtPosition_emptyBoardAndCenterMark_onlyCloneHasMarkAtCenter() {
@@ -29,6 +31,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertNil(board.marks[0][0])
     }
 
+    
+    
     // MARK: - emptyPositions
     
     func test_emptyPositions_twoPositionsAreEmpty_returnsOnlyThoseTwoPositions() {
@@ -42,6 +46,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(emptyPositions[0] == (row: 0, column: 2))
         XCTAssertTrue(emptyPositions[1] == (row: 2, column: 1))
     }
+    
+    
     
     // MARK: - isEmptyAtPosition
     
@@ -68,6 +74,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertFalse(board.isEmptyAtPosition((row: 1, column: 1)))
     }
     
+    
+    
     // MARK: - marksInRow
     
     func test_marksInRow_rowIsEmpty_returnsEmptyRow() {
@@ -90,6 +98,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(marks[2], .X)
     }
     
+    
+    
     // MARK: - marksInColumn
     
     func test_marksInColumn_columnIsEmpty_returnsEmptyColumn() {
@@ -111,6 +121,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(marks[1], .O)
         XCTAssertEqual(marks[2], .X)
     }
+    
+    
     
     // MARK: - marksInDiagonal
     
@@ -154,6 +166,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertEqual(marks[2], .O)
     }
     
+    
+    
     // MARK: - positionsForRow
     
     func test_positionsForRow_firstRow_returnsCorrectPositions() {
@@ -165,6 +179,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(positions[2] == (row: 0, column: 2))
     }
     
+    
+    
     // MARK: - positionsForColumn
     
     func test_positionsForColumn_lastColumn_returnsCorrectPositions() {
@@ -175,6 +191,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(positions[1] == (row: 1, column: 2))
         XCTAssertTrue(positions[2] == (row: 2, column: 2))
     }
+    
+    
     
     // MARK: - positionsForDiagonal
     
@@ -195,6 +213,8 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(positions[1] == (row: 1, column: 1))
         XCTAssertTrue(positions[2] == (row: 0, column: 2))
     }
+    
+    
     
     // MARK: - putMarkAtPosition
     

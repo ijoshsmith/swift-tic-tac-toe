@@ -81,6 +81,8 @@ public final class GameBoard {
         return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
+    
+    
     // MARK: - Non-public stored properties
     
     internal var marks: [[Mark?]] // internal for unit test access
@@ -94,6 +96,8 @@ public final class GameBoard {
         }
     }()
 }
+
+
 
 // MARK: - Internal methods
 
@@ -131,6 +135,8 @@ internal extension GameBoard {
     }
 }
 
+
+
 // MARK: - Private methods
 
 private extension GameBoard {
@@ -148,6 +154,8 @@ private extension GameBoard {
         return marks[position.row][position.column]
     }
 }
+
+
 
 // MARK: - Debugging
 
