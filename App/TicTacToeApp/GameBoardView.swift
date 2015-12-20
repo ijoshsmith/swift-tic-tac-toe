@@ -170,9 +170,9 @@ private extension GameBoardView {
     }
     
     func calculateCellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
-        return positions
-            .map { calculateCellRectAtRow($0.row, column: $0.column, inRect: rect) }
-            .map { $0.insetUniformlyBy(Thickness.winningLineInset) }
+        return positions.map {
+            calculateCellRectAtRow($0.row, column: $0.column, inRect: rect)
+        }
     }
     
     func calculateCellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
@@ -201,20 +201,22 @@ private extension GameBoardView {
     }
     
     func startPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
+        let winningRect = rect.insetUniformlyBy(Thickness.winningLineInset)
         switch winningLineOrientation {
-        case .Horizontal:           return rect.centerLeft
-        case .Vertical:             return rect.topCenter
-        case .TopLeftToBottomRight: return rect.topLeft
-        case .BottomLeftToTopRight: return rect.bottomLeft
+        case .Horizontal:           return winningRect.centerLeft
+        case .Vertical:             return winningRect.topCenter
+        case .TopLeftToBottomRight: return winningRect.topLeft
+        case .BottomLeftToTopRight: return winningRect.bottomLeft
         }
     }
     
     func endPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
+        let winningRect = rect.insetUniformlyBy(Thickness.winningLineInset)
         switch winningLineOrientation {
-        case .Horizontal:           return rect.centerRight
-        case .Vertical:             return rect.bottomCenter
-        case .TopLeftToBottomRight: return rect.bottomRight
-        case .BottomLeftToTopRight: return rect.topRight
+        case .Horizontal:           return winningRect.centerRight
+        case .Vertical:             return winningRect.bottomCenter
+        case .TopLeftToBottomRight: return winningRect.bottomRight
+        case .BottomLeftToTopRight: return winningRect.topRight
         }
     }
 }
