@@ -113,12 +113,13 @@ private struct Color {
 
 private struct Thickness {
     static let
-    cellMargin: CGFloat        = 20,
-    gridLine: CGFloat          = 4,
-    mark: CGFloat              = 16,
-    platformBorder: CGFloat    = 2,
-    winningLine: CGFloat       = 8,
-    winningLineInset: CGFloat  = 8
+    cellMargin: CGFloat       = 20,
+    gridLine: CGFloat         =  4,
+    mark: CGFloat             = 16,
+    platformBorder: CGFloat   =  2,
+    platformMargin: CGFloat   = 16,
+    winningLine: CGFloat      =  8,
+    winningLineInset: CGFloat =  8
 }
 
 
@@ -130,8 +131,7 @@ private extension GameBoardView {
         let
         width  = CGRectGetWidth(self.frame),
         height = CGRectGetHeight(self.frame),
-        margin = CGFloat(0.92),
-        length = min(width, height) * margin,
+        length = min(width, height) - (Thickness.platformMargin * 2),
         origin = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
         size   = CGSize(width: length, height: length)
         return CGRect(origin: origin, size: size)
