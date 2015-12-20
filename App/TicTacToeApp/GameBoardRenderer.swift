@@ -38,17 +38,6 @@ final class GameBoardRenderer {
 // MARK: - Rendering routines
 
 private extension GameBoardRenderer {
-    struct Color {
-        static let
-        borderInner  = UIColor.darkGrayColor(),
-        borderOuter  = UIColor.whiteColor(),
-        gridLine     = UIColor.darkGrayColor(),
-        markO        = UIColor.blueColor(),
-        markX        = UIColor.greenColor(),
-        platformFill = UIColor.whiteColor(),
-        winningLine  = UIColor.redColor()
-    }
-    
     func renderPlatformBorder() {
         let
         lineCount = 2,
@@ -56,17 +45,17 @@ private extension GameBoardRenderer {
         outerRect = layout.platformBorderRect,
         innerRect = outerRect.insetUniformlyBy(lineWidth)
         
-        context.strokeRect(outerRect, color: Color.borderOuter, width: lineWidth)
-        context.strokeRect(innerRect, color: Color.borderInner, width: lineWidth)
+        context.strokeRect(outerRect, color: UIColor.borderOuter, width: lineWidth)
+        context.strokeRect(innerRect, color: UIColor.borderInner, width: lineWidth)
     }
     
     func renderPlatform() {
-        context.fillRect(layout.platformRect, color: Color.platformFill)
+        context.fillRect(layout.platformRect, color: UIColor.platformFill)
     }
     
     func renderGridLines() {
         layout.gridLineRects.forEach {
-            context.fillRect($0, color: Color.gridLine)
+            context.fillRect($0, color: UIColor.gridLine)
         }
     }
     
@@ -86,16 +75,31 @@ private extension GameBoardRenderer {
     }
     
     func renderX(inRect rect: CGRect) {
-        context.strokeLineFrom(rect.topLeft, to: rect.bottomRight, color: Color.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
-        context.strokeLineFrom(rect.bottomLeft, to: rect.topRight, color: Color.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
+        context.strokeLineFrom(rect.topLeft, to: rect.bottomRight, color: UIColor.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
+        context.strokeLineFrom(rect.bottomLeft, to: rect.topRight, color: UIColor.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
     }
     
     func renderO(inRect rect: CGRect) {
-        context.strokeEllipseInRect(rect, color: Color.markO, width: GameBoardView.Thickness.mark)
+        context.strokeEllipseInRect(rect, color: UIColor.markO, width: GameBoardView.Thickness.mark)
     }
     
     func renderLineThroughWinningPositions(winningPositions: [GameBoard.Position]) {
         let (startPoint, endPoint) = layout.pointsForLineThroughWinningPositions(winningPositions)
-        context.strokeLineFrom(startPoint, to: endPoint, color: Color.winningLine, width: GameBoardView.Thickness.winningLine, lineCap: .Round)
+        context.strokeLineFrom(startPoint, to: endPoint, color: UIColor.winningLine, width: GameBoardView.Thickness.winningLine, lineCap: .Round)
     }
+}
+
+
+
+// MARK: - Element colors
+
+private extension UIColor {
+    static let
+    borderInner  = UIColor.darkGrayColor(),
+    borderOuter  = UIColor.whiteColor(),
+    gridLine     = UIColor.darkGrayColor(),
+    markO        = UIColor.blueColor(),
+    markX        = UIColor.greenColor(),
+    platformFill = UIColor.whiteColor(),
+    winningLine  = UIColor.redColor()
 }
