@@ -46,7 +46,7 @@ struct BlockForkTactic: NewellAndSimonTactic {
             return false
         }
         
-        guard !wouldCreateForkForMark(mark.opponentMark(), byBlockingPosition: winningPosition, onGameBoard: possibleGameBoard) else {
+        if wouldCreateForkForMark(mark.opponentMark(), byBlockingPosition: winningPosition, onGameBoard: possibleGameBoard) {
             return false
         }
         
