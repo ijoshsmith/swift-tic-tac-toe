@@ -23,7 +23,7 @@ final class UserStrategy: TicTacToeStrategy {
         }
     }
     
-    var isWaitingToChoosePosition: Bool {
+    var isWaitingToReportChosenPosition: Bool {
         return reportChosenPositionClosure != nil
     }
     

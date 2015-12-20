@@ -73,7 +73,7 @@ private extension GameViewController {
     }
     
     func reportChosenPosition(position: GameBoard.Position, forUserStrategy userStrategy: UserStrategy?) -> Bool {
-        guard let userStrategy = userStrategy where userStrategy.isWaitingToChoosePosition else {
+        guard let userStrategy = userStrategy where userStrategy.isWaitingToReportChosenPosition else {
             return false
         }
         
