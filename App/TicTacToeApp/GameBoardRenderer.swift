@@ -51,13 +51,13 @@ private extension GameBoardRenderer {
     
     func renderPlatformBorder() {
         let
-        numberOfBorderLines = 2,
-        lineThickness = GameBoardView.Thickness.platformBorder / CGFloat(numberOfBorderLines),
+        lineCount = 2,
+        lineWidth = GameBoardView.Thickness.platformBorder / CGFloat(lineCount),
         outerRect = layout.platformBorderRect,
-        innerRect = outerRect.insetUniformlyBy(lineThickness)
+        innerRect = outerRect.insetUniformlyBy(lineWidth)
         
-        context.strokeRect(outerRect, color: Color.borderOuter, width: lineThickness)
-        context.strokeRect(innerRect, color: Color.borderInner, width: lineThickness)
+        context.strokeRect(outerRect, color: Color.borderOuter, width: lineWidth)
+        context.strokeRect(innerRect, color: Color.borderInner, width: lineWidth)
     }
     
     func renderPlatform() {
