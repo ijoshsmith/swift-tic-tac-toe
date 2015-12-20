@@ -55,7 +55,7 @@ private extension GameBoardRenderer {
         let
         numberOfBorderLines = 2,
         lineThickness = GameBoardView.Thickness.platformBorder / CGFloat(numberOfBorderLines),
-        outerRect = self.layout.platformBorderRect,
+        outerRect = layout.platformBorderRect,
         innerRect = outerRect.insetUniformlyBy(lineThickness)
         
         context.strokeRect(outerRect, color: Color.borderOuter, width: lineThickness)
@@ -63,11 +63,11 @@ private extension GameBoardRenderer {
     }
     
     func renderPlatform() {
-        context.fillRect(self.layout.platformRect, color: Color.platformFill)
+        context.fillRect(layout.platformRect, color: Color.platformFill)
     }
     
     func renderGridLines() {
-        self.layout.gridLineRects.forEach {
+        layout.gridLineRects.forEach {
             context.fillRect($0, color: Color.gridLine)
         }
     }
