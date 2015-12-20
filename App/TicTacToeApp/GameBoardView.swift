@@ -46,7 +46,7 @@ final class GameBoardView: UIView {
         guard gameBoard != nil else { return }
         
         let
-        borderRect    = calculatePlatformBorderRect(),
+        borderRect    = platformBorderRect,
         platformRect  = platformRectFromBorderRect(borderRect),
         gridLineRects = gridLineRectsFromPlatformRect(platformRect)
         
@@ -73,10 +73,9 @@ private extension GameBoardView {
         
         let
         tapLocation    = touch.locationInView(self),
-        borderRect     = calculatePlatformBorderRect(),
-        platformRect   = platformRectFromBorderRect(borderRect),
+        platformRect   = platformRectFromBorderRect(platformBorderRect),
         emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = calculateCellRectsWithPositions(emptyPositions, inRect: platformRect),
+        emptyCellRects = cellRectsWithPositions(emptyPositions, inRect: platformRect),
         emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
         
         let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
@@ -120,7 +119,7 @@ private struct Thickness {
 // MARK: - Layout
 
 private extension GameBoardView {
-    func calculatePlatformBorderRect() -> CGRect {
+    var platformBorderRect: CGRect {
         let
         width  = frame.width,
         height = frame.height,
@@ -160,7 +159,7 @@ private extension GameBoardView {
     
     func pointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
         let
-        winningRects = calculateCellRectsWithPositions(positions, inRect: rect),
+        winningRects = cellRectsWithPositions(positions, inRect: rect),
         startRect    = winningRects.first!,
         endRect      = winningRects.last!,
         orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
@@ -169,13 +168,13 @@ private extension GameBoardView {
         return (startPoint, endPoint)
     }
     
-    func calculateCellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
+    func cellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
         return positions.map {
-            calculateCellRectAtRow($0.row, column: $0.column, inRect: rect)
+            cellRectAtRow($0.row, column: $0.column, inRect: rect)
         }
     }
     
-    func calculateCellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
+    func cellRectAtRow(row: Int, column: Int, inRect rect: CGRect) -> CGRect {
         let
         totalLength = rect.width,
         cellLength  = totalLength / CGFloat(cellsPerAxis),
@@ -258,7 +257,7 @@ private extension GameBoardView {
             let marksInRow = gameBoard.marksInRow(row)
             for column in 0..<gameBoard.dimension {
                 if let mark = marksInRow[column] {
-                    let cellRect = calculateCellRectAtRow(row, column: column, inRect: rect)
+                    let cellRect = cellRectAtRow(row, column: column, inRect: rect)
                     drawMark(mark, inRect: cellRect)
                 }
             }
