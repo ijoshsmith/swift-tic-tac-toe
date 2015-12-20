@@ -1,6 +1,8 @@
 # Swift Tic-tac-toe
 Nobody's favorite game, implemented in Swift 2.
 
+![alt text](https://ijoshsmith.files.wordpress.com/2015/12/tic-tac-toe1.png "Tic-tac-toe app")
+
 This is a work-in-progress…
 
 # Blog Posts
