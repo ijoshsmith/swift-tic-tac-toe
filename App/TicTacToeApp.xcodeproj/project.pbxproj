@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0340F1A81C270B0A00033E53 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0340F1A71C270B0A00033E53 /* CGRectExtension.swift */; };
 		03464ED51C1A9CC10074451B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03464ED41C1A9CC10074451B /* AppDelegate.swift */; };
 		03464ED71C1A9CC10074451B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03464ED61C1A9CC10074451B /* GameViewController.swift */; };
 		03464EDA1C1A9CC10074451B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03464ED81C1A9CC10074451B /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0340F1A71C270B0A00033E53 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		03464ED11C1A9CC10074451B /* TicTacToeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03464ED41C1A9CC10074451B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03464ED61C1A9CC10074451B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				03C9D48F1C2563C30069A654 /* Storyboards */,
 				03464ED41C1A9CC10074451B /* AppDelegate.swift */,
 				03C9D48B1C2563A20069A654 /* CGContextExtension.swift */,
+				0340F1A71C270B0A00033E53 /* CGRectExtension.swift */,
 				03C9D48C1C2563A20069A654 /* GameBoardView.swift */,
 				03464ED61C1A9CC10074451B /* GameViewController.swift */,
 				03C9D4891C25581E0069A654 /* UserStrategy.swift */,
@@ -241,6 +244,7 @@
 				03C9D48A1C25581E0069A654 /* UserStrategy.swift in Sources */,
 				03C9D48E1C2563A20069A654 /* GameBoardView.swift in Sources */,
 				03464ED71C1A9CC10074451B /* GameViewController.swift in Sources */,
+				0340F1A81C270B0A00033E53 /* CGRectExtension.swift in Sources */,
 				03464ED51C1A9CC10074451B /* AppDelegate.swift in Sources */,
 				03C9D48D1C2563A20069A654 /* CGContextExtension.swift in Sources */,
 			);
