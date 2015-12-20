@@ -51,9 +51,9 @@ private extension GameViewController {
         let gameBoard = GameBoard()
         gameBoardView.gameBoard = gameBoard
         
-        let isBetweenTwoUsers = twoPlayerModeSwitch.on
+        let isTwoPlayerMode = twoPlayerModeSwitch.on
         userStrategyX = UserStrategy()
-        userStrategyO = isBetweenTwoUsers ? UserStrategy() : nil
+        userStrategyO = isTwoPlayerMode ? UserStrategy() : nil
         
         let
         xStrategy = userStrategyX!,
