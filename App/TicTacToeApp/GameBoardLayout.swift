@@ -67,15 +67,11 @@ final class GameBoardLayout {
     }
     
     func cellRectAtPosition(position: GameBoard.Position) -> CGRect {
-        return cellRectAtRow(position.row, column: position.column)
-    }
-    
-    func cellRectAtRow(row: Int, column: Int) -> CGRect {
         let
         totalLength = platformRect.width,
         cellLength  = totalLength / CGFloat(marksPerAxis),
-        leftEdge    = platformRect.minX + CGFloat(column) * cellLength,
-        topEdge     = platformRect.minY + CGFloat(row) * cellLength,
+        leftEdge    = platformRect.minX + CGFloat(position.column) * cellLength,
+        topEdge     = platformRect.minY + CGFloat(position.row) * cellLength,
         naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
         cellRect    = naturalRect.insetUniformlyBy(GameBoardView.Thickness.gridLine)
         return cellRect
