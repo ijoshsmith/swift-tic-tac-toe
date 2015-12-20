@@ -56,15 +56,8 @@ final class GameBoardView: UIView {
         drawGridLinesInRects(gridLineRects)
         
         if let winningPositions = winningPositions {
-            let
-            winningRects = calculateCellRectsWithPositions(winningPositions, inRect: platformRect),
-            startRect    = winningRects.first!,
-            endRect      = winningRects.last!,
-            orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
-            startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
-            endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
-            
-            drawWinningLineFromStartPoint(startPoint, toEndPoint: endPoint)
+            let (startPoint, endPoint) = calculateStartAndEndPointsForWinningLineThroughPositions(winningPositions, inRect: platformRect)
+            drawWinningLineFrom(startPoint, to: endPoint)
         }
     }
 }
@@ -183,6 +176,17 @@ private extension GameBoardView {
         }
     }
     
+    func calculateStartAndEndPointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
+        let
+        winningRects = calculateCellRectsWithPositions(positions, inRect: rect),
+        startRect    = winningRects.first!,
+        endRect      = winningRects.last!,
+        orientation  = winningLineOrientationForStartRect(startRect, endRect: endRect),
+        startPoint   = startPointForRect(startRect, winningLineOrientation: orientation),
+        endPoint     = endPointForRect(endRect, winningLineOrientation: orientation)
+        return (startPoint, endPoint)
+    }
+    
     func calculateCellRectsWithPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> [CGRect] {
         return positions
             .map { calculateCellRectAtRow($0.row, column: $0.column, inRect: rect) }
@@ -299,7 +303,7 @@ private extension GameBoardView {
         }
     }
     
-    func drawWinningLineFromStartPoint(startPoint: CGPoint, toEndPoint endPoint: CGPoint) {
-        context.strokeLineFrom(startPoint, to: endPoint, color: Color.winningLine, width: Thickness.winningLine, lineCap: .Round)
+    func drawWinningLineFrom(from: CGPoint, to: CGPoint) {
+        context.strokeLineFrom(from, to: to, color: Color.winningLine, width: Thickness.winningLine, lineCap: .Round)
     }
 }
