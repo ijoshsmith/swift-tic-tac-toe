@@ -34,12 +34,18 @@ final class GameBoardView: UIView {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
-        handleTouchesEnded(touches)
+        
+        if gameBoard != nil {
+            handleTouchesEnded(touches)
+        }
     }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
-        renderer.renderWithWinningPositions(winningPositions)
+        
+        if gameBoard != nil {
+            renderer.renderWithWinningPositions(winningPositions)
+        }
     }
     
     private var _renderer: GameBoardRenderer?
