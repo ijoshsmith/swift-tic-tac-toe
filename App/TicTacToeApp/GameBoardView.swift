@@ -151,27 +151,22 @@ private extension GameBoardView {
         cellLength    = lineLength / CGFloat(cellsPerAxis),
         centerOffset  = Thickness.gridLine / CGFloat(2),
         verticalRects = (1..<cellsPerAxis).map { CGRect(
-            x: platformRect.minX + (CGFloat($0) * cellLength) - centerOffset,
-            y: platformRect.minY,
-            width: Thickness.gridLine,
+            x:      platformRect.minX + (CGFloat($0) * cellLength) - centerOffset,
+            y:      platformRect.minY,
+            width:  Thickness.gridLine,
             height: lineLength)
         },
         horizontalRects = (1..<cellsPerAxis).map { CGRect(
-            x: platformRect.minX,
-            y: platformRect.minY + (CGFloat($0) * cellLength) - centerOffset,
-            width: lineLength,
+            x:      platformRect.minX,
+            y:      platformRect.minY + (CGFloat($0) * cellLength) - centerOffset,
+            width:  lineLength,
             height: Thickness.gridLine)
         }
         return [verticalRects, horizontalRects].flatMap { $0 }
     }
     
     var cellsPerAxis: Int {
-        if let gameBoard = gameBoard {
-            return gameBoard.dimension
-        }
-        else {
-            return 0
-        }
+        return gameBoard != nil ? gameBoard!.dimension : 0
     }
     
     func calculateStartAndEndPointsForWinningLineThroughPositions(positions: [GameBoard.Position], inRect rect: CGRect) -> (CGPoint, CGPoint) {
