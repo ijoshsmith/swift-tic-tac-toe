@@ -75,8 +75,8 @@ private extension GameBoardView {
         if isGameFinished {
             reportTapOnFinishedGameBoard()
         }
-        else if let touch = touches.first {
-            reportTapOnEmptyPositionWithTouch(touch)
+        else if let touch = touches.first, emptyPosition = emptyPositionFromTouch(touch) {
+            reportTapOnEmptyPosition(emptyPosition)
         }
     }
     
@@ -87,27 +87,26 @@ private extension GameBoardView {
         return wasWon || wasTied
     }
     
+    func emptyPositionFromTouch(touch: UITouch) -> GameBoard.Position? {
+        guard let gameBoard = gameBoard else { return nil }
+        
+        let
+        touchLocation  = touch.locationInView(self),
+        emptyPositions = gameBoard.emptyPositions,
+        emptyCellRects = layout.cellRectsAtPositions(emptyPositions)
+        
+        return zip(emptyPositions, emptyCellRects)
+            .flatMap { (position, cellRect) in  cellRect.contains(touchLocation) ? position : nil }
+            .first
+    }
+    
     func reportTapOnFinishedGameBoard() {
         guard let tappedFinishedGameBoardHandler = tappedFinishedGameBoardHandler else { return }
         tappedFinishedGameBoardHandler()
     }
     
-    func reportTapOnEmptyPositionWithTouch(touch: UITouch) {
-        guard let gameBoard = gameBoard else { return }
+    func reportTapOnEmptyPosition(position: GameBoard.Position) {
         guard let tappedEmptyPositionHandler = tappedEmptyPositionHandler else { return }
-        
-        let
-        tapLocation    = touch.locationInView(self),
-        emptyPositions = gameBoard.emptyPositions,
-        emptyCellRects = layout.cellRectsAtPositions(emptyPositions),
-        emptyPositionsAndRects = Array(zip(emptyPositions, emptyCellRects))
-        
-        let tappedPositions = emptyPositionsAndRects.flatMap { (position, rect) in
-            return rect.contains(tapLocation) ? position : nil
-        }
-        
-        if let tappedPosition = tappedPositions.first {
-            tappedEmptyPositionHandler(tappedPosition)
-        }
+        tappedEmptyPositionHandler(position)
     }
 }
