@@ -41,7 +41,7 @@ private extension GameBoardRenderer {
     func renderPlatformBorder() {
         let
         lineCount = 2,
-        lineWidth = GameBoardView.Thickness.platformBorder / CGFloat(lineCount),
+        lineWidth = Thickness.platformBorder / CGFloat(lineCount),
         outerRect = layout.platformBorderRect,
         innerRect = outerRect.insetBy(lineWidth)
         
@@ -62,7 +62,7 @@ private extension GameBoardRenderer {
     func renderMarks() {
         gameBoard.marksAndPositions
             .map     { (mark, position) in (mark, layout.cellRectAtPosition(position)) }
-            .map     { (mark, cellRect) in (mark, cellRect.insetBy(GameBoardView.Thickness.markMargin)) }
+            .map     { (mark, cellRect) in (mark, cellRect.insetBy(Thickness.markMargin)) }
             .forEach { (mark, markRect) in renderMark(mark, inRect: markRect) }
     }
     
@@ -74,17 +74,17 @@ private extension GameBoardRenderer {
     }
     
     func renderX(inRect rect: CGRect) {
-        context.strokeLineFrom(rect.topLeft, to: rect.bottomRight, color: UIColor.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
-        context.strokeLineFrom(rect.bottomLeft, to: rect.topRight, color: UIColor.markX, width: GameBoardView.Thickness.mark, lineCap: .Round)
+        context.strokeLineFrom(rect.topLeft, to: rect.bottomRight, color: UIColor.markX, width: Thickness.mark, lineCap: .Round)
+        context.strokeLineFrom(rect.bottomLeft, to: rect.topRight, color: UIColor.markX, width: Thickness.mark, lineCap: .Round)
     }
     
     func renderO(inRect rect: CGRect) {
-        context.strokeEllipseInRect(rect, color: UIColor.markO, width: GameBoardView.Thickness.mark)
+        context.strokeEllipseInRect(rect, color: UIColor.markO, width: Thickness.mark)
     }
     
     func renderLineThroughWinningPositions(winningPositions: [GameBoard.Position]) {
         let (startPoint, endPoint) = layout.pointsForLineThroughWinningPositions(winningPositions)
-        context.strokeLineFrom(startPoint, to: endPoint, color: UIColor.winningLine, width: GameBoardView.Thickness.winningLine, lineCap: .Round)
+        context.strokeLineFrom(startPoint, to: endPoint, color: UIColor.winningLine, width: Thickness.winningLine, lineCap: .Round)
     }
 }
 

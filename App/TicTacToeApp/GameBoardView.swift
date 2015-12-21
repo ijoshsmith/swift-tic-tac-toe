@@ -68,7 +68,7 @@ final class GameBoardView: UIView {
 
 
 
-// MARK: - User interaction
+// MARK: - Touch handling
 
 private extension GameBoardView {
     func handleTouchesEnded(touches: Set<UITouch>) {
@@ -109,22 +109,5 @@ private extension GameBoardView {
         if let tappedPosition = tappedPositions.first {
             tappedEmptyPositionClosure(tappedPosition)
         }
-    }
-}
-
-
-
-// MARK: - Thickness values
-
-extension GameBoardView {
-    internal struct Thickness {
-        static let
-        gridLine: CGFloat         =  4,
-        mark: CGFloat             = 16,
-        markMargin: CGFloat       = 20,
-        platformBorder: CGFloat   =  2,
-        platformMargin: CGFloat   = 16,
-        winningLine: CGFloat      =  8,
-        winningLineInset: CGFloat =  8
     }
 }

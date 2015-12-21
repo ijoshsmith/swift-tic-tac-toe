@@ -21,32 +21,32 @@ final class GameBoardLayout {
         let
         width  = self.frame.width,
         height = self.frame.height,
-        length = min(width, height) - (GameBoardView.Thickness.platformMargin * 2),
+        length = min(width, height) - (Thickness.platformMargin * 2),
         origin = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
         size   = CGSize(width: length, height: length)
         return CGRect(origin: origin, size: size)
     }()
     
     lazy var platformRect: CGRect = {
-        return self.platformBorderRect.insetBy(GameBoardView.Thickness.platformBorder)
+        return self.platformBorderRect.insetBy(Thickness.platformBorder)
     }()
     
     lazy var gridLineRects: [CGRect] = {
         let
         lineLength    = self.platformRect.width,
         cellLength    = lineLength / CGFloat(self.marksPerAxis),
-        centerOffset  = GameBoardView.Thickness.gridLine / CGFloat(2),
+        centerOffset  = Thickness.gridLine / CGFloat(2),
         verticalRects = (1..<self.marksPerAxis).map { CGRect(
             x:      self.platformRect.minX + (CGFloat($0) * cellLength) - centerOffset,
             y:      self.platformRect.minY,
-            width:  GameBoardView.Thickness.gridLine,
+            width:  Thickness.gridLine,
             height: lineLength)
         },
         horizontalRects = (1..<self.marksPerAxis).map { CGRect(
             x:      self.platformRect.minX,
             y:      self.platformRect.minY + (CGFloat($0) * cellLength) - centerOffset,
             width:  lineLength,
-            height: GameBoardView.Thickness.gridLine)
+            height: Thickness.gridLine)
         }
         return [verticalRects, horizontalRects].flatMap { $0 }
     }()
@@ -62,7 +62,7 @@ final class GameBoardLayout {
         leftEdge    = platformRect.minX + CGFloat(position.column) * cellLength,
         topEdge     = platformRect.minY + CGFloat(position.row) * cellLength,
         naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
-        cellRect    = naturalRect.insetBy(GameBoardView.Thickness.gridLine)
+        cellRect    = naturalRect.insetBy(Thickness.gridLine)
         return cellRect
     }
     
@@ -92,7 +92,7 @@ final class GameBoardLayout {
     }
     
     private func startPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetBy(GameBoardView.Thickness.winningLineInset)
+        let winningRect = rect.insetBy(Thickness.winningLineInset)
         switch winningLineOrientation {
         case .Horizontal:           return winningRect.centerLeft
         case .Vertical:             return winningRect.topCenter
@@ -102,7 +102,7 @@ final class GameBoardLayout {
     }
     
     private func endPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetBy(GameBoardView.Thickness.winningLineInset)
+        let winningRect = rect.insetBy(Thickness.winningLineInset)
         switch winningLineOrientation {
         case .Horizontal:           return winningRect.centerRight
         case .Vertical:             return winningRect.bottomCenter

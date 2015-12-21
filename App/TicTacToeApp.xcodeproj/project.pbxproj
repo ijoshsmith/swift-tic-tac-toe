@@ -20,6 +20,7 @@
 		03C9D48E1C2563A20069A654 /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D48C1C2563A20069A654 /* GameBoardView.swift */; };
 		03C9D4951C25656C0069A654 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; };
 		03C9D4961C25656C0069A654 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03464F081C1A9D720074451B /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03E193321C282245002A5BEF /* Thickness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E193311C282245002A5BEF /* Thickness.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		03C9D4891C25581E0069A654 /* UserStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStrategy.swift; sourceTree = "<group>"; };
 		03C9D48B1C2563A20069A654 /* CGContextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContextExtension.swift; sourceTree = "<group>"; };
 		03C9D48C1C2563A20069A654 /* GameBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
+		03E193311C282245002A5BEF /* Thickness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thickness.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,12 +113,8 @@
 			children = (
 				0369726B1C233EE700FE3EFA /* Config */,
 				03C9D48F1C2563C30069A654 /* Storyboards */,
+				03E193341C282292002A5BEF /* View */,
 				03464ED41C1A9CC10074451B /* AppDelegate.swift */,
-				03C9D48B1C2563A20069A654 /* CGContextExtension.swift */,
-				0340F1A71C270B0A00033E53 /* CGRectExtension.swift */,
-				0340F1AA1C27298D00033E53 /* GameBoardLayout.swift */,
-				0340F1AC1C273C2B00033E53 /* GameBoardRenderer.swift */,
-				03C9D48C1C2563A20069A654 /* GameBoardView.swift */,
 				03464ED61C1A9CC10074451B /* GameViewController.swift */,
 				03C9D4891C25581E0069A654 /* UserStrategy.swift */,
 			);
@@ -149,6 +147,19 @@
 				03464ED81C1A9CC10074451B /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		03E193341C282292002A5BEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03C9D48B1C2563A20069A654 /* CGContextExtension.swift */,
+				0340F1A71C270B0A00033E53 /* CGRectExtension.swift */,
+				0340F1AA1C27298D00033E53 /* GameBoardLayout.swift */,
+				0340F1AC1C273C2B00033E53 /* GameBoardRenderer.swift */,
+				03C9D48C1C2563A20069A654 /* GameBoardView.swift */,
+				03E193311C282245002A5BEF /* Thickness.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 				0340F1A81C270B0A00033E53 /* CGRectExtension.swift in Sources */,
 				03464ED51C1A9CC10074451B /* AppDelegate.swift in Sources */,
 				03C9D48D1C2563A20069A654 /* CGContextExtension.swift in Sources */,
+				03E193321C282245002A5BEF /* Thickness.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
