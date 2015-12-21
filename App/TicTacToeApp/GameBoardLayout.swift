@@ -28,7 +28,7 @@ final class GameBoardLayout {
     }()
     
     lazy var platformRect: CGRect = {
-        return self.platformBorderRect.insetUniformlyBy(GameBoardView.Thickness.platformBorder)
+        return self.platformBorderRect.insetBy(GameBoardView.Thickness.platformBorder)
     }()
     
     lazy var gridLineRects: [CGRect] = {
@@ -62,7 +62,7 @@ final class GameBoardLayout {
         leftEdge    = platformRect.minX + CGFloat(position.column) * cellLength,
         topEdge     = platformRect.minY + CGFloat(position.row) * cellLength,
         naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
-        cellRect    = naturalRect.insetUniformlyBy(GameBoardView.Thickness.gridLine)
+        cellRect    = naturalRect.insetBy(GameBoardView.Thickness.gridLine)
         return cellRect
     }
     
@@ -92,7 +92,7 @@ final class GameBoardLayout {
     }
     
     private func startPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetUniformlyBy(GameBoardView.Thickness.winningLineInset)
+        let winningRect = rect.insetBy(GameBoardView.Thickness.winningLineInset)
         switch winningLineOrientation {
         case .Horizontal:           return winningRect.centerLeft
         case .Vertical:             return winningRect.topCenter
@@ -102,7 +102,7 @@ final class GameBoardLayout {
     }
     
     private func endPointForRect(rect: CGRect, winningLineOrientation: WinningLineOrientation) -> CGPoint {
-        let winningRect = rect.insetUniformlyBy(GameBoardView.Thickness.winningLineInset)
+        let winningRect = rect.insetBy(GameBoardView.Thickness.winningLineInset)
         switch winningLineOrientation {
         case .Horizontal:           return winningRect.centerRight
         case .Vertical:             return winningRect.bottomCenter

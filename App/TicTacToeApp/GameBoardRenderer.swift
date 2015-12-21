@@ -43,7 +43,7 @@ private extension GameBoardRenderer {
         lineCount = 2,
         lineWidth = GameBoardView.Thickness.platformBorder / CGFloat(lineCount),
         outerRect = layout.platformBorderRect,
-        innerRect = outerRect.insetUniformlyBy(lineWidth)
+        innerRect = outerRect.insetBy(lineWidth)
         
         context.strokeRect(outerRect, color: UIColor.borderOuter, width: lineWidth)
         context.strokeRect(innerRect, color: UIColor.borderInner, width: lineWidth)
@@ -62,7 +62,7 @@ private extension GameBoardRenderer {
     func renderMarks() {
         gameBoard.marksAndPositions
             .map     { (mark, position) in (mark, layout.cellRectAtPosition(position)) }
-            .map     { (mark, cellRect) in (mark, cellRect.insetUniformlyBy(GameBoardView.Thickness.markMargin)) }
+            .map     { (mark, cellRect) in (mark, cellRect.insetBy(GameBoardView.Thickness.markMargin)) }
             .forEach { (mark, markRect) in renderMark(mark, inRect: markRect) }
     }
     

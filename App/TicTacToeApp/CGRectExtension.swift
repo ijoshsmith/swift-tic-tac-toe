@@ -19,7 +19,7 @@ internal extension CGRect {
     var topLeft:      CGPoint { return CGPoint(x: minX, y: minY) }
     var topRight:     CGPoint { return CGPoint(x: maxX, y: minY) }
     
-    func insetUniformlyBy(amount: CGFloat) -> CGRect {
+    func insetBy(amount: CGFloat) -> CGRect {
         return self.insetBy(dx: amount, dy: amount)
     }
 }
