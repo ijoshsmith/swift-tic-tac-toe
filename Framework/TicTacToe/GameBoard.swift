@@ -73,18 +73,6 @@ public final class GameBoard {
         return Array(zip(marks.flatten(), positions))
     }
     
-    public func marksInRow(row: Int) -> [Mark?] {
-        return positionsForRow(row).map(markAtPosition)
-    }
-    
-    public func marksInColumn(column: Int) -> [Mark?] {
-        return positionsForColumn(column).map(markAtPosition)
-    }
-    
-    public func marksInDiagonal(diagonal: Diagonal) -> [Mark?] {
-        return positionsForDiagonal(diagonal).map(markAtPosition)
-    }
-    
     
     
     // MARK: - Non-public stored properties
@@ -114,6 +102,18 @@ internal extension GameBoard {
     
     func isEmptyAtPosition(position: Position) -> Bool {
         return markAtPosition(position) == nil
+    }
+    
+    func marksInRow(row: Int) -> [Mark?] {
+        return positionsForRow(row).map(markAtPosition)
+    }
+    
+    func marksInColumn(column: Int) -> [Mark?] {
+        return positionsForColumn(column).map(markAtPosition)
+    }
+    
+    func marksInDiagonal(diagonal: Diagonal) -> [Mark?] {
+        return positionsForDiagonal(diagonal).map(markAtPosition)
     }
     
     func positionsForRow(row: Int) -> [Position] {
