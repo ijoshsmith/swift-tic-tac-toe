@@ -61,9 +61,8 @@ private extension GameBoardRenderer {
     
     func renderMarks() {
         gameBoard.marksAndPositions
-            .filter  { $0.mark != nil }
-            .map     { (mark: $0.mark!, cellRect: layout.cellRectAtPosition($0.position)) }
-            .forEach { renderMark($0.mark, inRect: $0.cellRect) }
+            .map     { (mark, position) in (mark: mark, cellRect: layout.cellRectAtPosition(position)) }
+            .forEach { (mark, cellRect) in renderMark(mark, inRect: cellRect) }
     }
     
     func renderMark(mark: Mark, inRect rect: CGRect) {

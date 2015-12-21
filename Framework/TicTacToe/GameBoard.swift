@@ -62,20 +62,27 @@ public final class GameBoard {
     }
     
     public let dimension: Int
-    
-    public let dimensionIndexes: [Int]
-    
+
     public var emptyPositions: [Position] {
         return positions.filter(isEmptyAtPosition)
     }
     
-    public var marksAndPositions: [(mark: Mark?, position: Position)] {
-        return Array(zip(marks.flatten(), positions))
+    public var marksAndPositions: [(mark: Mark, position: Position)] {
+        return positions.flatMap { position in
+            if let mark = markAtPosition(position) {
+                return (mark, position)
+            }
+            else {
+                return nil
+            }
+        }
     }
     
     
     
     // MARK: - Non-public stored properties
+    
+    internal let dimensionIndexes: [Int]
     
     internal var marks: [[Mark?]] // internal for unit test access
     
