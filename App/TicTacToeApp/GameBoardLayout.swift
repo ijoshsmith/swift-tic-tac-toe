@@ -36,13 +36,14 @@ final class GameBoardLayout {
     lazy var gridLines: [Line] = {
         let
         cellLength    = self.platformRect.width / CGFloat(self.marksPerAxis),
-        verticalLines = (1..<self.marksPerAxis).map { lineNumber -> Line in
+        lineNumbers   = 1..<self.marksPerAxis,
+        verticalLines = lineNumbers.map { lineNumber -> Line in
             let x = self.platformRect.minX + CGFloat(lineNumber) * cellLength
             return Line(
                 startPoint: CGPoint(x: x, y: self.platformRect.minY),
                 endPoint:   CGPoint(x: x, y: self.platformRect.maxY))
         },
-        horizontalLines = (1..<self.marksPerAxis).map { lineNumber -> Line in
+        horizontalLines = lineNumbers.map { lineNumber -> Line in
             let y = self.platformRect.minY + CGFloat(lineNumber) * cellLength
             return Line(
                 startPoint: CGPoint(x: self.platformRect.minX, y: y),
