@@ -50,6 +50,7 @@ final class GameBoardView: UIView {
     
     private var _renderer: GameBoardRenderer?
     private var renderer: GameBoardRenderer {
+        assert(gameBoard != nil)
         if _renderer == nil {
             let context = UIGraphicsGetCurrentContext()!
             _renderer = GameBoardRenderer(context: context, gameBoard: gameBoard!, layout: layout)
@@ -59,6 +60,7 @@ final class GameBoardView: UIView {
     
     private var _layout: GameBoardLayout?
     private var layout: GameBoardLayout {
+        assert(gameBoard != nil)
         if _layout == nil {
             _layout = GameBoardLayout(frame: frame, marksPerAxis: gameBoard!.dimension)
         }
