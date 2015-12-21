@@ -28,9 +28,9 @@ final class GameBoardView: UIView {
         setNeedsDisplay()
     }
     
-    var tappedEmptyPositionClosure: (GameBoard.Position -> Void)?
+    var tappedEmptyPositionHandler: (GameBoard.Position -> Void)?
     
-    var tappedFinishedGameBoardClosure: (Void -> Void)?
+    var tappedFinishedGameBoardHandler: (Void -> Void)?
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
@@ -88,13 +88,13 @@ private extension GameBoardView {
     }
     
     func reportTapOnFinishedGameBoard() {
-        guard let tappedFinishedGameBoardClosure = tappedFinishedGameBoardClosure else { return }
-        tappedFinishedGameBoardClosure()
+        guard let tappedFinishedGameBoardHandler = tappedFinishedGameBoardHandler else { return }
+        tappedFinishedGameBoardHandler()
     }
     
     func reportTapOnEmptyPositionWithTouch(touch: UITouch) {
         guard let gameBoard = gameBoard else { return }
-        guard let tappedEmptyPositionClosure = tappedEmptyPositionClosure else { return }
+        guard let tappedEmptyPositionHandler = tappedEmptyPositionHandler else { return }
         
         let
         tapLocation    = touch.locationInView(self),
@@ -107,7 +107,7 @@ private extension GameBoardView {
         }
         
         if let tappedPosition = tappedPositions.first {
-            tappedEmptyPositionClosure(tappedPosition)
+            tappedEmptyPositionHandler(tappedPosition)
         }
     }
 }

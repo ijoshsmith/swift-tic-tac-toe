@@ -15,11 +15,11 @@ final class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gameBoardView.tappedEmptyPositionClosure = { [weak self] position in
+        gameBoardView.tappedEmptyPositionHandler = { [weak self] position in
             self?.handleTappedEmptyPosition(position)
         }
         
-        gameBoardView.tappedFinishedGameBoardClosure = { [weak self] in
+        gameBoardView.tappedFinishedGameBoardHandler = { [weak self] in
             self?.startPlayingGame()
         }
         
