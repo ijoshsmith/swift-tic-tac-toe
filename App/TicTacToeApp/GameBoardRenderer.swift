@@ -83,7 +83,7 @@ private extension GameBoardRenderer {
     }
     
     func renderLineThroughWinningPositions(winningPositions: [GameBoard.Position]) {
-        let (startPoint, endPoint) = layout.pointsForLineThroughWinningPositions(winningPositions)
+        let (startPoint, endPoint) = layout.lineThroughWinningPositions(winningPositions)
         context.strokeLineFrom(startPoint, to: endPoint, color: UIColor.winningLine, width: Thickness.winningLine, lineCap: .Round)
     }
 }

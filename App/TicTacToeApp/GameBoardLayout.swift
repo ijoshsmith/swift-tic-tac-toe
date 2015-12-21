@@ -12,6 +12,8 @@ import UIKit
 /** Provides layout information used to render a game board. */
 final class GameBoardLayout {
     
+    typealias Line = (startPoint: CGPoint, endPoint: CGPoint)
+    
     init(frame: CGRect, marksPerAxis: Int) {
         self.frame = frame
         self.marksPerAxis = marksPerAxis
@@ -66,7 +68,7 @@ final class GameBoardLayout {
         return cellRect
     }
     
-    func pointsForLineThroughWinningPositions(winningPositions: [GameBoard.Position]) -> (startPoint: CGPoint, endPoint: CGPoint) {
+    func lineThroughWinningPositions(winningPositions: [GameBoard.Position]) -> Line {
         let
         cellRects   = cellRectsAtPositions(winningPositions),
         startRect   = cellRects.first!,
@@ -111,6 +113,6 @@ final class GameBoardLayout {
         }
     }
     
-    private let marksPerAxis: Int
     private let frame: CGRect
+    private let marksPerAxis: Int
 }
