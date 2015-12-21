@@ -48,7 +48,7 @@ final class GameBoardLayout {
                 startPoint: CGPoint(x: self.platformRect.minX, y: y),
                 endPoint:   CGPoint(x: self.platformRect.maxX, y: y))
         }
-        return [verticalLines, horizontalLines].flatMap { $0 }
+        return verticalLines + horizontalLines
     }()
     
     func cellRectsAtPositions(positions: [GameBoard.Position]) -> [CGRect] {
