@@ -45,12 +45,12 @@ private extension GameBoardRenderer {
         outerRect = layout.platformBorderRect,
         innerRect = outerRect.insetBy(lineWidth)
         
-        context.strokeRect(outerRect, color: UIColor.borderOuter, width: lineWidth)
-        context.strokeRect(innerRect, color: UIColor.borderInner, width: lineWidth)
+        context.strokeRect(outerRect, color: UIColor.outerBorder, width: lineWidth)
+        context.strokeRect(innerRect, color: UIColor.innerBorder, width: lineWidth)
     }
     
     func renderPlatform() {
-        context.fillRect(layout.platformRect, color: UIColor.platformFill)
+        context.fillRect(layout.platformRect, color: UIColor.platform)
     }
     
     func renderGridLines() {
@@ -94,11 +94,11 @@ private extension GameBoardRenderer {
 
 private extension UIColor {
     static let
-    borderInner  = UIColor.darkGrayColor(),
-    borderOuter  = UIColor.whiteColor(),
-    gridLine     = UIColor.darkGrayColor(),
-    markO        = UIColor.blueColor(),
-    markX        = UIColor.greenColor(),
-    platformFill = UIColor.whiteColor(),
-    winningLine  = UIColor.redColor()
+    gridLine    = UIColor.darkGrayColor(),
+    innerBorder = UIColor.darkGrayColor(),
+    markO       = UIColor.blueColor(),
+    markX       = UIColor.greenColor(),
+    outerBorder = UIColor.whiteColor(),
+    platform    = UIColor.whiteColor(),
+    winningLine = UIColor.redColor()
 }
