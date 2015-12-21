@@ -33,24 +33,22 @@ final class GameBoardLayout {
         return self.platformBorderRect.insetBy(Thickness.platformBorder)
     }()
     
-    lazy var gridLineRects: [CGRect] = {
+    lazy var gridLines: [Line] = {
         let
-        lineLength    = self.platformRect.width,
-        cellLength    = lineLength / CGFloat(self.marksPerAxis),
-        centerOffset  = Thickness.gridLine / CGFloat(2),
-        verticalRects = (1..<self.marksPerAxis).map { CGRect(
-            x:      self.platformRect.minX + (CGFloat($0) * cellLength) - centerOffset,
-            y:      self.platformRect.minY,
-            width:  Thickness.gridLine,
-            height: lineLength)
+        cellLength    = self.platformRect.width / CGFloat(self.marksPerAxis),
+        verticalLines = (1..<self.marksPerAxis).map { lineNumber -> Line in
+            let x = self.platformRect.minX + CGFloat(lineNumber) * cellLength
+            return Line(
+                startPoint: CGPoint(x: x, y: self.platformRect.minY),
+                endPoint:   CGPoint(x: x, y: self.platformRect.maxY))
         },
-        horizontalRects = (1..<self.marksPerAxis).map { CGRect(
-            x:      self.platformRect.minX,
-            y:      self.platformRect.minY + (CGFloat($0) * cellLength) - centerOffset,
-            width:  lineLength,
-            height: Thickness.gridLine)
+        horizontalLines = (1..<self.marksPerAxis).map { lineNumber -> Line in
+            let y = self.platformRect.minY + CGFloat(lineNumber) * cellLength
+            return Line(
+                startPoint: CGPoint(x: self.platformRect.minX, y: y),
+                endPoint:   CGPoint(x: self.platformRect.maxX, y: y))
         }
-        return [verticalRects, horizontalRects].flatMap { $0 }
+        return [verticalLines, horizontalLines].flatMap { $0 }
     }()
     
     func cellRectsAtPositions(positions: [GameBoard.Position]) -> [CGRect] {

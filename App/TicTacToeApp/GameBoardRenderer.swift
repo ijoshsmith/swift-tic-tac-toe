@@ -54,8 +54,8 @@ private extension GameBoardRenderer {
     }
     
     func renderGridLines() {
-        layout.gridLineRects.forEach {
-            context.fillRect($0, color: UIColor.gridLine)
+        layout.gridLines.forEach {
+            context.strokeLineFrom($0.startPoint, to: $0.endPoint, color: UIColor.gridLine, width: Thickness.gridLine, lineCap: .Butt)
         }
     }
     
