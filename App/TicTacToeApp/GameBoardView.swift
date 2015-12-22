@@ -52,6 +52,7 @@ final class GameBoardView: UIView {
     private var renderer: GameBoardRenderer {
         assert(gameBoard != nil)
         if _renderer == nil {
+            // By the time a renderer is needed, this view's graphics context should exist.
             let context = UIGraphicsGetCurrentContext()!
             _renderer = GameBoardRenderer(context: context, gameBoard: gameBoard!, layout: layout)
         }
@@ -62,6 +63,7 @@ final class GameBoardView: UIView {
     private var layout: GameBoardLayout {
         assert(gameBoard != nil)
         if _layout == nil {
+            // By the time a layout is needed, this view's frame should reflect its actual size.
             _layout = GameBoardLayout(frame: frame, marksPerAxis: gameBoard!.dimension)
         }
         return _layout!

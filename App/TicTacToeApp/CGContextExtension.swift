@@ -8,12 +8,12 @@
 
 import UIKit
 
+// Utility methods that encapsulate the CoreGraphics API.
 internal extension CGContext {
     func strokeLineFrom(from: CGPoint, to: CGPoint, color: UIColor, width: CGFloat, lineCap: CGLineCap) {
         CGContextSetStrokeColorWithColor(self, color.CGColor)
         CGContextSetLineWidth(self, width)
         CGContextSetLineCap(self, lineCap)
-        
         CGContextMoveToPoint(self, from.x, from.y)
         CGContextAddLineToPoint(self, to.x, to.y)
         CGContextStrokePath(self)

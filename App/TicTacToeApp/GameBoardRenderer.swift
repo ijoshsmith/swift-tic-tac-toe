@@ -19,7 +19,7 @@ final class GameBoardRenderer {
     }
     
     func renderWithWinningPositions(winningPositions: [GameBoard.Position]?) {
-        renderPlatformBorder()
+        renderBorder()
         renderPlatform()
         renderGridLines()
         renderMarks()
@@ -38,10 +38,9 @@ final class GameBoardRenderer {
 // MARK: - Rendering routines
 
 private extension GameBoardRenderer {
-    func renderPlatformBorder() {
-        let (outerRect, innerRect) = layout.borderRects
-        context.strokeRect(outerRect, color: UIColor.outerBorder, width: Thickness.outerBorder)
-        context.strokeRect(innerRect, color: UIColor.innerBorder, width: Thickness.innerBorder)
+    func renderBorder() {
+        context.strokeRect(layout.outerBorderRect, color: UIColor.outerBorder, width: Thickness.outerBorder)
+        context.strokeRect(layout.innerBorderRect, color: UIColor.innerBorder, width: Thickness.innerBorder)
     }
     
     func renderPlatform() {

@@ -19,21 +19,22 @@ final class GameBoardLayout {
         self.marksPerAxis = marksPerAxis
     }
     
-    lazy var borderRects: (outerRect: CGRect, innerRect: CGRect) = {
+    lazy var outerBorderRect: CGRect = {
         let
-        width     = self.frame.width,
-        height    = self.frame.height,
-        length    = min(width, height) - (Thickness.platformMargin * 2),
-        origin    = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
-        outerSize = CGSize(width: length, height: length),
-        outerRect = CGRect(origin: origin, size: outerSize),
-        innerRect = outerRect.insetBy(Thickness.outerBorder)
-        return (outerRect, innerRect)
+        width  = self.frame.width,
+        height = self.frame.height,
+        length = min(width, height) - (Thickness.platformMargin * 2),
+        origin = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
+        size   = CGSize(width: length, height: length)
+        return CGRect(origin: origin, size: size)
+    }()
+    
+    lazy var innerBorderRect: CGRect = {
+        return self.outerBorderRect.insetBy(Thickness.outerBorder)
     }()
     
     lazy var platformRect: CGRect = {
-        let (_, innerBorderRect) = self.borderRects
-        return innerBorderRect.insetBy(Thickness.innerBorder)
+        return self.innerBorderRect.insetBy(Thickness.innerBorder)
     }()
     
     lazy var gridLines: [Line] = {
@@ -61,20 +62,15 @@ final class GameBoardLayout {
     
     private func cellRectAtPosition(position: GameBoard.Position) -> CGRect {
         let
-        totalLength = platformRect.width,
-        cellLength  = totalLength / CGFloat(marksPerAxis),
-        leftEdge    = platformRect.minX + CGFloat(position.column) * cellLength,
-        topEdge     = platformRect.minY + CGFloat(position.row) * cellLength,
-        naturalRect = CGRect(x: leftEdge, y: topEdge, width: cellLength, height: cellLength),
-        cellRect    = naturalRect.insetBy(Thickness.gridLine)
-        return cellRect
+        length = platformRect.width / CGFloat(marksPerAxis),
+        left   = platformRect.minX + CGFloat(position.column) * length,
+        top    = platformRect.minY + CGFloat(position.row) * length
+        return CGRect(x: left, y: top, width: length, height: length)
     }
     
     func markRectAtPosition(position: GameBoard.Position) -> CGRect {
-        let
-        cellRect = cellRectAtPosition(position),
-        markRect = cellRect.insetBy(Thickness.markMargin)
-        return markRect
+        let cellRect = cellRectAtPosition(position)
+        return cellRect.insetBy(Thickness.gridLine/2 + Thickness.markMargin)
     }
 
     func lineThroughWinningPositions(winningPositions: [GameBoard.Position]) -> Line {
