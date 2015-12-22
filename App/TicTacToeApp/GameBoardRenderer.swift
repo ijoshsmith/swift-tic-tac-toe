@@ -56,8 +56,7 @@ private extension GameBoardRenderer {
     
     func renderMarks() {
         gameBoard.marksAndPositions
-            .map     { (mark, position) in (mark, layout.cellRectAtPosition(position)) }
-            .map     { (mark, cellRect) in (mark, cellRect.insetBy(Thickness.markMargin)) }
+            .map     { (mark, position) in (mark, layout.markRectAtPosition(position)) }
             .forEach { (mark, markRect) in renderMark(mark, inRect: markRect) }
     }
     

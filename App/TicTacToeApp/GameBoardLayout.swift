@@ -9,7 +9,7 @@
 import TicTacToe
 import UIKit
 
-/** Provides layout information used to render a game board. */
+/** Calculates sizes and positions used to render a game board. */
 final class GameBoardLayout {
     
     typealias Line = (startPoint: CGPoint, endPoint: CGPoint)
@@ -59,7 +59,7 @@ final class GameBoardLayout {
         return positions.map(cellRectAtPosition)
     }
     
-    func cellRectAtPosition(position: GameBoard.Position) -> CGRect {
+    private func cellRectAtPosition(position: GameBoard.Position) -> CGRect {
         let
         totalLength = platformRect.width,
         cellLength  = totalLength / CGFloat(marksPerAxis),
@@ -70,6 +70,13 @@ final class GameBoardLayout {
         return cellRect
     }
     
+    func markRectAtPosition(position: GameBoard.Position) -> CGRect {
+        let
+        cellRect = cellRectAtPosition(position),
+        markRect = cellRect.insetBy(Thickness.markMargin)
+        return markRect
+    }
+
     func lineThroughWinningPositions(winningPositions: [GameBoard.Position]) -> Line {
         let
         cellRects   = cellRectsAtPositions(winningPositions),
