@@ -19,18 +19,21 @@ final class GameBoardLayout {
         self.marksPerAxis = marksPerAxis
     }
     
-    lazy var platformBorderRect: CGRect = {
+    lazy var borderRects: (outerRect: CGRect, innerRect: CGRect) = {
         let
-        width  = self.frame.width,
-        height = self.frame.height,
-        length = min(width, height) - (Thickness.platformMargin * 2),
-        origin = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
-        size   = CGSize(width: length, height: length)
-        return CGRect(origin: origin, size: size)
+        width     = self.frame.width,
+        height    = self.frame.height,
+        length    = min(width, height) - (Thickness.platformMargin * 2),
+        origin    = CGPoint(x: width/2 - length/2, y: height/2 - length/2),
+        outerSize = CGSize(width: length, height: length),
+        outerRect = CGRect(origin: origin, size: outerSize),
+        innerRect = outerRect.insetBy(Thickness.outerBorder)
+        return (outerRect, innerRect)
     }()
     
     lazy var platformRect: CGRect = {
-        return self.platformBorderRect.insetBy(Thickness.platformBorder)
+        let (_, innerBorderRect) = self.borderRects
+        return innerBorderRect.insetBy(Thickness.innerBorder)
     }()
     
     lazy var gridLines: [Line] = {

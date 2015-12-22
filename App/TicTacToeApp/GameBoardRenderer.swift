@@ -39,14 +39,9 @@ final class GameBoardRenderer {
 
 private extension GameBoardRenderer {
     func renderPlatformBorder() {
-        let
-        lineCount = 2,
-        lineWidth = Thickness.platformBorder / CGFloat(lineCount),
-        outerRect = layout.platformBorderRect,
-        innerRect = outerRect.insetBy(lineWidth)
-        
-        context.strokeRect(outerRect, color: UIColor.outerBorder, width: lineWidth)
-        context.strokeRect(innerRect, color: UIColor.innerBorder, width: lineWidth)
+        let (outerRect, innerRect) = layout.borderRects
+        context.strokeRect(outerRect, color: UIColor.outerBorder, width: Thickness.outerBorder)
+        context.strokeRect(innerRect, color: UIColor.innerBorder, width: Thickness.innerBorder)
     }
     
     func renderPlatform() {
